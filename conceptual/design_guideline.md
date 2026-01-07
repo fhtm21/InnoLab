@@ -1,190 +1,145 @@
-# Design Guideline Draft (Reference: https://sis.binus.ac.id/)
-This document reverse-engineers **visual and layout patterns** from the SIS BINUS site as a reference baseline for InnoLab’s microsite.
+# SIS BINUS (sis.binus.ac.id) — Design Guideline (Reference)
 
-Source reference captured in [`conceptual/sis_home.png`](conceptual/sis_home.png:1).  
-Note: Direct CSS/HTML token extraction was not available in this environment, so **hex values and font names below are best-effort approximations** derived from the rendered UI. Replace with exact tokens once CSS access is available.
-
----
-
-## 1) Brand feel and design principles (observed)
-- **Clean academic + modern corporate**: lots of white space, crisp typography, strong hero imagery.
-- **Blue-forward identity**: blue is used for headings, accents, and brand cues.
-- **High-contrast CTA**: orange button stands out strongly against white/blue.
-- **Sectioned storytelling**: homepage is a sequence of large “bands” (hero, program, faculty, partnership, achievements, updates, etc.).
-- **Card-based content**: repeated use of tiles/cards for programs, posts, and highlights.
+> Source: computed styles and loaded resources observed on `https://sis.binus.ac.id/`.
+>
+> Scope: reusable design tokens and component cues for the InnoLab microsite (not a pixel-perfect clone).
 
 ---
 
-## 2) Color system (approximate)
-### 2.1 Primary palette (approx.)
-These are the most prominent colors visible in the header/hero.
-
-- **Primary Blue (brand/heading)**: approx `#2F6FAE` to `#3A7DBA`
-  - Used for: large headings (e.g., SCHOOL OF INFORMATION SYSTEMS PROGRAM), links, accents.
-- **Deep Blue (hero overlay / gradients)**: approx `#0B4F7A` to `#0A6AA0`
-  - Used for: hero image overlay and large background bands.
-- **CTA Orange (primary button)**: approx `#F39A1E` to `#F6A623`
-  - Used for: “MULAI DARI SINI” button.
-- **White**: `#FFFFFF`
-  - Used for: page background, header background, content areas.
-
-### 2.2 Neutral palette (approx.)
-- **Text (primary)**: approx `#1F2A37` (dark gray)
-- **Text (secondary)**: approx `#6B7280` (mid gray)
-- **Borders/dividers**: approx `#E5E7EB` (light gray)
-- **Muted background**: approx `#F7F8FA` (very light gray)
-
-### 2.3 Usage guidance
-- Use **blue** for headings, links, and key UI accents.
-- Use **orange** only for primary CTAs (1 per screen where possible).
-- Keep backgrounds mostly **white**; use **light gray** for section separation.
-- Ensure contrast meets WCAG AA (especially blue text on white and white text on blue overlays).
+## 1) Brand and visual direction (observed)
+- Overall feel: clean, academic-corporate, content-first
+- Primary typeface: Open Sans (Google Fonts)
+- Primary accent: blue used for key headings
+- Primary CTA: warm orange pill button
+- Secondary utility widget: light blue pill with shadow
 
 ---
 
-## 3) Typography (observed)
-Exact font family cannot be confirmed here; the visual style suggests a modern sans-serif.
+## 2) Verified resources (loaded on page)
 
-### 3.1 Font families (recommended to match the look)
-- **Primary UI font**: a clean sans-serif such as `Inter`, `Roboto`, or `Helvetica Neue`.
-- **Fallback stack**:
-  - `Inter, Roboto, Helvetica Neue, Arial, sans-serif`
+### 2.1 Stylesheets
+- https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/css/is_home/external.css?ver=5.5.6
+- https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap
+- https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/svg/is_home/icons.data.svg.css?v=5.5.6
 
-### 3.2 Type scale (recommended)
-Based on the strong hierarchy seen on the homepage:
-
-- **H1 (hero title)**: 40–56px, semi-bold, letter spacing slightly expanded for uppercase headings
-- **H2 (section title)**: 28–36px, semi-bold
-- **H3 (card title)**: 18–22px, semi-bold
-- **Body**: 14–16px, regular
-- **Small/meta**: 12–13px, regular
-
-### 3.3 Text styling patterns
-- Headings often appear **uppercase** or **title case** with strong tracking.
-- Body text is short and scannable; avoid long paragraphs.
-- Links and key labels use the **primary blue**.
+### 2.2 Fonts
+- Family: `Open Sans`
+- Weights observed in computed styles: `200`, `400`, `600`
 
 ---
 
-## 4) Layout and grid (observed)
-### 4.1 Page structure
-- **Sticky/large header** with:
-  - left: BINUS + unit identity
-  - right: utility icons and a prominent CTA button
-  - below: multi-level navigation (top links + dropdown menus)
-- **Hero band**: large, full-width, with a centered heading and a carousel below.
+## 3) Design tokens (computed styles)
 
-### 4.2 Grid and spacing (recommended)
-- Use a **12-column grid** with a max content width (e.g., 1140–1280px).
-- Spacing scale (8px base):
-  - 8, 16, 24, 32, 48, 64
-- Section padding:
-  - top/bottom: 48–80px depending on density
-- Card gutters:
-  - 16–24px
+> Notes:
+> - Values below are computed on the inspected page.
+> - Some values (e.g., `line-height: 16px` on body) may be influenced by specific theme rules; treat as reference, not universal best practice.
 
-### 4.3 Responsive behavior (recommended)
-- Desktop: full nav + CTA visible.
-- Tablet: nav collapses partially; keep CTA accessible.
-- Mobile: hamburger menu; CTA becomes a smaller button or a prominent menu item.
+### 3.1 Typography
 
----
+#### Base body
+- Font family: `Open Sans`
+- Font size: `16px`
+- Font weight: `400`
+- Line height: `16px`
+- Text color: `rgb(94, 94, 94)`
 
-## 5) Components (observed patterns)
-### 5.1 Header / navigation
-- White header background, minimal borders.
-- Multi-level dropdown menus with clear grouping.
-- Search icon in the top bar.
+#### Hero H1 (top headline)
+- Font family: `Open Sans`
+- Font size: `28px`
+- Font weight: `600`
+- Line height: `31.5px`
+- Color: `rgb(59, 125, 192)`
 
-Guideline for InnoLab:
-- Keep top nav to 6–7 items (as in microsite concept).
-- Provide a single primary CTA (Collaborate / Contact).
+#### Section H1 (example: ABOUT THE PROGRAM)
+- Font family: `Open Sans`
+- Font size: `32px`
+- Font weight: `600`
+- Line height: `42px`
+- Color: `rgb(255, 255, 255)`
 
-### 5.2 Primary CTA button
-- Rounded pill shape.
-- High-contrast orange fill.
-- White text, medium weight.
-- Right arrow icon.
+#### Navigation link (example: Home)
+- Font family: `Open Sans`
+- Font size: `12px`
+- Font weight: `200`
+- Line height: `12px`
+- Color: `rgb(94, 94, 94)`
 
-Guideline:
-- Use one primary CTA style across the site.
-- Provide hover state: slightly darker orange or subtle shadow.
+#### Utility link (example: VIEW MORE)
+- Font family: `Open Sans`
+- Font size: `14px`
+- Font weight: `400`
+- Line height: `19px`
+- Color: `rgb(102, 102, 102)`
 
-### 5.3 Section headers
-- Large icon/illustration above section title (SIS uses big section label images).
-- Title + short description + “View more” link.
+#### Tab link (example: News)
+- Font family: `Open Sans`
+- Font size: `14px`
+- Font weight: `400`
+- Line height: `14px`
+- Color: `rgb(94, 94, 94)`
 
-Guideline:
-- For InnoLab, replace decorative section images with:
-  - a small icon + label, or
-  - a consistent section header component (title + subtitle + optional CTA).
+### 3.2 Color palette (derived from computed styles)
 
-### 5.4 Cards (programs, posts, highlights)
-Common card anatomy:
-- Image thumbnail (optional)
-- Title
-- Short description or metadata
-- Link/CTA
+| Token | Value | Where observed |
+|---|---|---|
+| Text / Neutral 600 | `rgb(94, 94, 94)` | body text, nav links |
+| Text / Neutral 650 | `rgb(102, 102, 102)` | VIEW MORE link |
+| Accent / Blue | `rgb(59, 125, 192)` | hero H1 |
+| CTA / Orange | `rgb(243, 147, 27)` | primary CTA background |
+| Surface / Light Blue | `rgb(222, 239, 251)` | floating consultation widget |
+| White | `rgb(255, 255, 255)` | section H1 text |
 
-Guideline:
-- Standardize card sizes per section.
-- Use consistent hover: raise + shadow, or underline title.
+### 3.3 Radius, shadow, spacing cues
 
-### 5.5 Carousel / slider (hero)
-- Large hero carousel with left/right controls.
-- Overlay text on image.
+#### Primary CTA pill (MULAI DARI SINI)
+- Background: `rgb(243, 147, 27)`
+- Border radius: `24px`
+- Box shadow: `none`
+- Note: inspected element was a wrapper; clickable ancestor may apply additional padding/hover styles
 
-Guideline:
-- If used for InnoLab:
-  - keep slides to 3–5
-  - ensure text remains readable (use gradient overlay)
-  - provide accessible controls and keyboard navigation
-
----
-
-## 6) Imagery and iconography (observed)
-- Strong use of **photography** and **banner-style visuals**.
-- Icons are simple and functional (search, arrows, etc.).
-- Background overlays used to ensure text readability.
-
-Guideline for InnoLab:
-- Prefer:
-  - lab photos (seminars, equipment, team)
-  - research visuals (diagrams, abstract AI imagery) sparingly
-- Always apply:
-  - consistent aspect ratios for thumbnails
-  - alt text for images
+#### Floating consultation widget
+- Background: `rgb(222, 239, 251)`
+- Border radius: `16px 0px 0px 16px`
+- Padding: `19px 9px` (top/bottom 19px, left/right 9px)
+- Shadow: `rgba(0, 0, 0, 0.15) 0px 2px 6px 0px`
 
 ---
 
-## 7) Content layout patterns to reuse for InnoLab
-From SIS homepage structure, the following “bands” map well to InnoLab:
+## 4) CSS variables (present on :root)
+The inspected page exposes WordPress preset variables (Gutenberg). These are not necessarily the site’s bespoke design tokens, but they can inform a baseline.
 
-1. **Hero**: InnoLab positioning + 1–2 CTAs
-2. **Quick facts**: facilities, themes, number of projects/publications (if available)
-3. **Research themes**: 4-card grid
-4. **Featured projects**: 2–4 cards
-5. **People spotlight**: leadership + key lecturers
-6. **Updates**: news/events tabs
-7. **Footer**: contact + social + quick links
-
----
-
-## 8) Accessibility and UX notes (recommended)
-- Ensure CTA contrast (white on orange) meets AA.
-- Avoid placing small text directly on busy images without overlay.
-- Provide focus states for nav and buttons.
-- Keep line length comfortable (60–80 characters).
+### 4.1 Notable presets
+- `--wp--preset--color--white: #ffffff`
+- `--wp--preset--color--black: #000000`
+- `--wp--preset--color--vivid-cyan-blue: #0693e3`
+- `--wp--preset--color--luminous-vivid-orange: #ff6900`
+- `--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2)`
+- `--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4)`
+- `--wp--preset--font-size--small: 13px`
+- `--wp--preset--font-size--medium: 20px`
+- `--wp--preset--font-size--large: 36px`
+- `--wp--preset--font-size--x-large: 42px`
 
 ---
 
-## 9) Next steps to make this guideline “exact”
-To convert approximations into exact tokens:
-- Extract CSS variables and computed styles (colors, font-family, font-size, spacing).
-- List actual font files (woff/woff2) and weights used.
-- Capture component states (hover/active/focus) for buttons, links, nav items.
+## 5) Practical guidance for InnoLab microsite (how to reuse)
 
-Deliverables to add later:
-- Final token table (CSS variables)
-- Component spec sheets (button, card, nav, tabs)
-- Responsive breakpoints and layout rules
+### 5.1 Recommended token mapping
+- Body text: `Open Sans`, 16px, weight 400, neutral gray similar to `rgb(94, 94, 94)`
+- Headings: weight 600; use a BINUS-like blue accent similar to `rgb(59, 125, 192)` for key titles
+- Primary CTA: orange pill button with radius ~24px
+- Secondary CTA / utility: light blue surface with subtle shadow
+
+### 5.2 Component patterns to adopt
+- Top navigation: small, lightweight links (12px, weight 200) for a clean header
+- Section headers: larger, bold headings (32px, weight 600) with strong contrast (white on dark/colored backgrounds)
+- Content lists: “VIEW MORE” style links (14px) for section-level navigation
+
+---
+
+## 6) Gaps / next extraction (optional)
+If we want to be more exact for implementation, we can extract:
+- Hover/active states for nav links and CTAs
+- Exact padding/margins for CTA clickable ancestor (not just inner wrapper)
+- Grid/container widths and breakpoints
+- Card styles (borders, shadows, spacing)
