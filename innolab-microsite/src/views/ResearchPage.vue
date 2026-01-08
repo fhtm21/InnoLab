@@ -12,30 +12,48 @@ const projects = getProjects()
   <div>
     <section class="section">
       <div class="container">
-        <h1 class="h1">Research</h1>
+        <h1 class="h1">Activities</h1>
         <p class="muted">
-          Research themes and projects. Explore themes, then drill down into projects and related people.
+          Student projects, research and development initiatives, and partnerships supported by INNOGEN Lab.
         </p>
 
-        <SectionHeader title="Themes" />
-        <div class="grid cols-4">
-          <BaseCard v-for="t in themes" :key="t.slug">
-            <div class="card-title">{{ t.title }}</div>
-            <p class="card-meta">{{ t.overview }}</p>
-            <div style="margin-top: var(--space-3)">
-              <RouterLink class="btn btn-sm" :to="`/research/themes/${t.slug}`">View theme</RouterLink>
-            </div>
+        <SectionHeader title="Focus areas (current content placeholders)" intro="These will be replaced by Activities subpages in v0.1." />
+        <div class="grid cols-3">
+          <BaseCard>
+            <div class="card-title">Student projects</div>
+            <p class="card-meta">Hands-on projects using AI tools and real-world datasets.</p>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Research & development</div>
+            <p class="card-meta">Research in data analytics, automation, and intelligent systems.</p>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Partnerships & collaboration</div>
+            <p class="card-meta">Joint projects with industry partners and institutions.</p>
           </BaseCard>
         </div>
 
         <div style="margin-top: var(--space-6)">
-          <SectionHeader title="Featured projects" />
+          <SectionHeader title="Featured projects" intro="Examples of projects (from the current static content layer)." />
           <div class="grid cols-2">
             <BaseCard v-for="p in projects.slice(0, 2)" :key="p.slug">
               <div class="card-title">{{ p.title }}</div>
               <p class="card-meta">{{ p.status }} · {{ p.summary }}</p>
               <div style="margin-top: var(--space-3)">
-                <RouterLink class="btn btn-sm" :to="`/research/projects/${p.slug}`">View project</RouterLink>
+                <RouterLink class="btn btn-sm" :to="`/activities/projects/${p.slug}`">View project</RouterLink>
+              </div>
+            </BaseCard>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-6)">
+          <SectionHeader title="Legacy themes (temporary)" intro="These theme pages will be repurposed or removed as Activities content is finalized." />
+          <div class="grid cols-4">
+            <BaseCard v-for="t in themes" :key="t.slug">
+              <div class="card-title">{{ t.title }}</div>
+              <p class="card-meta">{{ t.overview }}</p>
+              <div style="margin-top: var(--space-3)">
+                <RouterLink class="btn btn-sm" :to="`/activities/themes/${t.slug}`">View</RouterLink>
               </div>
             </BaseCard>
           </div>
@@ -43,6 +61,13 @@ const projects = getProjects()
       </div>
     </section>
 
-    <CtaBand title="Propose a collaboration" body="Tell us about your research question, data constraints, and timeline." />
+    <CtaBand
+      title="Collaborate with INNOGEN Lab"
+      body="Tell us about your project idea, data constraints, and timeline."
+      primaryLabel="Contact"
+      primaryTo="/contact"
+      secondaryLabel="Collaborate"
+      secondaryTo="/collaborate"
+    />
   </div>
 </template>

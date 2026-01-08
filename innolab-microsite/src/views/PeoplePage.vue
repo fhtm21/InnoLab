@@ -29,8 +29,8 @@ const people = getPeople()
     </section>
 
     <CtaBand
-      title="Join InnoLab"
-      body="Explore research assistantships, thesis supervision, and collaboration opportunities."
+      title="Get involved with INNOGEN Lab"
+      body="Contact us to discuss student projects, supervision, and collaboration opportunities."
       primaryLabel="Contact"
       primaryTo="/contact"
       secondaryLabel="Collaborate"

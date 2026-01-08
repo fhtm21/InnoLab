@@ -13,41 +13,41 @@ const articles = getArticles()
   <div>
     <section class="hero">
       <div class="container hero-inner">
-        <h1 class="h1">InnoLab — BINUS University AI Research Laboratory</h1>
+        <h1 class="h1">INNOGEN Lab — BINUS @Bekasi AI and Data Innovation Facility</h1>
         <p class="muted hero-sub">
-          Advancing AI research and responsible innovation across the university, from foundational methods to real-world impact.
+          A multi-purpose academic and research space supporting AI, data science, smart systems, and Industry 4.0 innovation.
         </p>
 
         <div class="hero-actions">
-          <RouterLink class="btn btn-primary" to="/research">Explore Research</RouterLink>
-          <RouterLink class="btn" to="/collaborate">Collaborate with InnoLab</RouterLink>
+          <RouterLink class="btn btn-primary" to="/facilities">Explore Facilities</RouterLink>
+          <RouterLink class="btn" to="/collaborate">Collaborate / Contact</RouterLink>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <SectionHeader title="Highlights" intro="Quick entry points to understand what we do and how to engage." />
+        <SectionHeader title="Highlights" intro="Quick entry points to understand what INNOGEN Lab is and how to engage." />
         <div class="grid cols-3">
           <BaseCard>
-            <div class="card-title">Research Themes</div>
-            <p class="card-meta">Explore our v0.1 themes and related projects.</p>
+            <div class="card-title">Core purpose</div>
+            <p class="card-meta">Teaching & learning, research & development, and collaboration & impact.</p>
             <div style="margin-top: var(--space-3)">
-              <RouterLink class="btn btn-sm" to="/research">Browse research</RouterLink>
+              <RouterLink class="btn btn-sm" to="/about">Learn more</RouterLink>
+            </div>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Activities</div>
+            <p class="card-meta">Student projects, research initiatives, and partnerships.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/activities">Browse activities</RouterLink>
             </div>
           </BaseCard>
           <BaseCard>
             <div class="card-title">Facilities</div>
-            <p class="card-meta">GPU compute + collaboration space (placeholders)</p>
+            <p class="card-meta">GPU-capable workstations, AI tools, and collaboration space.</p>
             <div style="margin-top: var(--space-3)">
               <RouterLink class="btn btn-sm" to="/facilities">View facilities</RouterLink>
-            </div>
-          </BaseCard>
-          <BaseCard>
-            <div class="card-title">People</div>
-            <p class="card-meta">Meet our lecturers and researchers.</p>
-            <div style="margin-top: var(--space-3)">
-              <RouterLink class="btn btn-sm" to="/people">View people</RouterLink>
             </div>
           </BaseCard>
         </div>
@@ -56,14 +56,31 @@ const articles = getArticles()
 
     <section class="section">
       <div class="container">
-        <SectionHeader title="Themes" />
-        <div class="grid cols-4">
-          <BaseCard v-for="t in themes" :key="t.slug">
-            <div class="card-title">{{ t.title }}</div>
-            <p class="card-meta">{{ t.overview }}</p>
-            <div style="margin-top: var(--space-3)">
-              <RouterLink class="btn btn-sm" :to="`/research/themes/${t.slug}`">View theme</RouterLink>
-            </div>
+        <SectionHeader title="Core purpose" intro="INNOGEN Lab was created to support learning, research, and collaboration." />
+        <div class="grid cols-3">
+          <BaseCard>
+            <div class="card-title">Teaching & learning</div>
+            <ul class="list">
+              <li>Practical lab sessions for AI-related subjects</li>
+              <li>Hands-on student projects using AI tools and real-world datasets</li>
+              <li>Support for innovative coursework</li>
+            </ul>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Research & development</div>
+            <ul class="list">
+              <li>Research in data analytics, automation, and intelligent systems</li>
+              <li>Support for publications and AI prototypes</li>
+              <li>Cross-campus collaboration and integration with AI initiatives</li>
+            </ul>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Collaboration & impact</div>
+            <ul class="list">
+              <li>Joint projects with industry partners and institutions</li>
+              <li>Cross-program collaboration to build real-world AI solutions</li>
+              <li>Support for an AI-driven learning ecosystem</li>
+            </ul>
           </BaseCard>
         </div>
       </div>
@@ -87,7 +104,7 @@ const articles = getArticles()
 
     <section class="section">
       <div class="container">
-        <SectionHeader title="People spotlight" />
+        <SectionHeader title="People spotlight" intro="Lecturers and researchers supporting learning, research, and collaboration." />
         <div class="grid cols-3">
           <BaseCard v-for="p in people" :key="p.slug">
             <div class="card-title">{{ p.name }}</div>
@@ -100,7 +117,18 @@ const articles = getArticles()
       </div>
     </section>
 
-    <CtaBand />
+    <section class="section">
+      <div class="container">
+        <CtaBand
+          title="Contact & location"
+          body="BINUS @Bekasi — School of Information Systems. Reach out to discuss student projects, research, or partnerships."
+          primaryLabel="Contact"
+          primaryTo="/contact"
+          secondaryLabel="Collaborate"
+          secondaryTo="/collaborate"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -125,5 +153,11 @@ const articles = getArticles()
   display: flex;
   gap: var(--space-3);
   flex-wrap: wrap;
+}
+
+.list {
+  margin: var(--space-3) 0 0;
+  padding-left: 1.1rem;
+  color: var(--text);
 }
 </style>

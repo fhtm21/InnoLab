@@ -18,7 +18,7 @@ export const siteConfig = {
   footer: {
     quickLinks: [
       { label: 'About', to: '/about' },
-      { label: 'Research', to: '/research' },
+      { label: 'Activities', to: '/activities' },
       { label: 'Facilities', to: '/facilities' },
       { label: 'People', to: '/people' },
       { label: 'Articles', to: '/articles' },
@@ -35,8 +35,8 @@ export const siteConfig = {
       { label: 'GitHub', href: '#' },
     ],
     address: {
-      line1: 'BINUS University',
-      line2: 'Campus / Building (placeholder)',
+      line1: 'BINUS @Bekasi',
+      line2: 'School of Information Systems (location details TBD)',
       mapHref: '#',
     },
   },

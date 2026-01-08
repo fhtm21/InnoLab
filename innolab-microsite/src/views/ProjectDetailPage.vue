@@ -42,7 +42,7 @@ const relatedArticles = computed(() => getRelatedArticlesForProject(slug.value))
                   v-for="t in themes"
                   :key="t.slug"
                   class="chip"
-                  :to="`/research/themes/${t.slug}`"
+                  :to="`/activities/themes/${t.slug}`"
                 >
                   {{ t.title }}
                 </RouterLink>
@@ -92,14 +92,14 @@ const relatedArticles = computed(() => getRelatedArticlesForProject(slug.value))
         <template v-else>
           <h1 class="h1">Project not found</h1>
           <p class="muted">The project “{{ slug }}” does not exist.</p>
-          <RouterLink class="btn btn-primary" to="/research">Back to Research</RouterLink>
+          <RouterLink class="btn btn-primary" to="/activities">Back to Activities</RouterLink>
         </template>
       </div>
     </section>
 
     <CtaBand
-      title="Propose a collaboration"
-      body="Tell us about your research question, data constraints, and timeline."
+      title="Collaborate with INNOGEN Lab"
+      body="Tell us about your project idea, data constraints, and timeline."
       primaryLabel="Contact"
       primaryTo="/contact"
       secondaryLabel="Collaborate"

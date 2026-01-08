@@ -68,7 +68,7 @@ const relatedArticles = computed(() => getRelatedArticlesForPerson(slug.value))
                 <div class="card-title">{{ p.title }}</div>
                 <p class="card-meta">{{ p.status }} · {{ p.summary }}</p>
                 <div style="margin-top: var(--space-3)">
-                  <RouterLink class="btn btn-sm" :to="`/research/projects/${p.slug}`">View project</RouterLink>
+                  <RouterLink class="btn btn-sm" :to="`/activities/projects/${p.slug}`">View project</RouterLink>
                 </div>
               </BaseCard>
             </div>

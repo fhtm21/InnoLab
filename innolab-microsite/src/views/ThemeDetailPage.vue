@@ -51,7 +51,7 @@ const relatedArticles = computed(() => getRelatedArticlesForTheme(slug.value))
                 <div class="card-title">{{ p.title }}</div>
                 <p class="card-meta">{{ p.status }} · {{ p.summary }}</p>
                 <div style="margin-top: var(--space-3)">
-                  <RouterLink class="btn btn-sm" :to="`/research/projects/${p.slug}`">View project</RouterLink>
+                  <RouterLink class="btn btn-sm" :to="`/activities/projects/${p.slug}`">View project</RouterLink>
                 </div>
               </BaseCard>
             </div>
@@ -90,14 +90,14 @@ const relatedArticles = computed(() => getRelatedArticlesForTheme(slug.value))
         <template v-else>
           <h1 class="h1">Theme not found</h1>
           <p class="muted">The theme “{{ slug }}” does not exist.</p>
-          <RouterLink class="btn btn-primary" to="/research">Back to Research</RouterLink>
+          <RouterLink class="btn btn-primary" to="/activities">Back to Activities</RouterLink>
         </template>
       </div>
     </section>
 
     <CtaBand
-      title="Collaborate on this theme"
-      body="Tell us about your research question, data constraints, and timeline."
+      title="Collaborate with INNOGEN Lab"
+      body="Tell us about your project idea, data constraints, and timeline."
       primaryLabel="Contact"
       primaryTo="/contact"
       secondaryLabel="Collaborate"

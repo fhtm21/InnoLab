@@ -8,9 +8,9 @@ import { RouterLink } from 'vue-router'
     <div class="container footer-inner">
       <div class="cols">
         <div class="col">
-          <div class="title">InnoLab</div>
+          <div class="title">INNOGEN Lab</div>
           <p class="muted">
-            BINUS University AI Research Laboratory (placeholder copy).
+            Innovation Intelligent Knowledge Generation — an academic and research facility at BINUS @Bekasi (School of Information Systems).
           </p>
         </div>
 
@@ -61,7 +61,7 @@ import { RouterLink } from 'vue-router'
           {{ siteConfig.footer.address.line1 }} — {{ siteConfig.footer.address.line2 }}
           · <a class="link-inline" :href="siteConfig.footer.address.mapHref">Map</a>
         </div>
-        <div class="muted">© {{ new Date().getFullYear() }} InnoLab (placeholder)</div>
+        <div class="muted">© {{ new Date().getFullYear() }} INNOGEN Lab</div>
       </div>
     </div>
   </footer>

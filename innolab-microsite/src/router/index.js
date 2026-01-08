@@ -18,9 +18,11 @@ const routes = [
   { path: '/', name: 'home', component: HomePage },
   { path: '/about', name: 'about', component: AboutPage },
 
-  { path: '/research', name: 'research', component: ResearchPage },
-  { path: '/research/themes/:slug', name: 'research-theme', component: ThemeDetailPage },
-  { path: '/research/projects/:slug', name: 'research-project', component: ProjectDetailPage },
+  // NOTE: For now, keep the existing Research page as the Activities landing page.
+  // We will update the UI labels/copy to “Activities” while reusing the component.
+  { path: '/activities', name: 'activities', component: ResearchPage },
+  { path: '/activities/themes/:slug', name: 'activities-theme', component: ThemeDetailPage },
+  { path: '/activities/projects/:slug', name: 'activities-project', component: ProjectDetailPage },
 
   { path: '/facilities', name: 'facilities', component: FacilitiesPage },
 
@@ -32,6 +34,11 @@ const routes = [
 
   { path: '/collaborate', name: 'collaborate', component: CollaboratePage },
   { path: '/contact', name: 'contact', component: ContactPage },
+
+  // Backward-compatible redirects (old IA)
+  { path: '/research', redirect: '/activities' },
+  { path: '/research/themes/:slug', redirect: (to) => `/activities/themes/${to.params.slug}` },
+  { path: '/research/projects/:slug', redirect: (to) => `/activities/projects/${to.params.slug}` },
 
   // Catch-all
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundPage },

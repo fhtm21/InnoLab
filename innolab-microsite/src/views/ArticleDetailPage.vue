@@ -61,7 +61,7 @@ const bodyHtml = computed(() => {
                 <div class="card-title">Themes</div>
                 <ul class="list">
                   <li v-for="t in relatedThemes" :key="t.slug">
-                    <RouterLink :to="`/research/themes/${t.slug}`">{{ t.title }}</RouterLink>
+                    <RouterLink :to="`/activities/themes/${t.slug}`">{{ t.title }}</RouterLink>
                   </li>
                 </ul>
               </BaseCard>
@@ -70,7 +70,7 @@ const bodyHtml = computed(() => {
                 <div class="card-title">Projects</div>
                 <ul class="list">
                   <li v-for="p in relatedProjects" :key="p.slug">
-                    <RouterLink :to="`/research/projects/${p.slug}`">{{ p.title }}</RouterLink>
+                    <RouterLink :to="`/activities/projects/${p.slug}`">{{ p.title }}</RouterLink>
                   </li>
                 </ul>
               </BaseCard>

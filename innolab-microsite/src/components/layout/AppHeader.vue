@@ -9,12 +9,17 @@ const isMenuOpen = ref(false)
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Research', to: '/research' },
+  { label: 'Activities', to: '/activities' },
   { label: 'Facilities', to: '/facilities' },
   { label: 'People', to: '/people' },
   { label: 'Articles', to: '/articles' },
   { label: 'Collaborate', to: '/collaborate' },
 ]
+
+const isActive = computed(() => {
+  const p = route.path
+  return (to) => p === to || p.startsWith(`${to}/`)
+})
 
 const activePath = computed(() => route.path)
 
@@ -53,10 +58,10 @@ function closeMenu() {
       <div class="container mainbar-inner">
         <div class="brand">
           <RouterLink class="brand-link" to="/" @click="closeMenu">
-            <div class="brand-mark" aria-hidden="true">IN</div>
+            <img class="brand-logo" src="../../assets/LOGO.png" alt="INNOGEN Lab logo" />
             <div class="brand-text">
-              <div class="brand-title">InnoLab</div>
-              <div class="brand-subtitle">BINUS University</div>
+              <div class="brand-title">INNOGEN Lab</div>
+              <div class="brand-subtitle">BINUS @Bekasi · School of Information Systems</div>
             </div>
           </RouterLink>
         </div>
@@ -81,7 +86,7 @@ function closeMenu() {
             v-for="item in navItems"
             :key="item.to"
             class="nav-link"
-            :class="{ active: activePath === item.to }"
+            :class="{ active: isActive(item.to) }"
             :to="item.to"
             @click="closeMenu"
             >{{ item.label }}</RouterLink
@@ -155,15 +160,11 @@ function closeMenu() {
   text-decoration: none;
 }
 
-.brand-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--accent-blue);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-weight: var(--font-weight-semibold);
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-title {
