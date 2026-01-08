@@ -1,47 +1,49 @@
-# InnoLab Microsite Concept (Draft)
-BINUS University (Indonesia) — University-wide AI Research Laboratory
+# INNOGEN Lab Microsite Concept (Draft)
+BINUS University (Indonesia) — Academic and Research Facility at BINUS @Bekasi (School of Information Systems)
 
-Status: Draft v0.1
-Owner: InnoLab Web/Comms (to be assigned)
-Last updated: 2026-01-07
+Status: Draft v0.2  
+Owner: INNOGEN Lab Web/Comms (to be assigned)  
+Last updated: 2026-01-08  
 
 ---
 
 ## 1) Purpose and positioning
+
 ### 1.1 Why this microsite exists
-- Provide a clear, credible public profile of InnoLab as BINUS University’s university-wide AI research laboratory.
-- Showcase research themes, facilities, outputs, and people in a way that supports:
-  - student recruitment (thesis, internships, research assistantships)
-  - academic collaboration (joint research, visiting scholars)
-  - industry/government partnerships (applied research, pilots, consulting)
-  - internal university visibility (cross-faculty initiatives)
+- Provide a clear, credible public profile of **INNOGEN Lab** (Innovation Intelligent Knowledge Generation) as a new academic and research facility at **BINUS @Bekasi**, supported by the **School of Information Systems**.
+- Showcase the lab’s purpose, facilities, capabilities, and activities in a way that supports:
+  - student engagement (coursework support, projects, thesis, research assistantships)
+  - academic collaboration (joint research, cross-campus initiatives)
+  - industry partnerships (applied analytics/AI projects, pilots, prototyping)
+  - internal university visibility (cross-program collaboration and AI-driven learning ecosystem)
 
 ### 1.2 Primary audiences
-- Prospective students (undergrad/grad) and current students
-- BINUS lecturers/researchers across faculties
-- External academics and research institutions
-- Industry partners and government agencies
+- Prospective and current students (undergrad/grad)
+- BINUS lecturers and researchers across programs
+- Industry partners seeking applied analytics/AI projects
+- External academics and research institutions (as collaboration partners)
 - Media and general public
 
 ### 1.3 Key messages (draft)
-- InnoLab advances impactful AI research and responsible innovation for society.
-- We combine strong academic foundations with applied, collaborative projects.
-- We provide modern AI facilities (GPU compute + collaboration space) to accelerate research and learning.
-- We publish, build, and share: papers, prototypes, datasets, and community activities.
+- INNOGEN Lab is a multi-purpose space for **teaching, research, and collaboration** in AI and data-driven innovation.
+- We enable hands-on learning and real-world prototyping in **AI, data science, smart systems, and Industry 4.0**.
+- We provide modern facilities for experimentation: **GPU-capable workstations**, AI development environments, and collaboration space.
+- We support outcomes: **prototypes**, **research experiments**, and **publications**, with opportunities for cross-program and external collaboration.
 
 ### 1.4 Success criteria (what “good” looks like)
-- Visitors can understand “what InnoLab is” within 10 seconds on the homepage.
-- Clear pathways to: research themes, facilities, people, and how to collaborate.
-- Articles/news are easy to browse and share; research outputs are discoverable.
-- Lecturer list and contact points are accurate and maintained.
+- Visitors can understand “what INNOGEN Lab is” within 10 seconds on the homepage.
+- Clear pathways to: purpose, facilities/capabilities, activities (projects/research), and how to collaborate.
+- Content is scannable and credible (no over-claims; aligned to official description).
+- Contact points and location (BINUS @Bekasi) are clear and maintained.
 
 ---
 
 ## 2) Information architecture (IA)
+
 ### 2.1 Top navigation (recommended)
 1. Home
 2. About
-3. Research
+3. Activities
 4. Facilities
 5. People
 6. Articles
@@ -51,31 +53,27 @@ Notes:
 - Keep top nav to 6–7 items for clarity.
 - “Collaborate” can include partnership info + contact form.
 
-### 2.2 Sitemap (v0.1)
+### 2.2 Sitemap (v0.2)
 - Home
 - About
   - Lab Profile (Overview)
-  - Vision & Mission
-  - Leadership & Governance
-  - History & Milestones
-  - Partners & Affiliations
+  - Purpose (Teaching, Research, Collaboration)
+  - Technical Capabilities
   - FAQ
-- Research
-  - Research Themes (NLP, Computer Vision, AI for Education, Responsible AI)
-  - Projects (active + past)
-  - Publications & Outputs
-  - Datasets / Open-source (optional)
+- Activities
+  - Student Projects
+  - Research & Development
+  - Partnerships & Collaboration
+  - Outputs (Publications / Prototypes) (optional for v0.1)
 - Facilities
-  - Compute (GPU servers)
+  - Compute (GPU workstations)
   - Collaboration Space
   - Tools & Software
   - Access & Usage Policy
 - People
-  - Leadership
   - Lecturers / Researchers
-  - Students & Research Assistants
-  - Alumni (optional)
-  - Join Us (positions, RA openings)
+  - Students & Research Assistants (optional)
+  - Join / Opportunities (optional)
 - Articles
   - News & Announcements
   - Events & Seminars
@@ -83,8 +81,6 @@ Notes:
   - Media Coverage (optional)
 - Collaborate / Contact
   - Collaboration Models
-  - Industry & Government Engagement
-  - Academic Collaboration
   - Contact & Location
 
 ### 2.3 Sitemap diagram (Mermaid)
@@ -94,7 +90,7 @@ The full sitemap is large; to keep it readable, it is split into a high-level ma
 ```mermaid
 flowchart LR
   H[Home] --> A[About]
-  H --> R[Research]
+  H --> AC[Activities]
   H --> F[Facilities]
   H --> P[People]
   H --> AR[Articles]
@@ -105,31 +101,24 @@ flowchart LR
 ```mermaid
 flowchart LR
   A[About] --> A1[Lab Profile]
-  A --> A2[Vision and Mission]
-  A --> A3[Leadership and Governance]
-  A --> A4[History and Milestones]
-  A --> A5[Partners and Affiliations]
-  A --> A6[FAQ]
+  A --> A2[Purpose]
+  A --> A3[Technical Capabilities]
+  A --> A4[FAQ]
 ```
 
-#### 2.3.3 Research section
+#### 2.3.3 Activities section
 ```mermaid
 flowchart LR
-  R[Research] --> R1[Research Themes]
-  R --> R2[Projects]
-  R --> R3[Publications and Outputs]
-  R --> R4[Datasets and Open source optional]
-
-  R1 --> T1[NLP]
-  R1 --> T2[Computer Vision]
-  R1 --> T3[AI for Education]
-  R1 --> T4[Responsible AI]
+  AC[Activities] --> AC1[Student Projects]
+  AC --> AC2[Research and Development]
+  AC --> AC3[Partnerships and Collaboration]
+  AC --> AC4[Outputs optional]
 ```
 
 #### 2.3.4 Facilities section
 ```mermaid
 flowchart LR
-  F[Facilities] --> F1[Compute GPU servers]
+  F[Facilities] --> F1[Compute GPU workstations]
   F --> F2[Collaboration Space]
   F --> F3[Tools and Software]
   F --> F4[Access and Usage Policy]
@@ -138,11 +127,9 @@ flowchart LR
 #### 2.3.5 People section
 ```mermaid
 flowchart LR
-  P[People] --> P1[Leadership]
-  P --> P2[Lecturers and Researchers]
-  P --> P3[Students and Research Assistants]
-  P --> P4[Alumni optional]
-  P --> P5[Join Us]
+  P[People] --> P1[Lecturers and Researchers]
+  P --> P2[Students and Research Assistants optional]
+  P --> P3[Join and Opportunities optional]
 ```
 
 #### 2.3.6 Articles section
@@ -158,13 +145,11 @@ flowchart LR
 ```mermaid
 flowchart LR
   C[Collaborate and Contact] --> C1[Collaboration Models]
-  C --> C2[Industry and Government Engagement]
-  C --> C3[Academic Collaboration]
-  C --> C4[Contact and Location]
+  C --> C2[Contact and Location]
 ```
 
 ### 2.4 Footer navigation (recommended)
-- Quick links: About, Research, Facilities, People, Articles, Contact
+- Quick links: About, Activities, Facilities, People, Articles, Contact
 - Policies: Privacy, Terms, Accessibility statement
 - Social: LinkedIn, YouTube, GitHub (as applicable)
 - Address + map link
@@ -179,11 +164,11 @@ This section describes recommended layout patterns (wireframe-level) to keep pag
 - Use a consistent page grid (e.g., 12-column) with a max content width and generous whitespace.
 - Keep primary CTAs above the fold on landing pages.
 - Prefer scannable sections: short paragraphs, bullets, cards, and clear headings.
-- Use consistent “card” components for themes, projects, people, and articles.
+- Use consistent “card” components for activities, people, and articles.
 - Provide a right-rail only when it adds value (e.g., on article detail pages for related posts).
 
 ### 3.2 Header layout
-- Left: BINUS + InnoLab logo lockup
+- Left: BINUS + INNOGEN Lab logo lockup
 - Center/right: top navigation
 - Right: primary CTA button (Collaborate) and optional search icon
 
@@ -193,14 +178,14 @@ This section describes recommended layout patterns (wireframe-level) to keep pag
    - 1–2 CTAs
    - Optional: background image of lab activity
 2. Highlights band (3–6 cards)
-3. Research themes grid (4 cards)
-4. Featured project(s) (2 cards) or carousel
+3. Core purpose (3 cards: Teaching, Research, Collaboration)
+4. Facilities snapshot (compute + tools + collaboration space)
 5. Latest articles (3–5 list/cards)
-6. People spotlight (leadership or featured lecturers)
+6. People spotlight (featured lecturers / supervisors)
 7. Partners strip (logos) optional
 8. Contact teaser (email + location + link)
 
-### 3.4 Landing page layout (About, Research, Facilities, People, Articles)
+### 3.4 Landing page layout (About, Activities, Facilities, People, Articles)
 1. Page header
    - H1 + 1–2 sentence intro
    - Optional: key stats (e.g., projects, publications)
@@ -209,20 +194,20 @@ This section describes recommended layout patterns (wireframe-level) to keep pag
 4. CTA band (Join, Collaborate, Request access)
 5. Related links (optional)
 
-### 3.5 Detail page layout (Theme, Project, Person, Article)
+### 3.5 Detail page layout (Activity, Person, Article)
 - Top: title + metadata (tags, date, role)
 - Main column:
   - Overview/summary
   - Body sections
   - Outputs/links
 - Side column (optional):
-  - Related items (projects, articles, people)
-  - Contact card (for person/project)
+  - Related items (activities, articles, people)
+  - Contact card (for person/activity)
 - Bottom:
   - Next/previous or related content grid
 
 ### 3.6 People directory layout
-- Filters at top: expertise tags, faculty, role
+- Filters at top: expertise tags, program/affiliation, role
 - Grid of person cards:
   - photo, name, title, tags, quick links
 - Clicking a card opens person profile detail
@@ -242,78 +227,70 @@ This section describes recommended layout patterns (wireframe-level) to keep pag
 ## 4) Page templates and content blocks
 This section defines reusable page structures to keep the microsite consistent.
 
-### 3.1 Global components (all pages)
+### 4.1 Global components (all pages)
 - Header: logo + lab name + top navigation
 - Search (optional for v0.1; recommended if many articles/people)
 - Breadcrumbs (optional)
 - Footer: quick links + contact + policies
-- Consistent CTA style (e.g., “Collaborate with us”, “Join as RA”, “Explore research themes”)
+- Consistent CTA style (e.g., “Collaborate with us”, “Request facility access”, “Explore facilities”)
 
-### 3.2 Home page template
+### 4.2 Home page template
 Required blocks:
 1. Hero
    - One-sentence positioning
-   - 1–2 CTAs (Explore Research, Contact/Collaborate)
+   - 1–2 CTAs (Explore Facilities, Collaborate/Contact)
 2. Highlights (3–6 cards)
-   - Research themes, facilities, latest article, featured project
-3. Featured research themes (grid)
-4. Latest articles/news (3–5)
-5. People spotlight (leadership or featured lecturers)
-6. Partners strip (logos) (optional)
-7. Contact teaser (email + location)
+   - Core purpose, facilities, latest article, featured activity
+3. Core purpose (3 cards)
+4. Facilities snapshot
+5. Latest articles/news (3–5)
+6. People spotlight
+7. Partners strip (optional)
+8. Contact teaser (email + location)
 
-### 3.3 About page template (Lab Profile)
+### 4.3 About page template (Lab Profile)
 Required blocks:
-- Overview (what we do)
-- Vision & mission
-- What makes InnoLab different (3–5 bullets)
-- Governance (director, steering committee)
-- Milestones timeline (optional)
-- CTA: collaborate / join / contact
+- Overview (what the lab is)
+- Core purpose (Teaching, Research, Collaboration)
+- Technical capabilities (summary)
+- Who it is for
+- Why it matters
+- CTA: collaborate / contact
 
-### 3.4 Research landing template
+### 4.4 Activities landing template
 Required blocks:
-- Intro + research philosophy
-- Research themes (cards)
-- Featured projects (2–4)
-- Publications/outputs preview
+- Intro (what activities are covered)
+- Student projects (cards/list)
+- Research & development (cards/list)
+- Partnerships & collaboration (cards/list)
+- Optional outputs preview (publications/prototypes)
 - CTA: propose collaboration / student opportunities
 
-### 3.5 Research theme detail template
-Required blocks:
-- Theme overview
-- Key problems we work on
-- Methods/approaches
-- Example projects
-- Outputs (papers, demos)
-- People involved
-- CTA: collaborate / student projects
-
-### 3.6 Facilities landing template
+### 4.5 Facilities landing template
 Required blocks:
 - Facilities overview
-- Compute (GPU servers) details
+- Compute (GPU workstations) details
 - Collaboration space details
+- Tools & software summary
 - Access policy summary + link to full policy
 - Request access CTA
 
-### 3.7 People landing template
+### 4.6 People landing template
 Required blocks:
-- Leadership cards
-- Lecturer list (filterable by expertise)
-- Students/RA list (optional)
-- Join us CTA
+- Featured lecturers/researchers
+- Directory entry point (filters)
+- Optional: students/RA preview
+- Join/opportunities CTA (optional)
 
-### 3.8 Person profile template (lecturer/researcher)
+### 4.7 Person profile template (lecturer/researcher)
 Required blocks:
 - Name, title, affiliation
 - Short bio
-- Expertise tags (NLP, CV, AI Ed, Responsible AI, etc.)
-- Selected publications/projects
+- Expertise tags
+- Selected publications/projects (if available)
 - Contact links (email, Google Scholar, ORCID, LinkedIn)
-- Office hours / availability (optional)
 
-### 3.9 Articles listing + article detail template
+### 4.8 Articles listing + article detail template
 Listing:
 - Filters: category (News, Events, Blog), year, tags
 - Search (optional)
@@ -325,277 +302,78 @@ Detail:
 - Related articles
 - Share links
 
-### 3.10 Collaborate / Contact template
+### 4.9 Collaborate / Contact template
 Required blocks:
-- Collaboration models (academic, industry, government)
+- Collaboration models (academic, industry)
 - Engagement process (how to start)
-- What we can offer (research, pilots, training)
+- What we can offer (projects, pilots, mentoring)
 - Contact form + email + location
 - FAQ (optional)
 
 ---
 
-## 4) Draft content (placeholder copy)
-This is draft copy to populate the microsite. Replace names, numbers, and specifics later.
+## 5) Draft content (aligned to official information)
 
-## 4.1 Home (draft copy)
-### Hero
-**InnoLab — BINUS University AI Research Laboratory**  
-Advancing AI research and responsible innovation across the university, from foundational methods to real-world impact.
+### 5.1 Home (draft copy)
+#### Hero
+**INNOGEN Lab — BINUS @Bekasi AI and Data Innovation Facility**  
+A multi-purpose academic and research space supporting AI, data science, smart systems, and Industry 4.0 innovation.
 
 CTAs:
-- Explore Research
-- Collaborate with InnoLab
+- Explore Facilities
+- Collaborate / Contact
 
-### Highlights (example cards)
-- Research Themes: NLP, Computer Vision, AI for Education, Responsible AI
-- Facilities: GPU compute + collaboration space
-- Featured Project: AI-assisted learning analytics (pilot)
-- Latest Article: Seminar recap / new publication announcement
+#### Highlights (example cards)
+- Core purpose: Teaching and Learning
+- Core purpose: Research and Development
+- Core purpose: Collaboration and Impact
+- Facilities: GPU-capable workstations and collaboration space
 
-### Short “About” snippet
-InnoLab is a university-wide AI research laboratory at BINUS University. We bring together lecturers, students, and partners to develop AI methods and applications that are rigorous, ethical, and impactful.
-
----
-
-## 4.2 About → Lab Profile (draft copy)
-### Overview
-InnoLab is BINUS University’s university-wide AI research laboratory. We conduct research, build prototypes, and publish outputs across key AI domains, while supporting education and cross-faculty collaboration.
-
-### Vision
-To be a leading university AI lab in Indonesia that advances trustworthy AI research and delivers measurable societal impact.
-
-### Mission
-- Conduct high-quality AI research and publish in reputable venues.
-- Build applied AI solutions through interdisciplinary collaboration.
-- Provide facilities and mentorship for student research and innovation.
-- Promote responsible AI practices, transparency, and reproducibility.
-
-### What we do (bullets)
-- Research: methods and applications in NLP, computer vision, and AI for education
-- Prototyping: proof-of-concepts, demos, and pilots with partners
-- Capacity building: seminars, workshops, student mentorship
-- Responsible AI: fairness, privacy, safety, and governance
-
-### Leadership & governance (placeholders)
-- Lab Director: [Name], [Title], BINUS University
-- Deputy Director: [Name], [Title]
-- Steering Committee: representatives from multiple faculties
-- Advisory Board (optional): external academics/industry experts
-
-### History & milestones (placeholders)
-- 20XX: InnoLab established as a university-wide AI research initiative
-- 20XX: First GPU compute cluster deployed
-- 20XX: First cross-faculty AI for Education pilot launched
-- 20XX: First international collaboration / grant awarded
-
-### Partners & affiliations (placeholders)
-- Internal: faculties, research centers, innovation office
-- External: universities, industry partners, government agencies
-
-### FAQ (starter questions)
-- How can students join InnoLab projects?
-- Do you accept industry-sponsored research?
-- Can external researchers access facilities?
-- Where are you located?
+#### Short “About” snippet
+INNOGEN Lab (Innovation Intelligent Knowledge Generation) is a new academic and research facility at BINUS @Bekasi, supported by the School of Information Systems. The lab enables hands-on learning, research experimentation, and collaboration to build real-world AI and data-driven prototypes.
 
 ---
 
-## 4.3 Research (draft copy)
-### Research philosophy
-We pursue research that is:
-- rigorous (sound methodology and evaluation)
-- reproducible (clear documentation and artifacts when possible)
-- responsible (ethical, fair, privacy-aware)
-- impactful (aligned with education and societal needs)
+### 5.2 About → Lab Profile (draft copy)
+#### Overview
+INNOGEN Lab is a multi-purpose academic and research facility at BINUS @Bekasi. It supports teaching and learning, AI-driven research and development, and collaboration with internal and external partners.
 
-### Research themes (draft)
-#### Natural Language Processing (NLP)
-Focus areas:
-- Indonesian language understanding and generation
-- information extraction and document intelligence
-- conversational AI and retrieval-augmented generation (RAG)
-Example outputs:
-- domain-specific chat assistants
-- text classification and summarization benchmarks
+#### Core purpose
+- **Teaching & learning:** practical lab sessions and hands-on student projects in AI-related subjects
+- **Research & development:** research in analytics, automation, and intelligent systems; publications and prototypes
+- **Collaboration & impact:** joint projects with industry and institutions; cross-program collaboration
 
-#### Computer Vision
-Focus areas:
-- visual recognition and detection
-- document and scene understanding
-- multimodal learning (vision + language)
-Example outputs:
-- assistive vision systems
-- automated document processing pipelines
+#### Technical capabilities (summary)
+- GPU-capable workstations for deep learning
+- AI development environments (Python, TensorFlow, PyTorch, Keras)
+- Tools for data engineering, IoT simulation, and cloud computing
+- Collaboration space for mentoring and supervision
 
-#### AI for Education
-Focus areas:
-- learning analytics and student success prediction
-- intelligent tutoring and feedback systems
-- assessment support and academic integrity tools (responsible use)
-Example outputs:
-- early warning dashboards (privacy-aware)
-- AI-assisted learning content tools
+#### Who it is for
+- Students (undergraduate and graduate)
+- Lecturers and researchers across BINUS
+- Industry partners seeking applied analytics/AI projects
 
-#### Responsible AI
-Focus areas:
-- fairness and bias evaluation
-- privacy-preserving ML
-- model safety, transparency, and governance
-Example outputs:
-- responsible AI checklists and evaluation protocols
-- model cards and documentation templates
-
-### Projects (structure)
-For each project:
-- Title
-- Status (Active / Completed)
-- Theme(s)
-- Summary (2–3 sentences)
-- Team (lecturers + students)
-- Partner (if any)
-- Outputs (paper/demo/code)
-
-Example project placeholders:
-- “Indonesian Academic Document Intelligence”
-- “Multimodal AI for Classroom Engagement Analysis”
-- “Responsible AI Evaluation Toolkit for University Use”
-
-### Publications & outputs (structure)
-- Publications (by year)
-- Prototypes/demos
-- Datasets (if shareable)
-- Open-source repositories (GitHub)
+#### Why it matters
+INNOGEN Lab strengthens BINUS’s mission to become an AI-driven campus by providing a dedicated environment to build prototypes, run research experiments, publish scientific papers, and develop industry-ready skills.
 
 ---
 
-## 4.4 Facilities (draft copy)
-### Facilities overview
-InnoLab provides shared AI research facilities to support experimentation, training, and collaboration.
+## 6) Content governance (recommended)
 
-### Compute: GPU servers
-Capabilities (placeholders):
-- GPU compute for training and inference workloads
-- shared storage for datasets and experiments
-- job scheduling / access control (if applicable)
-Usage principles:
-- fair access for research and teaching support
-- priority for approved lab projects
-- responsible data handling and privacy compliance
-
-### Collaboration space
-- meeting and discussion area for project teams
-- seminar/workshop setup (hybrid-ready if possible)
-- whiteboards and prototyping tools (as available)
-
-### Tools & software (examples)
-- ML frameworks: PyTorch, TensorFlow
-- Experiment tracking: MLflow / Weights & Biases (as decided)
-- Collaboration: GitHub, shared documentation
-- Data labeling tools (optional)
-
-### Access & usage policy (summary)
-- Access requires a request and approval (project-based)
-- Users must follow data privacy and security guidelines
-- Publication and IP rules follow BINUS University policy and partner agreements
-
-CTA:
-- Request facility access
-
----
-
-## 4.5 People (draft copy)
-### People overview
-InnoLab is a cross-faculty community of lecturers, researchers, and students working on AI research and applications.
-
-### Leadership (placeholders)
-- Director: [Name] — [Expertise]
-- Deputy Director: [Name] — [Expertise]
-- Operations/Program Manager (optional): [Name]
-
-### Lecturers / Researchers (structure)
-For each lecturer:
-- Name, title, faculty/department
-- Expertise tags (NLP, CV, AI Ed, Responsible AI)
-- Short bio (2–3 lines)
-- Links: email, Google Scholar, ORCID, personal page
-
-Suggested grouping:
-- By theme (NLP / CV / AI Ed / Responsible AI)
-- Or by faculty, with filters for expertise
-
-### Students & Research Assistants (optional for v0.1)
-- Current RAs (name + project)
-- Thesis students (name + topic)
-- Alumni (optional)
-
-### Join us (draft)
-We welcome motivated students and collaborators. Opportunities may include:
-- research assistantships
-- thesis supervision and co-supervision
-- internships and capstone projects
-- visiting researcher collaboration
-
-CTA:
-- View open opportunities
-- Contact InnoLab
-
----
-
-## 4.6 Articles (draft copy)
-### Categories
-- News & Announcements: publications, awards, lab updates
-- Events & Seminars: talks, workshops, reading groups
-- Blog / Insights (optional): explainers, project stories, responsible AI notes
-
-### Editorial guidelines (starter)
-- Keep posts concise and scannable
-- Include a short summary and 1–2 images when possible
-- Add tags (theme, project, partner)
-- Link to related research outputs
-
----
-
-## 4.7 Collaborate / Contact (draft copy)
-### Collaboration models
-Academic:
-- joint research proposals and publications
-- visiting scholar / student exchange
-- shared datasets and benchmarks (where permitted)
-
-Industry & government:
-- applied research and pilots
-- evaluation and benchmarking
-- training/workshops (responsible AI, ML fundamentals, applied AI)
-
-### Engagement process (simple)
-1. Initial inquiry (email/form) with problem statement and goals
-2. Scoping call (feasibility, data, timeline, ethics)
-3. Proposal (deliverables, team, governance)
-4. Execution (regular check-ins, documentation)
-5. Outputs (report, prototype, publication where appropriate)
-
-### Contact details (placeholders)
-- Email: innolab@binus.ac.id (placeholder)
-- Location: BINUS University, [Campus/Building], Indonesia
-- Social: LinkedIn / YouTube / GitHub (as applicable)
-
----
-
-## 5) Content governance (recommended)
-### 5.1 Ownership
+### 6.1 Ownership
 - About/People: maintained by Lab Admin + Director approval
-- Research/Projects: maintained by theme leads / project owners
+- Activities: maintained by activity owners (course coordinators, project leads)
 - Articles: maintained by Comms editor; authors are lecturers/students
 - Facilities: maintained by Lab Ops/IT
 
-### 5.2 Update cadence (minimum)
+### 6.2 Update cadence (minimum)
 - People: monthly review
-- Projects: quarterly review
+- Activities: quarterly review
 - Facilities: when changes occur + quarterly check
 - Articles: as events/publications happen (target: at least monthly)
 
-### 5.3 Content quality checklist
+### 6.3 Content quality checklist
 - Names/titles correct
 - Links work (Scholar/ORCID/GitHub)
 - Images have alt text
@@ -604,30 +382,10 @@ Industry & government:
 
 ---
 
-## 6) SEO, accessibility, and compliance (baseline)
-### SEO basics
-- Each page has a unique title and meta description
-- Use descriptive headings (H1 once per page)
-- Clean URLs (e.g., /research/nlp)
-- Structured data for articles and people (optional later)
-
-### Accessibility basics
-- Sufficient color contrast
-- Keyboard navigable menus
-- Alt text for images
-- Captions/transcripts for videos (if used)
-
-### Compliance notes
-- Follow BINUS University privacy policy and data handling rules
-- For AI demos: include responsible use disclaimers where needed
-
----
-
 ## 7) Open questions for next iteration
-- Confirm official lab name styling: InnoLab vs InnoLab AI Research Laboratory
-- Confirm official contact email, location, and social links
+- Confirm official contact email, location details (building/room), and social links.
 - Decide whether to include:
-  - Publications database integration (e.g., Scholar feed)
+  - Outputs page (publications/prototypes) in v0.1
   - Search feature
-  - Dataset/open-source page
-- Confirm content approval workflow and who can publish articles
+  - Student/RA directory pages
+- Confirm content approval workflow and who can publish articles.

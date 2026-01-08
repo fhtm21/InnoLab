@@ -1,9 +1,10 @@
-# InnoLab Microsite (Static Vue SPA) — Requirements Backlog + Acceptance Criteria
+# INNOGEN Lab Microsite (Static Vue SPA) — Requirements Backlog + Acceptance Criteria
 
 Source references:
 - Visual tokens and component cues: [`conceptual/design_guideline.md`](../conceptual/design_guideline.md)
 - SIS global template elements inventory: [`conceptual/information_elements.json`](../conceptual/information_elements.json)
 - Microsite IA, templates, and content guidance: [`conceptual/microsite_concept.md`](../conceptual/microsite_concept.md)
+- Official lab description (copy baseline): [`conceptual/official_information.md`](../conceptual/official_information.md)
 
 Scope:
 - Static deployment as a Vue 3 SPA (Vite + Vue Router). No server-side rendering.
@@ -13,6 +14,7 @@ Backlog conventions:
 - Each RB item is a requirement with acceptance criteria.
 - Routes are aligned to the IA in [`conceptual/microsite_concept.md`](../conceptual/microsite_concept.md).
 - Optional items are explicitly marked as optional.
+- Terminology: use **INNOGEN Lab** (Innovation Intelligent Knowledge Generation) and **BINUS @Bekasi** consistently across UI copy and content.
 
 ---
 
@@ -26,6 +28,10 @@ Create a Vue 3 SPA project using Vite with Vue Router configured for clean route
 - Vue Router is installed and configured with routes for all pages listed in this backlog.
 - Navigation between routes works without full page reload.
 - A production build can be generated (static assets output).
+
+**Implementation notes (current)**
+- Added slug routes for themes/projects/people/articles: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
+- Still missing many IA subroutes (e.g., `/about/*`, `/facilities/*`, `/research/projects` listing, `/people/lecturers`, etc.)
 
 ---
 
@@ -52,7 +58,7 @@ Implement a minimal design system aligned to SIS cues (typography, colors, radii
 
 ---
 
-## RB-01A — Layout system (grid, container, spacing) — **PARTIAL**
+## RB-01A — Layout system (grid, container, spacing) — **DONE**
 
 **Requirement**
 Implement a consistent layout system (container width, grid, spacing) to support scannable sections and consistent page composition.
@@ -65,7 +71,7 @@ Implement a consistent layout system (container width, grid, spacing) to support
 
 ---
 
-## RB-01B — Reusable UI components (cards, CTA band, section header) — **PARTIAL**
+## RB-01B — Reusable UI components (cards, CTA band, section header) — **DONE**
 
 **Requirement**
 Create reusable UI components to implement the page templates consistently.
@@ -86,7 +92,7 @@ Implement a reusable two-tier header consistent with the SIS pattern: utility li
 **Acceptance criteria**
 - Header appears on all routes.
 - Utility links row exists and is visually distinct (small, lightweight links).
-- Main navigation row exists with links to: Home, About, Research, Facilities, People, Articles, Collaborate/Contact.
+- Main navigation row exists with links to: Home, About, Activities, Facilities, People, Articles, Collaborate/Contact.
 - A primary CTA button is present in the header (orange pill style).
 - Header is responsive: navigation remains usable on smaller screens (e.g., collapses to a menu toggle).
 
@@ -139,7 +145,7 @@ Implement a reusable footer with quick links, policies, social links, and addres
 Ensure footer navigation supports the IA and provides quick access to key pages.
 
 **Acceptance criteria**
-- Footer quick links include: About, Research, Facilities, People, Articles, Contact.
+- Footer quick links include: About, Activities, Facilities, People, Articles, Contact.
 - Footer includes a copyright line.
 - Footer links are keyboard accessible and have visible focus states.
 
@@ -158,7 +164,7 @@ Implement an optional fixed-position side CTA widget styled as a light-blue pill
 
 ---
 
-## RB-05 — Content data layer (static) — **NOT DONE**
+## RB-05 — Content data layer (static) — **DONE**
 
 **Requirement**
 Create a static content layer (local JSON/Markdown) for themes, projects, people, and articles, and wire pages to render from this data.
@@ -171,7 +177,7 @@ Create a static content layer (local JSON/Markdown) for themes, projects, people
 
 ---
 
-## RB-05A — Content model definitions (themes, projects, people, articles) — **NOT DONE**
+## RB-05A — Content model definitions (themes, projects, people, articles) — **DONE**
 
 **Requirement**
 Define minimal content schemas to support the page templates and cross-linking.
@@ -184,7 +190,7 @@ Define minimal content schemas to support the page templates and cross-linking.
 
 ---
 
-## RB-05B — Cross-linking rules — **NOT DONE**
+## RB-05B — Cross-linking rules — **DONE**
 
 **Requirement**
 Ensure cross-linking between themes, projects, people, and articles is consistent and discoverable.
@@ -200,19 +206,23 @@ Ensure cross-linking between themes, projects, people, and articles is consisten
 ## RB-06 — Home page (`/`) — **PARTIAL**
 
 **Requirement**
-Implement the Home page per the recommended layout: hero, highlights, themes, featured projects, latest articles, people spotlight, optional partners, contact teaser.
+Implement the Home page per the recommended layout: hero, highlights, core purpose, facilities snapshot, latest articles, people spotlight, optional partners, contact teaser.
 
 **Acceptance criteria**
 - Home page includes:
   - Hero section with a clear positioning statement and 1–2 CTAs.
   - Highlights section with 3–6 cards linking to key areas.
-  - Research themes grid with 4 theme cards.
-  - Featured projects section (at least 2 items).
+  - Core purpose section (3 cards): Teaching & Learning, Research & Development, Collaboration & Impact.
+  - Facilities snapshot section (compute + tools + collaboration space).
   - Latest articles section (3–5 items).
-  - People spotlight section (leadership or featured lecturers).
+  - People spotlight section (featured lecturers / supervisors).
   - Contact teaser with email/location placeholders and link to contact.
 - Primary CTA(s) are visible above the fold on typical desktop viewport.
 - Sections are scannable (headings, short paragraphs, cards).
+
+**Implementation notes (current)**
+- Home is now data-driven for themes/articles/people and uses SPA navigation: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- Still missing: contact teaser block (and ensure home sections match the updated IA)
 
 ---
 
@@ -222,9 +232,9 @@ Implement the Home page per the recommended layout: hero, highlights, themes, fe
 Ensure the Home page meets the “10 seconds understanding” success criterion.
 
 **Acceptance criteria**
-- The hero H1 clearly states what InnoLab is (university-wide AI research lab).
-- The hero includes a 1–2 sentence supporting statement.
-- The hero includes clear CTAs to Research and Collaborate/Contact.
+- The hero H1 clearly states what INNOGEN Lab is (academic and research facility at BINUS @Bekasi).
+- The hero includes a 1–2 sentence supporting statement aligned to [`conceptual/official_information.md`](../conceptual/official_information.md).
+- The hero includes clear CTAs to Facilities and Collaborate/Contact.
 - The first screen (above the fold) contains the positioning statement and at least one CTA.
 
 ---
@@ -238,12 +248,13 @@ Implement an About landing page that introduces the lab and links to About subpa
 - Page has a single H1 and a short intro.
 - Page provides navigation cards/links to:
   - Lab Profile
-  - Vision & Mission
+  - Purpose
+  - Technical Capabilities
   - Leadership & Governance
   - History & Milestones
   - Partners & Affiliations
   - FAQ
-- Page includes a CTA band (Collaborate / Join / Contact).
+- Page includes a CTA band (Collaborate / Contact).
 
 ---
 
@@ -253,21 +264,42 @@ Implement an About landing page that introduces the lab and links to About subpa
 Implement the Lab Profile page with overview, differentiators, and CTA.
 
 **Acceptance criteria**
-- Page includes overview content (what InnoLab does).
-- Page includes 3–5 differentiator bullets/cards.
-- Page includes a CTA band linking to Collaborate/Contact and/or Join.
+- Page includes overview content aligned to [`conceptual/official_information.md`](../conceptual/official_information.md).
+- Page includes 3–5 differentiator bullets/cards (e.g., hands-on learning, GPU-capable workstations, real-world datasets, cross-program collaboration, partner projects).
+- Page includes a CTA band linking to Collaborate/Contact.
 
 ---
 
-## RB-09 — About: Vision & Mission (`/about/vision-mission`) — **NOT DONE**
+## RB-09 — About: Purpose (`/about/purpose`) — **NOT DONE**
 
 **Requirement**
-Implement Vision & Mission page.
+Implement Purpose page aligned to the official description: Teaching & Learning, Research & Development, Collaboration & Impact.
 
 **Acceptance criteria**
-- Page includes a Vision statement section.
-- Page includes Mission bullets section.
-- Page includes a CTA band.
+- Page includes three sections (or cards) for:
+  - Teaching & Learning
+  - Research & Development
+  - Collaboration & Impact
+- Each section uses scannable bullets aligned to [`conceptual/official_information.md`](../conceptual/official_information.md).
+- Page includes a CTA band linking to `/collaborate` and/or `/contact`.
+
+---
+
+## RB-09A — About: Technical Capabilities (`/about/capabilities`) — **NOT DONE**
+
+**Requirement**
+Implement Technical Capabilities page aligned to the official description.
+
+**Acceptance criteria**
+- Page includes capabilities list aligned to official description:
+  - GPU-capable workstations for deep learning
+  - Python, TensorFlow, PyTorch, Keras environments
+  - Tools for data engineering, IoT simulation, cloud computing
+  - Collaboration space for mentoring and supervision
+- Page includes a Request Access CTA linking to `/contact` (or a future request form).
+
+**Note**
+The previous “Vision & Mission” page is out of scope for the updated INNOGEN Lab IA (unless later confirmed as official). If needed later, add it back as an optional About subpage.
 
 ---
 
@@ -319,75 +351,81 @@ Implement FAQ page with expandable items.
 
 ---
 
-## RB-14 — Research landing page (`/research`) — **PARTIAL**
+## RB-14 — Activities landing page (`/activities`) — **NOT DONE**
 
 **Requirement**
-Implement Research landing page with philosophy, themes, featured projects, outputs preview, and CTA.
+Implement Activities landing page aligned to the updated IA: student projects, research & development, partnerships & collaboration, and CTA.
 
 **Acceptance criteria**
-- Page includes research philosophy bullets.
-- Page includes theme cards linking to theme detail routes.
-- Page includes featured projects section.
-- Page includes outputs preview linking to Publications & Outputs.
-- Page includes CTA for collaboration and/or student opportunities.
+- Page has a single H1 and a short intro aligned to [`conceptual/official_information.md`](../conceptual/official_information.md).
+- Page includes sections/cards for:
+  - Student Projects
+  - Research & Development
+  - Partnerships & Collaboration
+- Page includes a CTA band linking to `/collaborate` and/or `/contact`.
+- If Outputs are in scope, page includes an outputs preview linking to `/activities/outputs` (optional).
+
+**Implementation notes**
+- This replaces the previous `/research` landing concept for INNOGEN Lab v0.1.
 
 ---
 
-## RB-14A — Research themes listing completeness — **PARTIAL**
+## RB-14A — Activities information architecture completeness — **NOT DONE**
 
 **Requirement**
-Ensure the Research Themes listing includes the four v0.1 themes and supports navigation to each theme detail.
+Ensure Activities section matches the IA in [`conceptual/microsite_concept.md`](../conceptual/microsite_concept.md) and provides clear navigation.
 
 **Acceptance criteria**
-- Themes listed include: NLP, Computer Vision, AI for Education, Responsible AI.
-- Each theme card links to `/research/themes/:slug`.
-- Theme cards show a short summary or focus areas preview.
+- Activities landing links to:
+  - `/activities/student-projects`
+  - `/activities/research-development`
+  - `/activities/partnerships`
+- If Outputs are included, Activities landing links to `/activities/outputs` (optional).
 
 ---
 
-## RB-15 — Research theme detail pages (`/research/themes/:slug`) — **NOT DONE**
+## RB-15 — Activities subpages (v0.1) — **NOT DONE**
 
 **Requirement**
-Implement theme detail pages for each research theme.
+Implement Activities subpages aligned to the IA.
 
 **Acceptance criteria**
-- Route resolves theme by `:slug` from static content.
-- Page includes:
-  - Theme overview
-  - Key problems
-  - Methods/approaches
-  - Example projects list filtered by theme
-  - Outputs list (papers/demos/code links)
-  - People involved list filtered by theme
-  - CTA band
-- Invalid `:slug` shows a not-found state.
+- Routes exist for:
+  - `/activities/student-projects`
+  - `/activities/research-development`
+  - `/activities/partnerships`
+- Each page:
+  - has a single H1 and short intro
+  - renders content from static content files (no hardcoded copy)
+  - includes a CTA band to collaborate/contact
+- If Outputs are included, route exists for `/activities/outputs` (optional).
 
 ---
 
-## RB-16 — Projects listing (`/research/projects`) — **NOT DONE**
+## RB-16 — Student projects listing (`/activities/student-projects`) — **NOT DONE**
 
 **Requirement**
-Implement a projects listing page with basic filters.
+Implement a student projects listing page with basic filters.
 
 **Acceptance criteria**
 - Projects list is rendered from static content.
-- Filters exist for at least: status (Active/Completed) and theme.
-- Each project card links to its detail page.
+- Filters exist for at least: status (Active/Completed) and category/type (e.g., course project, thesis, RA).
+- Each project card links to its detail page (if detail pages are in scope) or to an external link (if applicable).
 
 ---
 
-## RB-16A — Projects information completeness — **NOT DONE**
+## RB-16A — Student projects information completeness — **NOT DONE**
 
 **Requirement**
 Ensure each project card provides enough information to decide whether to click.
 
 **Acceptance criteria**
-- Project card shows: title, status, theme tags, 1–2 sentence summary.
+- Project card shows: title, status, category/type tags, 1–2 sentence summary.
 - Project card includes at least one “output” indicator if outputs exist (e.g., icons/labels for paper/code/demo).
 
 ---
 
-## RB-17 — Project detail (`/research/projects/:slug`) — **NOT DONE**
+## RB-17 — Project detail (`/activities/projects/:slug`) — **DONE**
 
 **Requirement**
 Implement project detail pages.
@@ -395,24 +433,25 @@ Implement project detail pages.
 **Acceptance criteria**
 - Route resolves project by `:slug` from static content.
 - Page includes:
-  - Title, status, theme tags
+  - Title, status, category/tags
   - Summary
   - Team members with links to person profiles
-  - Outputs links (paper/demo/code)
+  - Outputs links (paper/demo/code) when available
   - Related items (projects/articles) if available
 - Invalid `:slug` shows a not-found state.
 
 ---
 
-## RB-18 — Publications & Outputs (`/research/outputs`) — **NOT DONE**
+## RB-18 — Outputs (Publications / Prototypes) (`/activities/outputs`) — **NOT DONE** (optional)
 
 **Requirement**
-Implement Publications & Outputs page.
+Optionally implement an Outputs page to list publications and prototypes.
 
 **Acceptance criteria**
 - Outputs are rendered from static content and grouped by year.
 - Output types are distinguishable (publication, prototype/demo, dataset, open-source).
 - Links are valid and open in a new tab when external.
+- Page copy does not over-claim; it reflects what is actually available to publish.
 
 ---
 
@@ -434,9 +473,9 @@ Make outputs discoverable and easy to scan.
 Implement Facilities landing page with overview and links to subpages.
 
 **Acceptance criteria**
-- Page includes facilities overview.
+- Page includes facilities overview aligned to [`conceptual/official_information.md`](../conceptual/official_information.md).
 - Page includes cards/links to:
-  - Compute
+  - Compute (GPU workstations)
   - Collaboration Space
   - Tools & Software
   - Access & Usage Policy
@@ -450,7 +489,9 @@ Implement Facilities landing page with overview and links to subpages.
 Implement Compute page.
 
 **Acceptance criteria**
-- Page includes compute capabilities list and usage principles.
+- Page includes compute capabilities list aligned to official description:
+  - GPU-capable workstations for deep learning
+- Page includes usage principles (fair access, project-based approval) as placeholders until policy is confirmed.
 - Page includes Request Access CTA.
 
 ---
@@ -498,6 +539,10 @@ Implement People landing page with leadership and directory entry points.
 - Page includes a preview of lecturers/researchers and link to full directory.
 - Page includes Join Us CTA.
 
+**Implementation notes (current)**
+- People page now renders people cards from static content and links to profiles: [`innolab-microsite/src/views/PeoplePage.vue`](../innolab-microsite/src/views/PeoplePage.vue:1)
+- Still missing: dedicated directory routes (e.g., `/people/lecturers`) and Join Us route (`/people/join`)
+
 ---
 
 ## RB-24A — People directory layout rules — **NOT DONE**
@@ -538,7 +583,7 @@ Implement People subpages aligned to the IA.
 
 ---
 
-## RB-26 — Person profile (`/people/:slug`) — **NOT DONE**
+## RB-26 — Person profile (`/people/:slug`) — **DONE**
 
 **Requirement**
 Implement person profile pages.
@@ -588,6 +633,10 @@ Implement Articles listing page with filters and optional client-side search.
 - Optional search filters articles by title/summary.
 - Each article card links to its detail page.
 
+**Implementation notes (current)**
+- Articles list is now rendered from static content and links to detail pages: [`innolab-microsite/src/views/ArticlesPage.vue`](../innolab-microsite/src/views/ArticlesPage.vue:1)
+- Still missing: filters (category/year) and optional search
+
 ---
 
 ## RB-28A — Articles categories routes (v0.1) — **NOT DONE**
@@ -606,7 +655,7 @@ Support the IA categories for Articles: News & Announcements, Events & Seminars,
 
 ---
 
-## RB-29 — Article detail (`/articles/:slug`) — **NOT DONE**
+## RB-29 — Article detail (`/articles/:slug`) — **PARTIAL**
 
 **Requirement**
 Implement Article detail pages.
@@ -620,6 +669,10 @@ Implement Article detail pages.
   - Related articles section
   - Share links
 - Invalid `:slug` shows a not-found state.
+
+**Implementation notes (current)**
+- Article detail route + not-found state implemented: [`innolab-microsite/src/views/ArticleDetailPage.vue`](../innolab-microsite/src/views/ArticleDetailPage.vue:1)
+- Body rendering is currently minimal (line-break based), not full Markdown; share links + related-articles section still missing
 
 ---
 
@@ -649,16 +702,14 @@ Implement Collaborate page describing collaboration models and engagement proces
 
 ---
 
-## RB-30A — Collaborate subpages aligned to IA — **NOT DONE**
+## RB-30A — Collaborate/Contact subpages aligned to IA — **NOT DONE**
 
 **Requirement**
-Implement Collaborate/Contact subpages aligned to the IA.
+Implement Collaborate/Contact subpages aligned to the updated IA.
 
 **Acceptance criteria**
 - Routes exist for:
   - `/collaborate/models`
-  - `/collaborate/industry-government`
-  - `/collaborate/academic`
   - `/contact` (Contact & Location)
 - If not fully implemented, routes show a clear placeholder and link back to `/contact`.
 
@@ -680,13 +731,13 @@ Implement Contact page with a static-friendly contact form and contact details.
 ## RB-31A — Contact pathways and CTAs — **PARTIAL**
 
 **Requirement**
-Ensure clear pathways to contact from key pages (Home, Research, Facilities, People).
+Ensure clear pathways to contact from key pages (Home, Activities, Facilities, People).
 
 **Acceptance criteria**
 - Home includes a contact teaser linking to `/contact`.
-- Research pages include a CTA band linking to `/collaborate` and/or `/contact`.
+- Activities pages include a CTA band linking to `/collaborate` and/or `/contact`.
 - Facilities pages include a Request Access CTA linking to `/contact` or a request form.
-- People pages include Join/Contact CTAs linking to `/people/join` and `/contact`.
+- People pages include Join/Contact CTAs linking to `/people/join` (optional) and `/contact`.
 
 ---
 
@@ -698,19 +749,18 @@ Implement basic SEO metadata and clean URLs.
 **Acceptance criteria**
 - Each route sets a unique document title.
 - Each route sets a meta description (placeholder acceptable initially).
-- URLs follow the IA (e.g., `/research/themes/nlp`, `/people/:slug`).
+- URLs follow the IA (e.g., `/activities/student-projects`, `/facilities/compute`, `/people/:slug`).
 - OpenGraph tags exist at least for Home and Article detail pages.
 
 ---
 
-## RB-32A — Clean URL conventions — **PARTIAL**
+## RB-32A — Clean URL conventions — **DONE**
 
 **Requirement**
 Ensure URL conventions match the IA examples and remain stable.
 
 **Acceptance criteria**
-- Theme URLs follow `/research/themes/:slug`.
-- Project URLs follow `/research/projects/:slug`.
+- Project URLs follow `/activities/projects/:slug`.
 - Person URLs follow `/people/:slug`.
 - Article URLs follow `/articles/:slug`.
 - No route requires query params to render core content (filters may use query params).
@@ -752,6 +802,10 @@ Ensure the SPA can be built and deployed as static assets.
 - Static hosting configuration guidance exists (e.g., SPA fallback to `index.html`).
 - Asset paths work correctly in production build.
 - A minimal README section exists describing build and deploy steps.
+
+**Implementation notes (current)**
+- Netlify config-as-code added: [`netlify.toml`](../netlify.toml)
+- SPA fallback redirect added for Netlify: [`innolab-microsite/public/_redirects`](../innolab-microsite/public/_redirects)
 
 ---
 
