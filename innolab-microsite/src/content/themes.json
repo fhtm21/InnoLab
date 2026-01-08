@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "nlp",
+    "title": "Natural Language Processing (NLP)",
+    "overview": "We study language understanding and generation with a focus on Indonesian and education-related contexts.",
+    "focusAreas": [
+      "Indonesian language understanding and generation",
+      "Information extraction and document intelligence",
+      "Conversational AI and retrieval-augmented generation (RAG)"
+    ],
+    "exampleOutputs": [
+      "Domain-specific chat assistants",
+      "Text classification and summarization benchmarks"
+    ],
+    "relatedPeople": ["dr-ayu-pratama", "dr-budi-santoso"],
+    "relatedProjects": ["indonesian-academic-document-intelligence", "rag-for-student-support"]
+  },
+  {
+    "slug": "computer-vision",
+    "title": "Computer Vision",
+    "overview": "We build vision systems for recognition, detection, and multimodal understanding, with practical applications in education and society.",
+    "focusAreas": [
+      "Visual recognition and detection",
+      "Document and scene understanding",
+      "Multimodal learning (vision + language)"
+    ],
+    "exampleOutputs": [
+      "Assistive vision systems",
+      "Automated document processing pipelines"
+    ],
+    "relatedPeople": ["dr-budi-santoso"],
+    "relatedProjects": ["multimodal-classroom-engagement"]
+  },
+  {
+    "slug": "ai-for-education",
+    "title": "AI for Education",
+    "overview": "We develop privacy-aware learning analytics and intelligent support tools to improve learning outcomes and teaching effectiveness.",
+    "focusAreas": [
+      "Learning analytics and student success prediction",
+      "Intelligent tutoring and feedback systems",
+      "Assessment support and academic integrity tools (responsible use)"
+    ],
+    "exampleOutputs": [
+      "Early warning dashboards (privacy-aware)",
+      "AI-assisted learning content tools"
+    ],
+    "relatedPeople": ["dr-ayu-pratama"],
+    "relatedProjects": ["multimodal-classroom-engagement", "rag-for-student-support"]
+  },
+  {
+    "slug": "responsible-ai",
+    "title": "Responsible AI",
+    "overview": "We evaluate and improve fairness, privacy, transparency, and governance practices for AI systems used in research and education.",
+    "focusAreas": [
+      "Fairness and bias evaluation",
+      "Privacy-preserving ML",
+      "Model safety, transparency, and governance"
+    ],
+    "exampleOutputs": [
+      "Responsible AI checklists and evaluation protocols",
+      "Model cards and documentation templates"
+    ],
+    "relatedPeople": ["dr-siti-nurhaliza"],
+    "relatedProjects": ["responsible-ai-evaluation-toolkit"]
+  }
+]

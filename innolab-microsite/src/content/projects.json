@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "indonesian-academic-document-intelligence",
+    "title": "Indonesian Academic Document Intelligence",
+    "status": "Active",
+    "themes": ["nlp", "computer-vision"],
+    "summary": "Methods and prototypes for extracting structured information from academic documents, combining NLP and vision for robust pipelines.",
+    "team": ["dr-budi-santoso"],
+    "partner": "",
+    "outputs": [
+      { "type": "code", "label": "Prototype repo (placeholder)", "url": "https://github.com/" }
+    ]
+  },
+  {
+    "slug": "multimodal-classroom-engagement",
+    "title": "Multimodal AI for Classroom Engagement Analysis",
+    "status": "Active",
+    "themes": ["computer-vision", "ai-for-education"],
+    "summary": "Exploring privacy-aware multimodal signals to support teaching and learning analytics in classroom settings.",
+    "team": ["dr-ayu-pratama", "dr-budi-santoso"],
+    "partner": "",
+    "outputs": [
+      { "type": "demo", "label": "Demo (placeholder)", "url": "https://example.com" }
+    ]
+  },
+  {
+    "slug": "rag-for-student-support",
+    "title": "RAG for Student Support",
+    "status": "Completed",
+    "themes": ["nlp", "ai-for-education"],
+    "summary": "A retrieval-augmented assistant prototype to help students find policy and academic information with citations and guardrails.",
+    "team": ["dr-ayu-pratama"],
+    "partner": "",
+    "outputs": [
+      { "type": "paper", "label": "Report (placeholder)", "url": "https://example.com" }
+    ]
+  },
+  {
+    "slug": "responsible-ai-evaluation-toolkit",
+    "title": "Responsible AI Evaluation Toolkit for University Use",
+    "status": "Active",
+    "themes": ["responsible-ai"],
+    "summary": "A lightweight evaluation toolkit and documentation templates to support fairness, privacy, and governance checks for AI projects.",
+    "team": ["dr-siti-nurhaliza"],
+    "partner": "",
+    "outputs": [
+      { "type": "code", "label": "Toolkit repo (placeholder)", "url": "https://github.com/" }
+    ]
+  }
+]

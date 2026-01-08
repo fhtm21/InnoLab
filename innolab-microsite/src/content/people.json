@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "dr-ayu-pratama",
+    "name": "Dr. Ayu Pratama",
+    "title": "Lecturer / Researcher",
+    "affiliation": "BINUS University",
+    "bio": "Ayu works on NLP and AI for Education, focusing on responsible, reproducible methods and practical student support tools.",
+    "expertiseTags": ["NLP", "AI for Education", "RAG", "Responsible AI"],
+    "links": {
+      "email": "innolab@binus.ac.id",
+      "scholar": "",
+      "orcid": "",
+      "linkedin": ""
+    },
+    "selectedProjects": ["rag-for-student-support", "multimodal-classroom-engagement"],
+    "selectedOutputs": ["responsible-ai-checklist-v01"]
+  },
+  {
+    "slug": "dr-budi-santoso",
+    "name": "Dr. Budi Santoso",
+    "title": "Lecturer / Researcher",
+    "affiliation": "BINUS University",
+    "bio": "Budi works on computer vision and multimodal learning, with interests in document understanding and applied AI prototypes.",
+    "expertiseTags": ["Computer Vision", "Multimodal", "Document Intelligence"],
+    "links": {
+      "email": "innolab@binus.ac.id",
+      "scholar": "",
+      "orcid": "",
+      "linkedin": ""
+    },
+    "selectedProjects": ["indonesian-academic-document-intelligence", "multimodal-classroom-engagement"],
+    "selectedOutputs": []
+  },
+  {
+    "slug": "dr-siti-nurhaliza",
+    "name": "Dr. Siti Nurhaliza",
+    "title": "Lecturer / Researcher",
+    "affiliation": "BINUS University",
+    "bio": "Siti focuses on Responsible AI, including fairness evaluation, privacy-aware ML, and governance practices for academic and applied settings.",
+    "expertiseTags": ["Responsible AI", "Fairness", "Privacy"],
+    "links": {
+      "email": "innolab@binus.ac.id",
+      "scholar": "",
+      "orcid": "",
+      "linkedin": ""
+    },
+    "selectedProjects": ["responsible-ai-evaluation-toolkit"],
+    "selectedOutputs": ["responsible-ai-checklist-v01"]
+  }
+]

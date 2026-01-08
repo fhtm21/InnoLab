@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "seminar-recap-ai-safety-2026",
+    "title": "Seminar recap: Practical AI Safety for Research Teams",
+    "date": "2026-01-01",
+    "author": "InnoLab Comms",
+    "category": "Events",
+    "tags": ["Responsible AI", "Seminar"],
+    "summary": "Highlights and key takeaways from our internal seminar on practical AI safety and governance for research projects.",
+    "body": "## Summary\n\nThis is placeholder content for an article body.\n\n## Key points\n\n- Define risks early\n- Document assumptions\n- Evaluate fairness and privacy\n\n## Related work\n\nSee our Responsible AI theme and toolkit project.",
+    "relatedThemes": ["responsible-ai"],
+    "relatedProjects": ["responsible-ai-evaluation-toolkit"],
+    "relatedPeople": ["dr-siti-nurhaliza"]
+  },
+  {
+    "slug": "new-publication-announcement-2025",
+    "title": "New publication announcement: Document intelligence methods (placeholder)",
+    "date": "2025-12-15",
+    "author": "InnoLab Comms",
+    "category": "News",
+    "tags": ["NLP", "Computer Vision"],
+    "summary": "We share a placeholder announcement for a publication related to document intelligence research.",
+    "body": "## Announcement\n\nThis is placeholder content for an article body.\n\n## What’s next\n\nWe will share artifacts and demos when available.",
+    "relatedThemes": ["nlp", "computer-vision"],
+    "relatedProjects": ["indonesian-academic-document-intelligence"],
+    "relatedPeople": ["dr-budi-santoso"]
+  },
+  {
+    "slug": "responsible-ai-note-model-cards",
+    "title": "Responsible AI note: Model cards for academic prototypes",
+    "date": "2025-11-20",
+    "author": "InnoLab Comms",
+    "category": "Insights",
+    "tags": ["Responsible AI", "Documentation"],
+    "summary": "A short note on using model cards to document intended use, limitations, and evaluation for academic prototypes.",
+    "body": "## Why model cards\n\nThis is placeholder content for an article body.\n\n## Template\n\n- Intended use\n- Data\n- Metrics\n- Limitations\n\n## Related\n\nSee the Responsible AI Evaluation Toolkit project.",
+    "relatedThemes": ["responsible-ai"],
+    "relatedProjects": ["responsible-ai-evaluation-toolkit"],
+    "relatedPeople": ["dr-siti-nurhaliza"]
+  }
+]
