@@ -31,7 +31,8 @@ Create a Vue 3 SPA project using Vite with Vue Router configured for clean route
 
 **Implementation notes (current)**
 - Added slug routes for themes/projects/people/articles: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
-- Still missing many IA subroutes (e.g., `/about/*`, `/facilities/*`, `/research/projects` listing, `/people/lecturers`, etc.)
+- Added Activities routes and backward-compatible redirects from old `/research/*` URLs: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
+- Still missing many IA subroutes (e.g., `/about/*`, `/facilities/*`, `/people/lecturers`, `/people/join`, etc.)
 
 ---
 
@@ -106,8 +107,12 @@ Ensure the header navigation matches the microsite IA and provides clear pathway
 **Acceptance criteria**
 - Top navigation contains 6–7 items maximum (per IA guidance).
 - “Collaborate” and “Contact” are reachable from the top navigation (either combined or separate routes).
-- Active route state is visible for the current section.
+- Active route state is visible for the current section (including subroutes).
 - Navigation labels are consistent across header and footer.
+
+**Implementation notes (current)**
+- Header nav label updated to “Activities” and active state now supports subpaths: [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+- Official logo integrated in header: [`innolab-microsite/src/assets/LOGO.png`](../innolab-microsite/src/assets/LOGO.png) and [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
 
 ---
 
@@ -221,8 +226,9 @@ Implement the Home page per the recommended layout: hero, highlights, core purpo
 - Sections are scannable (headings, short paragraphs, cards).
 
 **Implementation notes (current)**
-- Home is now data-driven for themes/articles/people and uses SPA navigation: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
-- Still missing: contact teaser block (and ensure home sections match the updated IA)
+- Home copy updated to INNOGEN Lab positioning and core purpose; contact/location CTA added: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- Home remains data-driven for people/articles and uses SPA navigation: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- Still missing: facilities snapshot section (compute/tools/space) as a dedicated block (currently covered via highlights + CTA)
 
 ---
 
@@ -245,7 +251,7 @@ Ensure the Home page meets the “10 seconds understanding” success criterion.
 Implement an About landing page that introduces the lab and links to About subpages.
 
 **Acceptance criteria**
-- Page has a single H1 and a short intro.
+- Page has a single H1 and a short intro aligned to official description.
 - Page provides navigation cards/links to:
   - Lab Profile
   - Purpose
@@ -255,6 +261,9 @@ Implement an About landing page that introduces the lab and links to About subpa
   - Partners & Affiliations
   - FAQ
 - Page includes a CTA band (Collaborate / Contact).
+
+**Implementation notes (current)**
+- About page copy updated to INNOGEN Lab official description (still missing subpage navigation cards): [`innolab-microsite/src/views/AboutPage.vue`](../innolab-microsite/src/views/AboutPage.vue:1)
 
 ---
 
@@ -351,7 +360,7 @@ Implement FAQ page with expandable items.
 
 ---
 
-## RB-14 — Activities landing page (`/activities`) — **NOT DONE**
+## RB-14 — Activities landing page (`/activities`) — **PARTIAL**
 
 **Requirement**
 Implement Activities landing page aligned to the updated IA: student projects, research & development, partnerships & collaboration, and CTA.
@@ -366,6 +375,7 @@ Implement Activities landing page aligned to the updated IA: student projects, r
 - If Outputs are in scope, page includes an outputs preview linking to `/activities/outputs` (optional).
 
 **Implementation notes**
+- Activities route exists and currently reuses the previous Research page component with updated copy and links: [`innolab-microsite/src/views/ResearchPage.vue`](../innolab-microsite/src/views/ResearchPage.vue:1)
 - This replaces the previous `/research` landing concept for INNOGEN Lab v0.1.
 
 ---
@@ -815,7 +825,7 @@ Ensure the SPA can be built and deployed as static assets.
 Implement lightweight content governance support so the microsite can be maintained.
 
 **Acceptance criteria**
-- A documented ownership mapping exists (About/People, Research/Projects, Articles, Facilities) aligned to the concept doc.
+- A documented ownership mapping exists (About/People, Activities/Projects, Articles, Facilities) aligned to the concept doc.
 - A documented minimum update cadence exists (People monthly, Projects quarterly, Facilities quarterly/when changes occur, Articles at least monthly).
 - A content quality checklist exists and is referenced in contributor documentation:
   - names/titles correct
@@ -838,3 +848,50 @@ Track and resolve the open questions listed in the concept doc to finalize v0.1 
   - include/exclude: publications integration, search feature, dataset/open-source page
   - content approval workflow and publishing permissions
 - Each item has a recorded decision and the site reflects the decision (copy, routes, or placeholders).
+
+---
+
+## RB-37 — Icon system: Iconify integration — **NOT DONE**
+
+**Requirement**
+Adopt Iconify as the microsite icon system for consistent, lightweight icons across UI components.
+
+**Acceptance criteria**
+- Iconify is installed and documented (package + usage pattern).
+- A small wrapper component exists (e.g., `AppIcon`) to standardize:
+  - size defaults
+  - color inheritance
+  - accessible labeling (`aria-hidden` for decorative icons; `aria-label` for meaningful icons)
+- Icons are used in at least:
+  - header (optional search icon, menu icon optional)
+  - CTA buttons (optional)
+  - cards/metadata (optional)
+- No inline SVG duplication for common icons; use Iconify instead.
+
+**Implementation notes**
+- Prefer a single icon set (e.g., Material Symbols or Phosphor) to keep style consistent.
+
+---
+
+## RB-38 — UI primitives + animations: Reka UI adoption — **NOT DONE**
+
+**Requirement**
+Adopt Reka UI for accessible UI primitives and component animations (where appropriate) to improve interaction quality and consistency.
+
+**Acceptance criteria**
+- Reka UI is installed and documented (package + usage pattern).
+- Replace or implement at least these components using Reka UI primitives:
+  - Accordion (FAQ) with keyboard support
+  - Dialog/Drawer (mobile nav or search overlay) with focus trap
+  - Tabs or Select (filters) (optional)
+- Animations are subtle and consistent:
+  - menu open/close
+  - accordion expand/collapse
+  - dialog enter/exit
+- Accessibility is preserved or improved:
+  - focus management
+  - ARIA attributes
+  - reduced-motion support (respects user preference)
+
+**Implementation notes**
+- Keep SIS visual cues; Reka UI is for behavior/accessibility/animation primitives, not a full visual redesign.
