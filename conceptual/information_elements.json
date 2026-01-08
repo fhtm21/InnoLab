@@ -1,0 +1,223 @@
+{
+  "source": {
+    "url": "https://sis.binus.ac.id/",
+    "captured_at_utc": "2026-01-08T06:04:16Z",
+    "notes": [
+      "Elements listed are those that appear to be global/repeated template components (header, global navigation, persistent widgets).",
+      "Some items (e.g., campaign banners) may be seasonal but are still implemented as reusable header modules.",
+      "Media URLs below were extracted from the downloaded homepage HTML (screenshots/sis_home.html). Some icons are injected via Grunticon (CSS/SVG) and may not have direct <img src> URLs."
+    ],
+    "evidence": {
+      "downloaded_html_path": "screenshots/sis_home.html",
+      "asset_grep_path": "screenshots/sis_home_assets.txt"
+    }
+  },
+  "global_template_elements": [
+    {
+      "area": "header",
+      "name": "site_identity_block",
+      "type": "branding",
+      "likely_repeated": true,
+      "description": "Left-aligned BINUS University + School of Information Systems identity lockup (logo + text).",
+      "content_elements": [
+        {
+          "kind": "image",
+          "role": "logo",
+          "label": "BINUS University / School of Information Systems logo lockup",
+          "url": "https://sis.binus.ac.id/wp-content/uploads/2025/12/BINUS-SIS.svg"
+        },
+        { "kind": "text", "role": "site_name", "label": "School of Information Systems" }
+      ]
+    },
+    {
+      "area": "header",
+      "name": "campaign_badges_strip",
+      "type": "branding",
+      "likely_repeated": true,
+      "description": "A row of small campaign/brand badges near the top header (e.g., anniversary/initiative badges).",
+      "content_elements": [
+        {
+          "kind": "image",
+          "role": "badge",
+          "label": "BINUS Road To 45 (desktop)",
+          "url": "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/logo_binus_road.svg"
+        },
+        {
+          "kind": "image",
+          "role": "badge",
+          "label": "BINUS Road To 45 (mobile/white)",
+          "url": "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/logo_binus_road_white.svg"
+        },
+        {
+          "kind": "image",
+          "role": "badge",
+          "label": "Lead The Tech Logo",
+          "url": "https://sis.binus.ac.id/wp-content/uploads/2025/12/Component-128-%E2%80%93-1@2x.png"
+        }
+      ],
+      "notes": [
+        "Badge set may change over time, but the container/slot pattern is likely consistent."
+      ]
+    },
+    {
+      "area": "header",
+      "name": "primary_cta_button",
+      "type": "cta",
+      "likely_repeated": true,
+      "description": "Prominent orange pill CTA button in the header.",
+      "content_elements": [
+        {
+          "kind": "link",
+          "role": "cta",
+          "label": "MULAI DARI SINI",
+          "style_cue": "orange pill button",
+          "url": "https://gabung.binus.ac.id/"
+        },
+        {
+          "kind": "image",
+          "role": "cta_icon",
+          "label": "Gabung BINUS icon (left segment of CTA)",
+          "url": "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/icon-gabung-binus.svg"
+        },
+        {
+          "kind": "icon",
+          "role": "chevron",
+          "label": "Right arrow/chevron inside CTA (implemented as inline CSS border arrow, not an image URL)",
+          "implementation_note": "Rendered via <i> element with CSS borders/rotation; no external media URL."
+        }
+      ]
+    },
+    {
+      "area": "header",
+      "name": "utility_links_row",
+      "type": "navigation",
+      "likely_repeated": true,
+      "description": "A thin row of utility links above the main nav (right side).",
+      "content_elements": [
+        { "kind": "link", "role": "utility_nav_item", "label": "Home", "url": "http://sis.binus.ac.id/" },
+        { "kind": "link", "role": "utility_nav_item", "label": "ICIMTech 2026", "url": "http://sis.binus.ac.id/icimtech" },
+        { "kind": "link", "role": "utility_nav_item", "label": "Contact Us", "url": "https://sis.binus.ac.id/contact-us/" },
+        { "kind": "link", "role": "utility_nav_item", "label": "Downloads", "url": "https://sis.binus.ac.id/download/" },
+        { "kind": "link", "role": "utility_nav_item", "label": "Lecturer Vacancy", "url": "https://sis.binus.ac.id/2020/07/16/lecturer-vacancy/" },
+        { "kind": "link", "role": "utility_nav_item", "label": "SIS Virtual Background", "url": "https://sis.binus.ac.id/sis-virtual-background/" }
+      ],
+      "notes": [
+        "Exact labels may vary by program/site section, but the pattern (small utility links row) is a reusable header module."
+      ]
+    },
+    {
+      "area": "header",
+      "name": "main_navigation_bar",
+      "type": "navigation",
+      "likely_repeated": true,
+      "description": "Main navigation with dropdowns and a hamburger/menu icon for responsive layouts.",
+      "content_elements": [
+        { "kind": "link", "role": "nav_item", "label": "Current Events", "has_dropdown": true },
+        { "kind": "link", "role": "nav_item", "label": "About Us", "has_dropdown": true },
+        { "kind": "link", "role": "nav_item", "label": "Programs", "has_dropdown": true },
+        { "kind": "link", "role": "nav_item", "label": "Activities", "has_dropdown": true },
+        { "kind": "button", "role": "nav_toggle", "label": "Hamburger menu icon (Grunticon embedded SVG/CSS)" }
+      ]
+    },
+    {
+      "area": "header",
+      "name": "search_trigger",
+      "type": "utility",
+      "likely_repeated": true,
+      "description": "Search icon in the top-right corner of the header area.",
+      "content_elements": [
+        {
+          "kind": "button",
+          "role": "search_open",
+          "label": "Search icon (magnifier) (Grunticon embedded SVG/CSS)",
+          "implementation_note": "Element uses data-grunticon-embed; icon is loaded from Grunticon CSS sprite sheets."
+        }
+      ],
+      "media_dependencies": [
+        "https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/svg/is_home/icons.data.svg.css?v=5.5.6",
+        "https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/svg/is_home/icons.data.png.css?v=5.5.6",
+        "https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/svg/is_home/icons.fallback.css?v=5.5.6"
+      ]
+    },
+    {
+      "area": "floating_widget",
+      "name": "consultation_widget",
+      "type": "cta",
+      "likely_repeated": true,
+      "description": "Persistent floating 'Click to Consultation!' widget on the right side of the viewport.",
+      "content_elements": [
+        {
+          "kind": "image",
+          "role": "widget_logo",
+          "label": "Gabung BINUS badge/logo",
+          "url": "https://sis.binus.ac.id/wp-content/themes/binus-2022-core/image/block-icon/future-students/univ/block-icon-gabung-binus-1.png"
+        },
+        { "kind": "text", "role": "widget_label", "label": "Click to Consultation!" }
+      ],
+      "behavior": {
+        "positioning": "fixed",
+        "visibility": "persistent across scroll",
+        "interaction": "click opens consultation/contact flow (likely modal or external link)"
+      }
+    }
+  ],
+  "media_elements_likely_reused": [
+    {
+      "name": "header_logos_and_badges",
+      "type": "image_set",
+      "where": "header",
+      "description": "Logo lockup + rotating/maintained campaign badges used across pages.",
+      "urls": [
+        "https://sis.binus.ac.id/wp-content/uploads/2025/12/BINUS-SIS.svg",
+        "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/logo_binus_road.svg",
+        "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/logo_binus_road_white.svg",
+        "https://sis.binus.ac.id/wp-content/uploads/2025/12/Component-128-%E2%80%93-1@2x.png"
+      ]
+    },
+    {
+      "name": "cta_iconography",
+      "type": "icon",
+      "where": "header_cta",
+      "description": "Iconography used in the primary CTA button.",
+      "urls": [
+        "https://cdn-binusacid.azureedge.net/content/BINUS_LOGO/icon-gabung-binus.svg"
+      ],
+      "notes": [
+        "The right chevron is not an image; it is rendered via CSS borders on an <i> element."
+      ]
+    },
+    {
+      "name": "search_icon",
+      "type": "icon",
+      "where": "header",
+      "description": "Magnifier icon used to open search (Grunticon).",
+      "media_dependencies": [
+        "https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/compiled/binus-2025-464-sisprogram/svg/is_home/icons.data.svg.css?v=5.5.6"
+      ]
+    },
+    {
+      "name": "consultation_widget_badge",
+      "type": "image",
+      "where": "floating_widget",
+      "description": "Small badge used in the consultation widget.",
+      "url": "https://sis.binus.ac.id/wp-content/themes/binus-2022-core/image/block-icon/future-students/univ/block-icon-gabung-binus-1.png"
+    },
+    {
+      "name": "favicon",
+      "type": "icon",
+      "where": "global",
+      "description": "Site favicon.",
+      "url": "https://sis.binus.ac.id/wp-content/themes/binus-2022-271-core/images/static/favicon.ico"
+    }
+  ],
+  "implementation_hints_for_microsite": [
+    {
+      "pattern": "two_tier_header",
+      "description": "Implement a two-tier header: (1) utility links row, (2) main nav row with dropdowns + primary CTA + search."
+    },
+    {
+      "pattern": "persistent_side_cta",
+      "description": "Optional: implement a fixed-position side CTA widget for quick contact/consultation, styled as a light-blue pill with subtle shadow (per design guideline)."
+    }
+  ]
+}
