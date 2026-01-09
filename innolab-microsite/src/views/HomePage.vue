@@ -21,7 +21,7 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
   <div>
     <section class="hero">
       <div class="container hero-inner">
-        <h1 class="h1">INNOGEN Lab — BINUS @Bekasi AI and Data Innovation Facility</h1>
+        <h1 class="h1">INNOGEN Lab — AI and Data Innovation Facility</h1>
         <p class="muted hero-sub">
           A multi-purpose academic and research space supporting AI, data science, smart systems, and Industry 4.0 innovation.
         </p>
