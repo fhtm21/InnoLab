@@ -39,7 +39,7 @@ import CtaBand from '../components/ui/CtaBand.vue'
       title="Start a conversation"
       body="Send us your problem statement and goals. We will respond with next steps based on feasibility and availability."
       primaryLabel="Contact"
-      primaryTo="/contact"
+      primaryTo="/contact?type=collaboration"
       secondaryLabel="Playground"
       secondaryTo="/playground"
     />

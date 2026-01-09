@@ -1,6 +1,6 @@
 export const siteConfig = {
   header: {
-    showSearch: false, // RB-02B optional; keep off for v0.1 baseline
+    showSearch: true,
     utilityLinks: [
       { label: 'Home', to: '/' },
       { label: 'Contact', to: '/contact' },

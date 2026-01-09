@@ -1,22 +1,35 @@
 <script setup>
-import { computed, nextTick, reactive, ref } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import CtaBand from '../components/ui/CtaBand.vue'
 
 const CONTACT_EMAIL = 'innolab@binus.ac.id'
 
+const route = useRoute()
+
+const INQUIRY_TYPES = [
+  { value: 'general', label: 'General' },
+  { value: 'collaboration', label: 'Collaboration' },
+  { value: 'permit', label: 'Permit inquiry' },
+  { value: 'playground', label: 'Playground / demo' },
+]
+
 const form = reactive({
+  inquiryType: 'general',
   name: '',
   email: '',
   message: '',
 })
 
 const touched = reactive({
+  inquiryType: false,
   name: false,
   email: false,
   message: false,
 })
 
 const errors = reactive({
+  inquiryType: '',
   name: '',
   email: '',
   message: '',
@@ -26,6 +39,12 @@ const submitErrorSummaryRef = ref(null)
 
 function validateField(field) {
   const value = String(form[field] ?? '').trim()
+
+  if (field === 'inquiryType') {
+    const ok = INQUIRY_TYPES.some((t) => t.value === value)
+    if (!ok) return 'Select an inquiry type.'
+    return ''
+  }
 
   if (field === 'name') {
     if (!value) return 'Name is required.'
@@ -49,17 +68,21 @@ function validateField(field) {
 }
 
 function validateAll() {
+  errors.inquiryType = validateField('inquiryType')
   errors.name = validateField('name')
   errors.email = validateField('email')
   errors.message = validateField('message')
 
-  return !errors.name && !errors.email && !errors.message
+  return !errors.inquiryType && !errors.name && !errors.email && !errors.message
 }
 
-const hasErrors = computed(() => Boolean(errors.name || errors.email || errors.message))
+const hasErrors = computed(() =>
+  Boolean(errors.inquiryType || errors.name || errors.email || errors.message),
+)
 
 const errorSummaryItems = computed(() => {
   const items = []
+  if (errors.inquiryType) items.push({ field: 'inquiryType', label: errors.inquiryType })
   if (errors.name) items.push({ field: 'name', label: errors.name })
   if (errors.email) items.push({ field: 'email', label: errors.email })
   if (errors.message) items.push({ field: 'message', label: errors.message })
@@ -83,6 +106,7 @@ function focusField(field) {
 
 async function onSubmit() {
   // mark all as touched so errors show
+  touched.inquiryType = true
   touched.name = true
   touched.email = true
   touched.message = true
@@ -94,8 +118,12 @@ async function onSubmit() {
     return
   }
 
-  const subject = `INNOGEN Lab contact — ${form.name}`
+  const inquiryLabel =
+    INQUIRY_TYPES.find((t) => t.value === form.inquiryType)?.label ?? form.inquiryType
+
+  const subject = `INNOGEN Lab contact (${inquiryLabel}) — ${form.name}`
   const bodyLines = [
+    `Inquiry type: ${inquiryLabel}`,
     `Name: ${form.name}`,
     `Email: ${form.email}`,
     '',
@@ -110,6 +138,17 @@ async function onSubmit() {
 
   window.location.href = mailto
 }
+function normalizeInquiryType(value) {
+  const v = String(value ?? '').trim().toLowerCase()
+  if (!v) return null
+  const ok = INQUIRY_TYPES.some((t) => t.value === v)
+  return ok ? v : null
+}
+
+onMounted(() => {
+  const preset = normalizeInquiryType(route.query.type)
+  if (preset) form.inquiryType = preset
+})
 </script>
 
 <template>
@@ -144,6 +183,32 @@ async function onSubmit() {
               </li>
             </ul>
           </div>
+
+          <label class="field" for="contact-inquiryType">
+            <span class="label">Inquiry type <span class="req" aria-hidden="true">*</span></span>
+            <select
+              id="contact-inquiryType"
+              class="input"
+              name="inquiryType"
+              v-model="form.inquiryType"
+              :aria-invalid="Boolean(errors.inquiryType)"
+              :aria-describedby="errors.inquiryType ? 'contact-inquiryType-error' : undefined"
+              @blur="onBlur('inquiryType')"
+              @input="onInput('inquiryType')"
+            >
+              <option v-for="t in INQUIRY_TYPES" :key="t.value" :value="t.value">
+                {{ t.label }}
+              </option>
+            </select>
+            <p
+              v-if="errors.inquiryType"
+              id="contact-inquiryType-error"
+              class="fieldError"
+              role="alert"
+            >
+              {{ errors.inquiryType }}
+            </p>
+          </label>
 
           <label class="field" for="contact-name">
             <span class="label">Name <span class="req" aria-hidden="true">*</span></span>

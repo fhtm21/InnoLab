@@ -9,6 +9,7 @@ import CollaboratePage from '../views/CollaboratePage.vue'
 import ContactPage from '../views/ContactPage.vue'
 import PermitPage from '../views/PermitPage.vue'
 import PlaygroundPage from '../views/PlaygroundPage.vue'
+import SearchPage from '../views/SearchPage.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
 
 import ThemeDetailPage from '../views/ThemeDetailPage.vue'
@@ -81,6 +82,7 @@ const routes = [
   { path: '/contact', name: 'contact', component: ContactPage },
   { path: '/permit', name: 'permit', component: PermitPage },
   { path: '/playground', name: 'playground', component: PlaygroundPage },
+  { path: '/search', name: 'search', component: SearchPage },
 
   // Backward-compatible redirects (old IA)
   { path: '/research', redirect: '/activities' },

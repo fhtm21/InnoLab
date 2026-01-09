@@ -206,10 +206,10 @@ watch(
         </DialogRoot>
 
         <div v-if="siteConfig.header.showSearch" class="search">
-          <button class="icon-btn" type="button" aria-label="Open search">
+          <RouterLink class="icon-btn" to="/search" aria-label="Open search">
             <AppIcon name="ph:magnifying-glass" :size="18" />
             <span class="sr-only">Search</span>
-          </button>
+          </RouterLink>
         </div>
       </div>
     </div>
