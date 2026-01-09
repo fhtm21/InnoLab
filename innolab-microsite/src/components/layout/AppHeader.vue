@@ -61,7 +61,7 @@ function closeMenu() {
             <img class="brand-logo" src="../../assets/LOGO.png" alt="INNOGEN Lab logo" />
             <div class="brand-text">
               <div class="brand-title">INNOGEN Lab</div>
-              <div class="brand-subtitle">BINUS @Bekasi · School of Information Systems</div>
+              <div class="brand-subtitle">School of Information Systems · BINUS @Bekasi</div>
             </div>
           </RouterLink>
         </div>

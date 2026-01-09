@@ -873,6 +873,52 @@ Adopt Iconify as the microsite icon system for consistent, lightweight icons acr
 
 ---
 
+## RB-39 — Home: INNOGEN Lab at a glance (charts/metrics) — **NOT DONE**
+
+**Requirement**
+Add a credibility section on the Home page that summarizes key INNOGEN Lab metrics using simple, static-friendly charts or KPI cards.
+
+**Acceptance criteria**
+- Home page includes a section titled “INNOGEN Lab at a glance” (or equivalent) placed near the highlights area.
+- Section includes three metric groups:
+  1) Facility users:
+     - number of Students
+     - number of Lecturers & Professors
+     - number of Professionals
+  2) Published research/publications:
+     - journal articles
+     - conference papers
+     - patents
+     - whitepapers
+  3) Lab partnerships:
+     - total number of partnerships (and optional breakdown if available)
+- Metrics are rendered from static content (local JSON/Markdown) bundled at build time (no runtime API).
+- Visuals are accessible:
+  - charts have text equivalents (KPI numbers + labels)
+  - color is not the only means of conveying meaning
+  - keyboard navigation is not required for purely presentational charts
+- If exact numbers are not yet confirmed, the section supports placeholders and clearly labels them as “placeholder”.
+
+**Implementation notes**
+- Prefer KPI cards and/or simple bar charts implemented with semantic HTML + CSS (avoid heavy chart libraries for v0.1).
+- Store metrics in a dedicated content file (e.g., `src/content/metrics.json`) and import into the Home page.
+
+---
+
+## RB-40 — Official information update (FINAL REPORT slide) — **NOT DONE**
+
+**Requirement**
+Update the official lab information source file with the “FINAL REPORT PROYEK INTERNAL INNOGEN LAB” details so the microsite can reuse it consistently.
+
+**Acceptance criteria**
+- [`conceptual/official_information.md`](../conceptual/official_information.md) includes:
+  - “Official members” list (names + roles)
+  - UN SDG alignment section (SDG 4, 8, 9, 17) with the provided descriptions
+- Content is formatted consistently with the rest of the document (headings + bullets).
+- No conflicting or duplicated sections remain after the update.
+
+---
+
 ## RB-38 — UI primitives + animations: Reka UI adoption — **NOT DONE**
 
 **Requirement**

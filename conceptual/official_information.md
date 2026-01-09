@@ -59,3 +59,20 @@ INNOGEN Lab strengthens BINUS’s mission to become an AI-driven campus, giving 
 - Publish scientific papers
 - Develop industry-ready skills
 - Launch innovation projects
+
+
+## Update information from slide FINAL REPORT PROYEK INTERNAL INNOGEN LAB
+
+### Official members
+- Anindhita Dewabharata, Ph.D. (Ketua Proyek)
+- Dr. Sulistyo Heripracoyo (IT & Renovasi Lab)
+- Yehezkiel Novianto (IT & Procurement)
+- Willy Kristian, S.Kom, M.Kom. (Renovasi Lab & Kegiatan Pendukung)
+
+### UN SDG alignment
+The INNOGEN Lab project aligns with the following United Nations Sustainable Development Goals (UN SDGs):
+- SDG 4 – Quality Education: By providing a dedicated space for hands-on learning and research in AI and data science, the INNOGEN Lab enhances the quality of education at BINUS @Bekasi.
+- SDG 8 – Decent Work and Economic Growth: The lab equips students with industry-relevant skills in AI and data science, preparing them for the workforce and contributing to economic growth.
+- SDG 9 – Industry, Innovation, and Infrastructure: The lab fosters innovation and supports the development of intelligent systems, contributing to advancements in industry and infrastructure.
+- SDG 17 – Partnerships for the Goals: The lab encourages collaboration between BINUS, industry partners, and international institutions, promoting partnerships that drive progress towards sustainable development goals.
+
