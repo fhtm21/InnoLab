@@ -1,0 +1,26 @@
+{
+  "note": "All numbers below are placeholders for v0.1 and must be confirmed before public release.",
+  "facilityUsers": {
+    "title": "Facility users",
+    "items": [
+      { "label": "Students", "value": 120, "isPlaceholder": true },
+      { "label": "Lecturers & Professors", "value": 18, "isPlaceholder": true },
+      { "label": "Professionals", "value": 6, "isPlaceholder": true }
+    ]
+  },
+  "publications": {
+    "title": "Published research / publications",
+    "items": [
+      { "label": "Journal articles", "value": 8, "isPlaceholder": true },
+      { "label": "Conference papers", "value": 14, "isPlaceholder": true },
+      { "label": "Patents", "value": 1, "isPlaceholder": true },
+      { "label": "Whitepapers", "value": 3, "isPlaceholder": true }
+    ]
+  },
+  "partnerships": {
+    "title": "Lab partnerships",
+    "items": [
+      { "label": "Total partnerships", "value": 5, "isPlaceholder": true }
+    ]
+  }
+}

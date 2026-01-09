@@ -17,19 +17,28 @@ const projects = getProjects()
           Student projects, research and development initiatives, and partnerships supported by INNOGEN Lab.
         </p>
 
-        <SectionHeader title="Focus areas (current content placeholders)" intro="These will be replaced by Activities subpages in v0.1." />
+        <SectionHeader title="Explore activities" intro="Browse the main activity areas for INNOGEN Lab." />
         <div class="grid cols-3">
           <BaseCard>
             <div class="card-title">Student projects</div>
             <p class="card-meta">Hands-on projects using AI tools and real-world datasets.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/activities/student-projects">Explore</RouterLink>
+            </div>
           </BaseCard>
           <BaseCard>
             <div class="card-title">Research & development</div>
             <p class="card-meta">Research in data analytics, automation, and intelligent systems.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/activities/research-development">Explore</RouterLink>
+            </div>
           </BaseCard>
           <BaseCard>
             <div class="card-title">Partnerships & collaboration</div>
             <p class="card-meta">Joint projects with industry partners and institutions.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/activities/partnerships">Explore</RouterLink>
+            </div>
           </BaseCard>
         </div>
 

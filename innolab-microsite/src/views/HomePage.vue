@@ -2,11 +2,12 @@
 import BaseCard from '../components/ui/BaseCard.vue'
 import SectionHeader from '../components/ui/SectionHeader.vue'
 import CtaBand from '../components/ui/CtaBand.vue'
-import { getThemes, getPeople, getArticles } from '../content/index.js'
+import { getThemes, getPeople, getArticles, getMetrics } from '../content/index.js'
 
 const themes = getThemes()
 const people = getPeople()
 const articles = getArticles()
+const metrics = getMetrics()
 </script>
 
 <template>
@@ -88,19 +89,94 @@ const articles = getArticles()
 
     <section class="section">
       <div class="container">
-        <SectionHeader title="Latest articles" />
+        <SectionHeader title="INNOGEN Lab at a glance" intro="Key metrics (placeholders) to be confirmed." />
+        <p class="muted" style="margin-top: calc(var(--space-4) * -1)">
+          Note: {{ metrics.note }}
+        </p>
+
+        <div class="grid cols-3" style="margin-top: var(--space-4)">
+          <BaseCard>
+            <div class="card-title">{{ metrics.facilityUsers.title }}</div>
+            <ul class="list">
+              <li v-for="item in metrics.facilityUsers.items" :key="item.label">
+                <strong>{{ item.value }}</strong> {{ item.label }}
+                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
+              </li>
+            </ul>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">{{ metrics.publications.title }}</div>
+            <ul class="list">
+              <li v-for="item in metrics.publications.items" :key="item.label">
+                <strong>{{ item.value }}</strong> {{ item.label }}
+                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
+              </li>
+            </ul>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">{{ metrics.partnerships.title }}</div>
+            <ul class="list">
+              <li v-for="item in metrics.partnerships.items" :key="item.label">
+                <strong>{{ item.value }}</strong> {{ item.label }}
+                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
+              </li>
+            </ul>
+          </BaseCard>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <SectionHeader
+          title="Facilities snapshot"
+          intro="A quick look at the lab’s compute, tools, and collaboration space."
+          viewMoreLabel="View all facilities"
+          viewMoreTo="/facilities"
+        />
         <div class="grid cols-3">
-          <BaseCard v-for="a in articles" :key="a.slug">
-            <div class="card-title">{{ a.title }}</div>
-            <p class="card-meta">{{ a.date }} · {{ a.category }}</p>
-            <p class="card-meta" style="margin-top: var(--space-2)">{{ a.summary }}</p>
+          <BaseCard>
+            <div class="card-title">Compute</div>
+            <p class="card-meta">GPU-capable workstations for deep learning training and experimentation.</p>
             <div style="margin-top: var(--space-3)">
-              <RouterLink class="btn btn-sm" :to="`/articles/${a.slug}`">Read</RouterLink>
+              <RouterLink class="btn btn-sm" to="/facilities/compute">Explore compute</RouterLink>
+            </div>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Tools & Software</div>
+            <p class="card-meta">Python, TensorFlow, PyTorch, Keras, and supporting tools for AI development.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/facilities/tools">Explore tools</RouterLink>
+            </div>
+          </BaseCard>
+          <BaseCard>
+            <div class="card-title">Collaboration space</div>
+            <p class="card-meta">Space for mentoring, supervision, and team sessions.</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" to="/facilities/space">Explore space</RouterLink>
             </div>
           </BaseCard>
         </div>
       </div>
     </section>
++
++    <section class="section">
++      <div class="container">
++        <SectionHeader title="Latest articles" viewMoreLabel="View all articles" viewMoreTo="/articles" />
++        <div class="grid cols-3">
++          <BaseCard v-for="a in articles" :key="a.slug">
++            <div class="card-title">{{ a.title }}</div>
++            <p class="card-meta">{{ a.date }} · {{ a.category }}</p>
++            <p class="card-meta" style="margin-top: var(--space-2)">{{ a.summary }}</p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" :to="`/articles/${a.slug}`">Read</RouterLink>
++            </div>
++          </BaseCard>
++        </div>
++      </div>
++    </section>
 
     <section class="section">
       <div class="container">

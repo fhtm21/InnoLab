@@ -22,6 +22,7 @@ export const siteConfig = {
       { label: 'Facilities', to: '/facilities' },
       { label: 'People', to: '/people' },
       { label: 'Articles', to: '/articles' },
+      { label: 'Collaborate', to: '/collaborate' },
       { label: 'Contact', to: '/contact' },
     ],
     policies: [

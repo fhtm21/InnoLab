@@ -47,9 +47,7 @@ function closeMenu() {
           >
         </nav>
 
-        <div class="utility-right">
-          <RouterLink class="utility-link" to="/contact">Contact Us</RouterLink>
-        </div>
+        <div class="utility-right"></div>
       </div>
     </div>
 

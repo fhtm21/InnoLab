@@ -18,7 +18,7 @@ Backlog conventions:
 
 ---
 
-## RB-00 — Project scaffolding (Vue 3 + Vite + Router) — **PARTIAL**
+## RB-00 — Project scaffolding (Vue 3 + Vite + Router) — **DONE**
 
 **Requirement**
 Create a Vue 3 SPA project using Vite with Vue Router configured for clean routes matching the microsite IA.
@@ -30,9 +30,9 @@ Create a Vue 3 SPA project using Vite with Vue Router configured for clean route
 - A production build can be generated (static assets output).
 
 **Implementation notes (current)**
-- Added slug routes for themes/projects/people/articles: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
-- Added Activities routes and backward-compatible redirects from old `/research/*` URLs: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
-- Still missing many IA subroutes (e.g., `/about/*`, `/facilities/*`, `/people/lecturers`, `/people/join`, etc.)
+- IA subroutes implemented for About, Facilities, People, and Activities: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
+- Backward-compatible redirects from old `/research/*` URLs remain in place: [`innolab-microsite/src/router/index.js`](../innolab-microsite/src/router/index.js:1)
+- Production build verified via `vite build` (static output): [`innolab-microsite/package.json`](../innolab-microsite/package.json:1)
 
 ---
 
@@ -99,7 +99,7 @@ Implement a reusable two-tier header consistent with the SIS pattern: utility li
 
 ---
 
-## RB-02A — Header information architecture alignment — **PARTIAL**
+## RB-02A — Header information architecture alignment — **DONE**
 
 **Requirement**
 Ensure the header navigation matches the microsite IA and provides clear pathways to key sections.
@@ -111,7 +111,8 @@ Ensure the header navigation matches the microsite IA and provides clear pathway
 - Navigation labels are consistent across header and footer.
 
 **Implementation notes (current)**
-- Header nav label updated to “Activities” and active state now supports subpaths: [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+- Header nav label updated to “Activities” and active state supports subpaths: [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+- Utility links and primary CTA aligned to IA (Contact + Collaborate): [`innolab-microsite/src/config/site.js`](../innolab-microsite/src/config/site.js:1)
 - Official logo integrated in header: [`innolab-microsite/src/assets/LOGO.png`](../innolab-microsite/src/assets/LOGO.png) and [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
 
 ---
@@ -208,7 +209,7 @@ Ensure cross-linking between themes, projects, people, and articles is consisten
 
 ---
 
-## RB-06 — Home page (`/`) — **PARTIAL**
+## RB-06 — Home page (`/`) — **DONE**
 
 **Requirement**
 Implement the Home page per the recommended layout: hero, highlights, core purpose, facilities snapshot, latest articles, people spotlight, optional partners, contact teaser.
@@ -228,7 +229,8 @@ Implement the Home page per the recommended layout: hero, highlights, core purpo
 **Implementation notes (current)**
 - Home copy updated to INNOGEN Lab positioning and core purpose; contact/location CTA added: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
 - Home remains data-driven for people/articles and uses SPA navigation: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
-- Still missing: facilities snapshot section (compute/tools/space) as a dedicated block (currently covered via highlights + CTA)
+- Facilities snapshot section added (compute/tools/space) with links to Facilities subpages: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- “INNOGEN Lab at a glance” metrics section added (static content-driven): [`innolab-microsite/src/content/metrics.json`](../innolab-microsite/src/content/metrics.json) and [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
 
 ---
 
@@ -245,7 +247,7 @@ Ensure the Home page meets the “10 seconds understanding” success criterion.
 
 ---
 
-## RB-07 — About landing page (`/about`) — **PARTIAL**
+## RB-07 — About landing page (`/about`) — **DONE**
 
 **Requirement**
 Implement an About landing page that introduces the lab and links to About subpages.
@@ -263,11 +265,11 @@ Implement an About landing page that introduces the lab and links to About subpa
 - Page includes a CTA band (Collaborate / Contact).
 
 **Implementation notes (current)**
-- About page copy updated to INNOGEN Lab official description (still missing subpage navigation cards): [`innolab-microsite/src/views/AboutPage.vue`](../innolab-microsite/src/views/AboutPage.vue:1)
+- About page copy updated to INNOGEN Lab official description and now includes navigation cards to About subpages: [`innolab-microsite/src/views/AboutPage.vue`](../innolab-microsite/src/views/AboutPage.vue:1)
 
 ---
 
-## RB-08 — About: Lab Profile (`/about/profile`) — **NOT DONE**
+## RB-08 — About: Lab Profile (`/about/profile`) — **DONE**
 
 **Requirement**
 Implement the Lab Profile page with overview, differentiators, and CTA.
@@ -279,7 +281,7 @@ Implement the Lab Profile page with overview, differentiators, and CTA.
 
 ---
 
-## RB-09 — About: Purpose (`/about/purpose`) — **NOT DONE**
+## RB-09 — About: Purpose (`/about/purpose`) — **DONE**
 
 **Requirement**
 Implement Purpose page aligned to the official description: Teaching & Learning, Research & Development, Collaboration & Impact.
@@ -294,7 +296,7 @@ Implement Purpose page aligned to the official description: Teaching & Learning,
 
 ---
 
-## RB-09A — About: Technical Capabilities (`/about/capabilities`) — **NOT DONE**
+## RB-09A — About: Technical Capabilities (`/about/capabilities`) — **DONE**
 
 **Requirement**
 Implement Technical Capabilities page aligned to the official description.
@@ -312,7 +314,7 @@ The previous “Vision & Mission” page is out of scope for the updated INNOGEN
 
 ---
 
-## RB-10 — About: Leadership & Governance (`/about/governance`) — **NOT DONE**
+## RB-10 — About: Leadership & Governance (`/about/governance`) — **DONE**
 
 **Requirement**
 Implement Leadership & Governance page.
@@ -324,7 +326,7 @@ Implement Leadership & Governance page.
 
 ---
 
-## RB-11 — About: History & Milestones (`/about/milestones`) — **NOT DONE**
+## RB-11 — About: History & Milestones (`/about/milestones`) — **DONE**
 
 **Requirement**
 Implement History & Milestones page with a timeline component.
@@ -336,7 +338,7 @@ Implement History & Milestones page with a timeline component.
 
 ---
 
-## RB-12 — About: Partners & Affiliations (`/about/partners`) — **NOT DONE**
+## RB-12 — About: Partners & Affiliations (`/about/partners`) — **DONE**
 
 **Requirement**
 Implement Partners & Affiliations page.
@@ -348,7 +350,7 @@ Implement Partners & Affiliations page.
 
 ---
 
-## RB-13 — About: FAQ (`/about/faq`) — **NOT DONE**
+## RB-13 — About: FAQ (`/about/faq`) — **DONE**
 
 **Requirement**
 Implement FAQ page with expandable items.
@@ -360,7 +362,7 @@ Implement FAQ page with expandable items.
 
 ---
 
-## RB-14 — Activities landing page (`/activities`) — **PARTIAL**
+## RB-14 — Activities landing page (`/activities`) — **DONE**
 
 **Requirement**
 Implement Activities landing page aligned to the updated IA: student projects, research & development, partnerships & collaboration, and CTA.
@@ -380,7 +382,7 @@ Implement Activities landing page aligned to the updated IA: student projects, r
 
 ---
 
-## RB-14A — Activities information architecture completeness — **NOT DONE**
+## RB-14A — Activities information architecture completeness — **DONE**
 
 **Requirement**
 Ensure Activities section matches the IA in [`conceptual/microsite_concept.md`](../conceptual/microsite_concept.md) and provides clear navigation.
@@ -394,7 +396,7 @@ Ensure Activities section matches the IA in [`conceptual/microsite_concept.md`](
 
 ---
 
-## RB-15 — Activities subpages (v0.1) — **NOT DONE**
+## RB-15 — Activities subpages (v0.1) — **DONE**
 
 **Requirement**
 Implement Activities subpages aligned to the IA.
@@ -477,7 +479,7 @@ Make outputs discoverable and easy to scan.
 
 ---
 
-## RB-19 — Facilities landing (`/facilities`) — **PARTIAL**
+## RB-19 — Facilities landing (`/facilities`) — **DONE**
 
 **Requirement**
 Implement Facilities landing page with overview and links to subpages.
@@ -493,7 +495,7 @@ Implement Facilities landing page with overview and links to subpages.
 
 ---
 
-## RB-20 — Facilities: Compute (`/facilities/compute`) — **NOT DONE**
+## RB-20 — Facilities: Compute (`/facilities/compute`) — **DONE**
 
 **Requirement**
 Implement Compute page.
@@ -506,7 +508,7 @@ Implement Compute page.
 
 ---
 
-## RB-21 — Facilities: Collaboration Space (`/facilities/space`) — **NOT DONE**
+## RB-21 — Facilities: Collaboration Space (`/facilities/space`) — **DONE**
 
 **Requirement**
 Implement Collaboration Space page.
@@ -517,7 +519,7 @@ Implement Collaboration Space page.
 
 ---
 
-## RB-22 — Facilities: Tools & Software (`/facilities/tools`) — **NOT DONE**
+## RB-22 — Facilities: Tools & Software (`/facilities/tools`) — **DONE**
 
 **Requirement**
 Implement Tools & Software page.
@@ -528,7 +530,7 @@ Implement Tools & Software page.
 
 ---
 
-## RB-23 — Facilities: Access & Usage Policy (`/facilities/policy`) — **NOT DONE**
+## RB-23 — Facilities: Access & Usage Policy (`/facilities/policy`) — **DONE**
 
 **Requirement**
 Implement Access & Usage Policy page.
@@ -539,7 +541,7 @@ Implement Access & Usage Policy page.
 
 ---
 
-## RB-24 — People landing (`/people`) — **PARTIAL**
+## RB-24 — People landing (`/people`) — **DONE**
 
 **Requirement**
 Implement People landing page with leadership and directory entry points.
@@ -550,12 +552,12 @@ Implement People landing page with leadership and directory entry points.
 - Page includes Join Us CTA.
 
 **Implementation notes (current)**
-- People page now renders people cards from static content and links to profiles: [`innolab-microsite/src/views/PeoplePage.vue`](../innolab-microsite/src/views/PeoplePage.vue:1)
-- Still missing: dedicated directory routes (e.g., `/people/lecturers`) and Join Us route (`/people/join`)
+- People page renders people cards from static content and links to profiles: [`innolab-microsite/src/views/PeoplePage.vue`](../innolab-microsite/src/views/PeoplePage.vue:1)
+- People “Explore” cards added linking to directory + join routes: [`innolab-microsite/src/views/PeoplePage.vue`](../innolab-microsite/src/views/PeoplePage.vue:1)
 
 ---
 
-## RB-24A — People directory layout rules — **NOT DONE**
+## RB-24A — People directory layout rules — **DONE**
 
 **Requirement**
 Implement the People directory layout guidance: filters at top, grid of person cards, click-through to profile.
@@ -567,7 +569,7 @@ Implement the People directory layout guidance: filters at top, grid of person c
 
 ---
 
-## RB-25 — Lecturers directory (`/people/lecturers`) — **NOT DONE**
+## RB-25 — Lecturers directory (`/people/lecturers`) — **DONE**
 
 **Requirement**
 Implement a filterable lecturers/researchers directory.
@@ -579,7 +581,7 @@ Implement a filterable lecturers/researchers directory.
 
 ---
 
-## RB-25A — People subpages (v0.1 + optional) — **NOT DONE**
+## RB-25A — People subpages (v0.1 + optional) — **DONE**
 
 **Requirement**
 Implement People subpages aligned to the IA.
@@ -621,7 +623,7 @@ Optionally implement a right-rail on person profiles when it adds value.
 
 ---
 
-## RB-27 — Join Us (`/people/join`) — **NOT DONE**
+## RB-27 — Join Us (`/people/join`) — **DONE**
 
 **Requirement**
 Implement Join Us page.
@@ -632,7 +634,7 @@ Implement Join Us page.
 
 ---
 
-## RB-28 — Articles listing (`/articles`) — **PARTIAL**
+## RB-28 — Articles listing (`/articles`) — **DONE**
 
 **Requirement**
 Implement Articles listing page with filters and optional client-side search.
@@ -644,8 +646,8 @@ Implement Articles listing page with filters and optional client-side search.
 - Each article card links to its detail page.
 
 **Implementation notes (current)**
-- Articles list is now rendered from static content and links to detail pages: [`innolab-microsite/src/views/ArticlesPage.vue`](../innolab-microsite/src/views/ArticlesPage.vue:1)
-- Still missing: filters (category/year) and optional search
+- Articles list is rendered from static content and links to detail pages: [`innolab-microsite/src/views/ArticlesPage.vue`](../innolab-microsite/src/views/ArticlesPage.vue:1)
+- Category + year filters implemented and reflected in URL query params: [`innolab-microsite/src/views/ArticlesPage.vue`](../innolab-microsite/src/views/ArticlesPage.vue:1)
 
 ---
 
@@ -665,7 +667,7 @@ Support the IA categories for Articles: News & Announcements, Events & Seminars,
 
 ---
 
-## RB-29 — Article detail (`/articles/:slug`) — **PARTIAL**
+## RB-29 — Article detail (`/articles/:slug`) — **DONE**
 
 **Requirement**
 Implement Article detail pages.
@@ -682,7 +684,7 @@ Implement Article detail pages.
 
 **Implementation notes (current)**
 - Article detail route + not-found state implemented: [`innolab-microsite/src/views/ArticleDetailPage.vue`](../innolab-microsite/src/views/ArticleDetailPage.vue:1)
-- Body rendering is currently minimal (line-break based), not full Markdown; share links + related-articles section still missing
+- Markdown body rendering implemented via `marked`; share links + related-articles section added: [`innolab-microsite/src/views/ArticleDetailPage.vue`](../innolab-microsite/src/views/ArticleDetailPage.vue:1) and [`innolab-microsite/package.json`](../innolab-microsite/package.json:1)
 
 ---
 
@@ -751,7 +753,7 @@ Ensure clear pathways to contact from key pages (Home, Activities, Facilities, P
 
 ---
 
-## RB-32 — SEO baseline — **PARTIAL**
+## RB-32 — SEO baseline — **DONE**
 
 **Requirement**
 Implement basic SEO metadata and clean URLs.
@@ -761,6 +763,11 @@ Implement basic SEO metadata and clean URLs.
 - Each route sets a meta description (placeholder acceptable initially).
 - URLs follow the IA (e.g., `/activities/student-projects`, `/facilities/compute`, `/people/:slug`).
 - OpenGraph tags exist at least for Home and Article detail pages.
+
+**Implementation notes (current)**
+- Route-aware SEO implemented via a lightweight composable: [`innolab-microsite/src/seo.js`](../innolab-microsite/src/seo.js:1)
+- SEO is wired globally in the app shell: [`innolab-microsite/src/App.vue`](../innolab-microsite/src/App.vue:1)
+- Default title/description/OG baseline set in HTML template: [`innolab-microsite/index.html`](../innolab-microsite/index.html:1)
 
 ---
 
@@ -873,7 +880,7 @@ Adopt Iconify as the microsite icon system for consistent, lightweight icons acr
 
 ---
 
-## RB-39 — Home: INNOGEN Lab at a glance (charts/metrics) — **NOT DONE**
+## RB-39 — Home: INNOGEN Lab at a glance (charts/metrics) — **DONE**
 
 **Requirement**
 Add a credibility section on the Home page that summarizes key INNOGEN Lab metrics using simple, static-friendly charts or KPI cards.
@@ -900,12 +907,12 @@ Add a credibility section on the Home page that summarizes key INNOGEN Lab metri
 - If exact numbers are not yet confirmed, the section supports placeholders and clearly labels them as “placeholder”.
 
 **Implementation notes**
-- Prefer KPI cards and/or simple bar charts implemented with semantic HTML + CSS (avoid heavy chart libraries for v0.1).
-- Store metrics in a dedicated content file (e.g., `src/content/metrics.json`) and import into the Home page.
+- Implemented as KPI cards rendered from static content: [`innolab-microsite/src/content/metrics.json`](../innolab-microsite/src/content/metrics.json) and [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- Metrics are placeholder-friendly (explicit placeholder labeling in content): [`innolab-microsite/src/content/metrics.json`](../innolab-microsite/src/content/metrics.json)
 
 ---
 
-## RB-40 — Official information update (FINAL REPORT slide) — **NOT DONE**
+## RB-40 — Official information update (FINAL REPORT slide) — **DONE**
 
 **Requirement**
 Update the official lab information source file with the “FINAL REPORT PROYEK INTERNAL INNOGEN LAB” details so the microsite can reuse it consistently.

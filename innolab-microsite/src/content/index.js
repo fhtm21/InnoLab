@@ -2,6 +2,7 @@ import themes from './themes.json'
 import projects from './projects.json'
 import people from './people.json'
 import articles from './articles.json'
+import metrics from './metrics.json'
 
 export function getThemes() {
   return themes
@@ -29,6 +30,10 @@ export function getPersonBySlug(slug) {
 
 export function getArticles() {
   return articles
+}
+
+export function getMetrics() {
+  return metrics
 }
 
 export function getArticleBySlug(slug) {
