@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DialogTrigger } from 'reka-ui'
 import { siteConfig } from '../../config/site'
@@ -7,6 +7,7 @@ import AppIcon from '../ui/AppIcon.vue'
 
 const route = useRoute()
 const isMenuOpen = ref(false)
+const isEngageOpen = ref(false)
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -45,7 +46,21 @@ const isActive = computed(() => {
 
 function closeMenu() {
   isMenuOpen.value = false
+  isEngageOpen.value = false
 }
+
+function closeEngage() {
+  isEngageOpen.value = false
+}
+
+watch(
+  () => route.fullPath,
+  () => {
+    // Ensure dropdown is closed after navigation (e.g., clicking an item)
+    isEngageOpen.value = false
+    isMenuOpen.value = false
+  },
+)
 </script>
 
 <template>
@@ -92,18 +107,30 @@ function closeMenu() {
             {{ item.label }}
           </RouterLink>
 
-          <div class="nav-dropdown" tabindex="0">
-            <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true">
+          <div
+            class="nav-dropdown"
+            :class="{ open: isEngageOpen }"
+            tabindex="0"
+            @keydown.esc.prevent="closeEngage"
+            @focusout="(e) => { if (!e.currentTarget.contains(e.relatedTarget)) closeEngage() }"
+          >
+            <button
+              class="nav-link nav-dropdown-trigger"
+              type="button"
+              aria-haspopup="true"
+              :aria-expanded="isEngageOpen ? 'true' : 'false'"
+              @click="isEngageOpen = !isEngageOpen"
+            >
               Engage
               <AppIcon name="ph:caret-down" :size="14" />
             </button>
-
             <div class="nav-dropdown-menu" role="menu" aria-label="Engage">
               <RouterLink
                 v-for="q in quickLinks"
                 :key="q.to"
                 class="nav-dropdown-item"
                 :to="q.to"
+                @click="closeEngage"
               >
                 <span class="nav-dropdown-icon" aria-hidden="true">
                   <AppIcon :name="q.icon" :size="16" />
@@ -236,11 +263,22 @@ function closeMenu() {
   padding-bottom: 14px;
 }
 
+/* Keep brand from consuming too much width so nav/CTA proportions stay balanced */
+.brand {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
 .brand-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  min-width: 0;
+}
+
+.brand-text {
+  min-width: 0;
 }
 
 .brand-logo {
@@ -248,17 +286,26 @@ function closeMenu() {
   height: 44px;
   object-fit: contain;
   display: block;
+  flex: 0 0 auto;
 }
 
 .brand-title {
   font-weight: var(--font-weight-semibold);
   color: var(--text-600);
   line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 28ch;
 }
 
 .brand-subtitle {
   font-size: 12px;
   color: var(--text-650);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 40ch;
 }
 
 .menu-toggle {
@@ -279,10 +326,15 @@ function closeMenu() {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: flex-end;
 }
 
 .nav-desktop {
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
 }
 
 /* Drawer (mobile nav) */
@@ -370,6 +422,7 @@ function closeMenu() {
   font-size: 14px;
   color: var(--text-600);
   text-decoration: none;
+  line-height: 1;
 }
 
 .nav-link.active {
@@ -390,13 +443,17 @@ function closeMenu() {
   padding: 0;
   cursor: pointer;
   font: inherit;
+  font-size: 14px; /* ensure same size as other nav links */
+  line-height: 1;
+  position: relative;
+  top: -1px; /* nudge up to align baseline with other nav items */
 }
 
 .nav-dropdown-menu {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  width: 320px;
+  width: min(360px, 92vw);
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -405,6 +462,7 @@ function closeMenu() {
   display: none;
 }
 
+.nav-dropdown.open .nav-dropdown-menu,
 .nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown:focus-within .nav-dropdown-menu {
   display: grid;

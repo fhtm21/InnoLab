@@ -221,6 +221,7 @@ a:hover {
 .grid {
   display: grid;
   gap: var(--space-5);
+  align-items: stretch; /* equal-height cards per row */
 }
 
 .grid.cols-2 {
@@ -314,6 +315,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  height: 100%; /* allow grid stretch to equalize heights */
+}
+
+/* Common “card header” rhythm: title then meta/intro */
+.card-title + .card-meta {
+  margin-top: calc(var(--space-2) * -1);
 }
 
 /* Normalize first/last child spacing so cards look consistent even when pages use <p>, <ul>, etc. */
@@ -354,6 +361,16 @@ a:hover {
 .card .actions,
 .card .cta-row {
   margin-top: auto;
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Common pattern across subpages: many cards wrap CTAs in a plain <div style="margin-top: ...">.
+   Normalize those wrappers so buttons align to the bottom when cards are equal-height. */
+.card > div[style*='margin-top'] {
+  margin-top: auto !important;
 }
 
 /* App shell */

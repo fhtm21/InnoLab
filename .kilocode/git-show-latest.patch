@@ -1,0 +1,1025 @@
+commit 4efba1d1569c0a3cbac957d976c4fe2b90583ef2
+Author: fhtm21 <frlgaming21@gmail.com>
+Date:   Fri Jan 9 15:41:19 2026 +0700
+
+    feat(ui): add engage links and enrich section content
+
+diff --git a/innolab-microsite/src/components/layout/AppHeader.vue b/innolab-microsite/src/components/layout/AppHeader.vue
+index 99a11ac..7356b83 100644
+--- a/innolab-microsite/src/components/layout/AppHeader.vue
++++ b/innolab-microsite/src/components/layout/AppHeader.vue
+@@ -15,7 +15,27 @@ const navItems = [
+   { label: 'Facilities', to: '/facilities' },
+   { label: 'People', to: '/people' },
+   { label: 'Articles', to: '/articles' },
+-  { label: 'Collaborate', to: '/collaborate' },
++]
++
++const quickLinks = [
++  {
++    label: 'Collaborate',
++    to: '/collaborate',
++    desc: 'Partnership models, student projects, and how to start.',
++    icon: 'ph:handshake',
++  },
++  {
++    label: 'Permit inquiry',
++    to: '/permit',
++    desc: 'Request access to facilities and resources (subject to policy).',
++    icon: 'ph:clipboard-text',
++  },
++  {
++    label: 'Playground',
++    to: '/playground',
++    desc: 'Explore prototypes and demos that can be tested online.',
++    icon: 'ph:flask',
++  },
+ ]
+ 
+ const isActive = computed(() => {
+@@ -71,6 +91,31 @@ function closeMenu() {
+           >
+             {{ item.label }}
+           </RouterLink>
++
++          <div class="nav-dropdown" tabindex="0">
++            <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true">
++              Engage
++              <AppIcon name="ph:caret-down" :size="14" />
++            </button>
++
++            <div class="nav-dropdown-menu" role="menu" aria-label="Engage">
++              <RouterLink
++                v-for="q in quickLinks"
++                :key="q.to"
++                class="nav-dropdown-item"
++                :to="q.to"
++              >
++                <span class="nav-dropdown-icon" aria-hidden="true">
++                  <AppIcon :name="q.icon" :size="16" />
++                </span>
++                <span class="nav-dropdown-text">
++                  <span class="nav-dropdown-label">{{ q.label }}</span>
++                  <span class="nav-dropdown-desc">{{ q.desc }}</span>
++                </span>
++              </RouterLink>
++            </div>
++          </div>
++
+           <RouterLink class="btn btn-primary cta" :to="siteConfig.header.primaryCta.to">
+             {{ siteConfig.header.primaryCta.label }}
+           </RouterLink>
+@@ -111,6 +156,20 @@ function closeMenu() {
+                   {{ item.label }}
+                 </RouterLink>
+ 
++                <div class="drawer-section">
++                  <div class="drawer-section-title">Engage</div>
++                  <RouterLink
++                    v-for="q in quickLinks"
++                    :key="q.to"
++                    class="drawer-link"
++                    :to="q.to"
++                    @click="closeMenu"
++                  >
++                    {{ q.label }}
++                    <span class="drawer-link-desc">{{ q.desc }}</span>
++                  </RouterLink>
++                </div>
++
+                 <RouterLink class="btn btn-primary drawer-cta" :to="siteConfig.header.primaryCta.to" @click="closeMenu">
+                   {{ siteConfig.header.primaryCta.label }}
+                 </RouterLink>
+@@ -318,6 +377,91 @@ function closeMenu() {
+   font-weight: var(--font-weight-semibold);
+ }
+ 
++.nav-dropdown {
++  position: relative;
++}
++
++.nav-dropdown-trigger {
++  display: inline-flex;
++  align-items: center;
++  gap: 6px;
++  border: 0;
++  background: transparent;
++  padding: 0;
++  cursor: pointer;
++  font: inherit;
++}
++
++.nav-dropdown-menu {
++  position: absolute;
++  top: calc(100% + 10px);
++  right: 0;
++  width: 320px;
++  background: #fff;
++  border: 1px solid var(--border);
++  border-radius: 14px;
++  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
++  padding: 10px;
++  display: none;
++}
++
++.nav-dropdown:hover .nav-dropdown-menu,
++.nav-dropdown:focus-within .nav-dropdown-menu {
++  display: grid;
++  gap: 6px;
++}
++
++.nav-dropdown-item {
++  display: grid;
++  grid-template-columns: 22px 1fr;
++  gap: 10px;
++  padding: 10px;
++  border-radius: 12px;
++  text-decoration: none;
++  color: var(--text-600);
++}
++
++.nav-dropdown-item:hover {
++  background: rgba(0, 0, 0, 0.03);
++  text-decoration: none;
++}
++
++.nav-dropdown-label {
++  font-weight: var(--font-weight-semibold);
++  color: var(--text-600);
++}
++
++.nav-dropdown-desc {
++  display: block;
++  margin-top: 2px;
++  font-size: 12px;
++  color: var(--text-650);
++  line-height: 1.35;
++}
++
++.drawer-section {
++  margin-top: 10px;
++  padding-top: 10px;
++  border-top: 1px solid var(--border);
++  display: grid;
++  gap: 8px;
++}
++
++.drawer-section-title {
++  font-size: 12px;
++  font-weight: var(--font-weight-semibold);
++  color: var(--text-650);
++  padding: 0 10px;
++}
++
++.drawer-link-desc {
++  display: block;
++  margin-top: 2px;
++  font-size: 12px;
++  color: var(--text-650);
++  line-height: 1.35;
++}
++
+ .cta {
+   text-decoration: none;
+ }
+diff --git a/innolab-microsite/src/components/layout/FloatingConsultationWidget.vue b/innolab-microsite/src/components/layout/FloatingConsultationWidget.vue
+index 9c1462a..c0608aa 100644
+--- a/innolab-microsite/src/components/layout/FloatingConsultationWidget.vue
++++ b/innolab-microsite/src/components/layout/FloatingConsultationWidget.vue
+@@ -1,5 +1,5 @@
+ <script setup>
+-import { computed } from 'vue'
++import { computed, ref } from 'vue'
+ import { useRouter } from 'vue-router'
+ import { siteConfig } from '../../config/site'
+ import AppIcon from '../ui/AppIcon.vue'
+@@ -7,30 +7,52 @@ import AppIcon from '../ui/AppIcon.vue'
+ const router = useRouter()
+ 
+ const enabled = computed(() => siteConfig.floatingWidget.enabled)
++const open = ref(false)
+ 
+-function onClick() {
+-  const action = siteConfig.floatingWidget.action
+-  if (!action) return
++const actions = [
++  { label: 'Collaborate', to: '/collaborate', icon: 'ph:handshake' },
++  { label: 'Permit inquiry', to: '/permit', icon: 'ph:clipboard-text' },
++  { label: 'Playground', to: '/playground', icon: 'ph:rocket-launch' },
++  { label: 'Contact', to: '/contact', icon: 'ph:envelope-simple' },
++]
+ 
+-  if (action.type === 'route' && action.to) {
+-    router.push(action.to)
+-    return
+-  }
++function toggle() {
++  open.value = !open.value
++}
+ 
+-  if (action.type === 'external' && action.href) {
+-    window.open(action.href, '_blank', 'noreferrer')
+-  }
++function go(to) {
++  open.value = false
++  router.push(to)
+ }
+ </script>
+ 
+ <template>
+-  <div v-if="enabled" class="widget" role="complementary" aria-label="Consultation widget">
+-    <button class="widget-btn" type="button" @click="onClick">
+-      <span class="badge" aria-hidden="true">
+-        <AppIcon name="ph:question" :size="16" />
+-      </span>
+-      <span class="label">{{ siteConfig.floatingWidget.label }}</span>
+-    </button>
++  <div v-if="enabled" class="widget" role="complementary" aria-label="Quick actions">
++    <div class="panel" :data-open="open ? 'true' : 'false'">
++      <button class="widget-btn" type="button" @click="toggle" :aria-expanded="open ? 'true' : 'false'">
++        <span class="badge" aria-hidden="true">
++          <AppIcon name="ph:lightning" :size="16" />
++        </span>
++        <span class="label">{{ siteConfig.floatingWidget.label }}</span>
++        <span class="chev" aria-hidden="true">
++          <AppIcon :name="open ? 'ph:caret-down' : 'ph:caret-left'" :size="16" />
++        </span>
++      </button>
++
++      <div v-if="open" class="menu" role="menu" aria-label="Quick actions menu">
++        <button
++          v-for="a in actions"
++          :key="a.to"
++          class="menu-item"
++          type="button"
++          role="menuitem"
++          @click="go(a.to)"
++        >
++          <span class="mi-ic" aria-hidden="true"><AppIcon :name="a.icon" :size="16" /></span>
++          <span class="mi-label">{{ a.label }}</span>
++        </button>
++      </div>
++    </div>
+   </div>
+ </template>
+ 
+@@ -43,6 +65,12 @@ function onClick() {
+   z-index: 30;
+ }
+ 
++.panel {
++  display: grid;
++  gap: 10px;
++  align-items: start;
++}
++
+ .widget-btn {
+   display: inline-flex;
+   align-items: center;
+@@ -76,9 +104,70 @@ function onClick() {
+   color: var(--accent-blue);
+ }
+ 
++.chev {
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  width: 22px;
++  height: 22px;
++  border-radius: 999px;
++  background: rgba(255, 255, 255, 0.7);
++  border: 1px solid rgba(0, 0, 0, 0.06);
++}
++
+ .label {
+   font-size: 14px;
+   font-weight: var(--font-weight-regular);
+   white-space: nowrap;
+ }
++
++.menu {
++  margin-right: 0;
++  padding: 10px;
++  border: 1px solid rgba(0, 0, 0, 0.06);
++  background: #fff;
++  border-radius: 14px 0 0 14px;
++  box-shadow: var(--shadow-widget);
++  display: grid;
++  gap: 8px;
++}
++
++.menu-item {
++  width: 100%;
++  display: inline-flex;
++  align-items: center;
++  gap: 10px;
++  padding: 10px 10px;
++  border-radius: 12px;
++  border: 1px solid rgba(0, 0, 0, 0.06);
++  background: rgba(222, 239, 251, 0.25);
++  cursor: pointer;
++  font: inherit;
++  color: var(--text-600);
++  text-align: left;
++}
++
++.menu-item:hover {
++  background: rgba(222, 239, 251, 0.45);
++}
++
++.menu-item:focus-visible {
++  box-shadow: var(--focus-ring);
++}
++
++.mi-ic {
++  width: 28px;
++  height: 28px;
++  border-radius: 999px;
++  background: #fff;
++  display: grid;
++  place-items: center;
++  color: var(--accent-blue);
++  border: 1px solid rgba(0, 0, 0, 0.06);
++}
++
++.mi-label {
++  font-size: 14px;
++  font-weight: var(--font-weight-semibold);
++}
+ </style>
+\ No newline at end of file
+diff --git a/innolab-microsite/src/components/ui/DonutChart.vue b/innolab-microsite/src/components/ui/DonutChart.vue
+index eccb37f..7ca95f8 100644
+--- a/innolab-microsite/src/components/ui/DonutChart.vue
++++ b/innolab-microsite/src/components/ui/DonutChart.vue
+@@ -118,7 +118,11 @@ const ariaLabel = computed(() => {
+             {{ item.label }}
+             <span v-if="item.isPlaceholder" class="muted"> (data pending confirmation)</span>
+           </span>
+-          <span class="legend-value muted">{{ item.value }}</span>
++
++          <span class="legend-value muted">
++            <span class="legend-number">{{ item.value }}</span>
++            <span v-if="total > 0" class="legend-percent">({{ ((Number(item.value) / total) * 100).toFixed(1) }}%)</span>
++          </span>
+         </li>
+       </ul>
+     </div>
+@@ -189,7 +193,7 @@ const ariaLabel = computed(() => {
+   display: grid;
+   grid-template-columns: 12px 1fr auto;
+   gap: var(--space-2);
+-  align-items: baseline;
++  align-items: start;
+ }
+ 
+ .swatch {
+@@ -207,5 +211,14 @@ const ariaLabel = computed(() => {
+ .legend-value {
+   font-size: 14px;
+   white-space: nowrap;
++  display: inline-flex;
++  align-items: baseline;
++  gap: 6px;
++  justify-content: flex-end;
++}
++
++.legend-percent {
++  font-size: 12px;
++  color: rgba(0, 0, 0, 0.55);
+ }
+ </style>
+\ No newline at end of file
+diff --git a/innolab-microsite/src/config/site.js b/innolab-microsite/src/config/site.js
+index fa1da43..70fa7a4 100644
+--- a/innolab-microsite/src/config/site.js
++++ b/innolab-microsite/src/config/site.js
+@@ -12,8 +12,8 @@ export const siteConfig = {
+   },
+   floatingWidget: {
+     enabled: true, // RB-04 optional widget; can be toggled off
+-    label: 'Click to Consultation!',
+-    action: { type: 'route', to: '/contact' }, // or { type: 'external', href: 'https://...' }
++    label: 'Quick actions',
++    action: { type: 'route', to: '/collaborate' }, // or { type: 'external', href: 'https://...' }
+   },
+   footer: {
+     quickLinks: [
+diff --git a/innolab-microsite/src/style.css b/innolab-microsite/src/style.css
+index 4e01e11..a908ed8 100644
+--- a/innolab-microsite/src/style.css
++++ b/innolab-microsite/src/style.css
+@@ -311,10 +311,21 @@ a:hover {
+   border-radius: 14px;
+   background: var(--surface);
+   padding: var(--space-5);
++  display: flex;
++  flex-direction: column;
++  gap: var(--space-3);
++}
++
++/* Normalize first/last child spacing so cards look consistent even when pages use <p>, <ul>, etc. */
++.card > :first-child {
++  margin-top: 0;
++}
++.card > :last-child {
++  margin-bottom: 0;
+ }
+ 
+ .card-title {
+-  margin: 0 0 var(--space-2);
++  margin: 0;
+   font-weight: var(--font-weight-semibold);
+ }
+ 
+@@ -322,6 +333,27 @@ a:hover {
+   margin: 0;
+   color: var(--text-650);
+   font-size: 14px;
++  line-height: 1.45;
++}
++
++/* Common card content blocks */
++.card p {
++  margin: 0;
++}
++.card ul,
++.card ol {
++  margin: 0;
++  padding-left: 1.1rem;
++}
++.card li + li {
++  margin-top: 6px;
++}
++
++/* If a card has a CTA row, push it to the bottom for consistent vertical rhythm */
++.card .card-actions,
++.card .actions,
++.card .cta-row {
++  margin-top: auto;
+ }
+ 
+ /* App shell */
+diff --git a/innolab-microsite/src/views/AboutPage.vue b/innolab-microsite/src/views/AboutPage.vue
+index a147760..0a1042a 100644
+--- a/innolab-microsite/src/views/AboutPage.vue
++++ b/innolab-microsite/src/views/AboutPage.vue
+@@ -68,6 +68,42 @@ const aboutLinks = [
+         </BaseCard>
+       </div>
+ 
++      <div style="margin-top: var(--space-7)">
++        <SectionHeader
++          title="UN SDG alignment"
++          intro="INNOGEN Lab aligns with selected United Nations Sustainable Development Goals (UN SDGs)."
++        />
++        <div class="grid cols-2" style="margin-top: var(--space-4)">
++          <BaseCard>
++            <div class="card-title">SDG 4 — Quality Education</div>
++            <p class="card-meta">
++              Hands-on learning and research in AI and data science to enhance education quality at BINUS @Bekasi.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 8 — Decent Work & Economic Growth</div>
++            <p class="card-meta">
++              Industry-relevant skills development to prepare students for the workforce and support economic growth.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 9 — Industry, Innovation & Infrastructure</div>
++            <p class="card-meta">
++              Prototyping and intelligent systems development to support innovation and practical infrastructure advancement.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 17 — Partnerships for the Goals</div>
++            <p class="card-meta">
++              Collaboration with BINUS units, industry partners, and institutions to enable joint projects and knowledge exchange.
++            </p>
++          </BaseCard>
++        </div>
++      </div>
++
+       <div style="margin-top: var(--space-7)">
+         <SectionHeader title="Explore About" intro="Jump to the detailed pages for INNOGEN Lab." />
+         <div class="grid cols-3" style="margin-top: var(--space-4)">
+diff --git a/innolab-microsite/src/views/HomePage.vue b/innolab-microsite/src/views/HomePage.vue
+index e15fae2..dd79603 100644
+--- a/innolab-microsite/src/views/HomePage.vue
++++ b/innolab-microsite/src/views/HomePage.vue
+@@ -28,7 +28,9 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
+ 
+         <div class="hero-actions">
+           <RouterLink class="btn btn-primary" to="/facilities">Explore Facilities</RouterLink>
+-          <RouterLink class="btn" to="/collaborate">Collaborate / Contact</RouterLink>
++          <RouterLink class="btn" to="/collaborate">Collaborate</RouterLink>
++          <RouterLink class="btn" to="/permit">Permit inquiry</RouterLink>
++          <RouterLink class="btn" to="/playground">Playground</RouterLink>
+         </div>
+       </div>
+     </section>
+@@ -167,6 +169,44 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
+         </div>
+       </div>
+     </section>
++
++    <section class="section">
++      <div class="container">
++        <SectionHeader
++          title="UN SDG alignment"
++          intro="How INNOGEN Lab supports selected United Nations Sustainable Development Goals (UN SDGs)."
++        />
++        <div class="grid cols-2">
++          <BaseCard>
++            <div class="card-title">SDG 4 — Quality Education</div>
++            <p class="card-meta">
++              Hands-on learning and research in AI and data science to strengthen education outcomes at BINUS @Bekasi.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 8 — Decent Work & Economic Growth</div>
++            <p class="card-meta">
++              Industry-relevant skills development through projects and applied learning to support workforce readiness.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 9 — Industry, Innovation & Infrastructure</div>
++            <p class="card-meta">
++              Prototyping and experimentation in intelligent systems to support innovation and practical infrastructure development.
++            </p>
++          </BaseCard>
++
++          <BaseCard>
++            <div class="card-title">SDG 17 — Partnerships for the Goals</div>
++            <p class="card-meta">
++              Collaboration with internal and external partners to enable joint projects and knowledge exchange.
++            </p>
++          </BaseCard>
++        </div>
++      </div>
++    </section>
+     <section class="section">
+       <div class="container">
+         <SectionHeader title="Latest articles" viewMoreLabel="View all articles" viewMoreTo="/articles" />
+diff --git a/innolab-microsite/src/views/about/AboutGovernancePage.vue b/innolab-microsite/src/views/about/AboutGovernancePage.vue
+index 92c4b5f..0686cb1 100644
+--- a/innolab-microsite/src/views/about/AboutGovernancePage.vue
++++ b/innolab-microsite/src/views/about/AboutGovernancePage.vue
+@@ -17,15 +17,29 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Leadership & Governance</h1>
+         <p class="muted">
+-          Leadership and governance structure for INNOGEN Lab. This page will be expanded to render leadership cards from the
+-          People content layer and describe governance roles.
++          Leadership and governance structure for INNOGEN Lab. Roles and assignments may be updated as the lab’s operating model is
++          finalized.
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">
+-            Planned content: director/deputy cards, steering committee description, and governance notes (optional advisory board).
+-          </p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Project leadership</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li><strong>Project lead:</strong> Anindhita Dewabharata, Ph.D.</li>
++              <li><strong>IT & lab renovation:</strong> Dr. Sulistyo Heripracoyo</li>
++              <li><strong>IT & procurement:</strong> Yehezkiel Novianto</li>
++              <li><strong>Renovation & supporting activities:</strong> Willy Kristian, S.Kom, M.Kom.</li>
++            </ul>
++          </div>
++
++          <div class="card">
++            <div class="card-title">How decisions are made</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>Requests are reviewed based on availability, safety, and policy.</li>
++              <li>Priority is given to teaching support, supervised student work, and approved research activities.</li>
++              <li>Partnership activities are scoped with clear goals, timelines, and responsibilities.</li>
++            </ul>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/about/AboutMilestonesPage.vue b/innolab-microsite/src/views/about/AboutMilestonesPage.vue
+index 135294a..33e0f05 100644
+--- a/innolab-microsite/src/views/about/AboutMilestonesPage.vue
++++ b/innolab-microsite/src/views/about/AboutMilestonesPage.vue
+@@ -17,12 +17,38 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">History & Milestones</h1>
+         <p class="muted">
+-          Key milestones for INNOGEN Lab. This page will be expanded with a timeline rendered from static content.
++          Key milestones for INNOGEN Lab. This timeline is a working summary and may be updated as official dates and details are
++          confirmed.
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: timeline component + milestone entries (year, title, description).</p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">2025 — Project initiation</div>
++            <p class="card-meta">
++              Internal planning and scope definition for an AI and data innovation lab at BINUS @Bekasi.
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">2025 — Space preparation</div>
++            <p class="card-meta">
++              Lab space setup and readiness work to support teaching sessions, supervision, and prototype development.
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">2026 — Pilot activities</div>
++            <p class="card-meta">
++              Early-stage pilots for student projects and applied research workflows (availability depends on scheduling and resources).
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">2026 — Partnerships & showcases</div>
++            <p class="card-meta">
++              Collaboration discussions and demo showcases as projects mature and become shareable.
++            </p>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/about/AboutProfilePage.vue b/innolab-microsite/src/views/about/AboutProfilePage.vue
+index 2a800ce..c20fd8b 100644
+--- a/innolab-microsite/src/views/about/AboutProfilePage.vue
++++ b/innolab-microsite/src/views/about/AboutProfilePage.vue
+@@ -17,15 +17,55 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Lab Profile</h1>
+         <p class="muted">
+-          Overview of INNOGEN Lab (Innovation Intelligent Knowledge Generation) at BINUS @Bekasi. This page will be expanded with
+-          the official profile content and differentiators.
++          Overview of INNOGEN Lab (Innovation Intelligent Knowledge Generation) at BINUS @Bekasi, supported by the School of
++          Information Systems. The lab supports hands-on learning, research, and collaboration in AI, data science, smart systems,
++          and Industry 4.0–related innovation.
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">
+-            Planned content: overview, what makes INNOGEN Lab different, and links to Facilities and Activities.
+-          </p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">What INNOGEN Lab is</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>A multi-purpose academic and research space for experimentation and prototyping.</li>
++              <li>A place for students, lecturers, and partners to collaborate on applied work.</li>
++              <li>Designed to support course activities, research initiatives, and pilot projects.</li>
++            </ul>
++          </div>
++
++          <div class="card">
++            <div class="card-title">What makes it different</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>Project-based access: requests are reviewed based on availability and policy.</li>
++              <li>Prototype-first mindset: demos and proofs-of-concept are encouraged where appropriate.</li>
++              <li>Cross-program collaboration: supports multidisciplinary teams and supervision.</li>
++            </ul>
++          </div>
++        </div>
++
++        <div class="grid cols-3" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Facilities</div>
++            <p class="card-meta">Compute, tools, and collaboration space.</p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/facilities">View facilities</RouterLink>
++            </div>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Activities</div>
++            <p class="card-meta">Research, student projects, and partnerships.</p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/activities">Browse activities</RouterLink>
++            </div>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Playground</div>
++            <p class="card-meta">Selected demos and prototypes (availability may vary).</p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/playground">Open playground</RouterLink>
++            </div>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/activities/ActivitiesOutputsPage.vue b/innolab-microsite/src/views/activities/ActivitiesOutputsPage.vue
+index faba48c..4a70273 100644
+--- a/innolab-microsite/src/views/activities/ActivitiesOutputsPage.vue
++++ b/innolab-microsite/src/views/activities/ActivitiesOutputsPage.vue
+@@ -17,13 +17,50 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Outputs</h1>
+         <p class="muted">
+-          Publications, prototypes, and other outputs from INNOGEN Lab. This page will be expanded with a browsable list (grouped by
+-          year/type).
++          Publications, prototypes, and other outputs from INNOGEN Lab. This page shows example entries to illustrate how outputs can
++          be presented (titles and details may be updated).
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: publications, demos, datasets, and open-source links (where shareable).</p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Prototype demo</div>
++            <p class="card-meta">
++              Example: “Smart attendance insights dashboard” — a demo used for teaching and internal evaluation.
++            </p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/playground">View demos</RouterLink>
++            </div>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Student project</div>
++            <p class="card-meta">
++              Example: “IoT energy monitoring proof-of-concept” — a supervised project exploring data collection and analytics.
++            </p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/activities/student-projects">Browse student projects</RouterLink>
++            </div>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Research output</div>
++            <p class="card-meta">
++              Example: “Applied analytics case study” — internal write-up and methodology notes (shareability depends on policy).
++            </p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/articles">Read articles</RouterLink>
++            </div>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Open-source / dataset</div>
++            <p class="card-meta">
++              Example: curated notebooks and sample datasets for coursework (availability depends on licensing and privacy review).
++            </p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/contact">Request details</RouterLink>
++            </div>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/activities/ActivitiesPartnershipsPage.vue b/innolab-microsite/src/views/activities/ActivitiesPartnershipsPage.vue
+index 66383f0..b7b21dc 100644
+--- a/innolab-microsite/src/views/activities/ActivitiesPartnershipsPage.vue
++++ b/innolab-microsite/src/views/activities/ActivitiesPartnershipsPage.vue
+@@ -17,13 +17,44 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Partnerships</h1>
+         <p class="muted">
+-          Collaboration & Impact activities for INNOGEN Lab. This page will be expanded with partnership models, examples, and
+-          engagement pathways.
++          Collaboration & Impact activities for INNOGEN Lab. The sections below describe common engagement pathways and example
++          collaboration formats (details may be updated).
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: industry/government engagement, academic collaboration, and joint project examples.</p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Industry / applied projects</div>
++            <p class="card-meta">
++              Problem-driven collaboration with clear scope, timeline, and deliverables (e.g., prototype, evaluation report, demo).
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Academic collaboration</div>
++            <p class="card-meta">
++              Joint supervision, shared research activities, and co-authored outputs where appropriate and permitted.
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Student project partnerships</div>
++            <p class="card-meta">
++              Partner-provided problem statements for supervised student projects (data and access subject to review).
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">How to start</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>Share your goals and constraints (timeline, data sensitivity, expected outcomes).</li>
++              <li>We propose a collaboration path and required approvals.</li>
++              <li>For resource access, use the permit inquiry flow.</li>
++            </ul>
++            <div style="margin-top: var(--space-3); display: flex; gap: var(--space-2); flex-wrap: wrap">
++              <RouterLink class="btn btn-sm" to="/collaborate">Collaborate</RouterLink>
++              <RouterLink class="btn btn-sm" to="/permit">Permit inquiry</RouterLink>
++            </div>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/activities/ActivitiesResearchDevelopmentPage.vue b/innolab-microsite/src/views/activities/ActivitiesResearchDevelopmentPage.vue
+index 2b940b3..53085cb 100644
+--- a/innolab-microsite/src/views/activities/ActivitiesResearchDevelopmentPage.vue
++++ b/innolab-microsite/src/views/activities/ActivitiesResearchDevelopmentPage.vue
+@@ -17,13 +17,41 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Research & Development</h1>
+         <p class="muted">
+-          AI-driven research and development supported by INNOGEN Lab (Research & Development pillar). This page will be expanded
+-          with research initiatives, publications, and prototype highlights.
++          AI-driven research and development supported by INNOGEN Lab (Research & Development pillar). The items below are example
++          focus areas and typical activities (details may be updated).
+         </p>
+ 
+-        <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: research focus areas, active initiatives, and links to outputs.</p>
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Applied analytics</div>
++            <p class="card-meta">
++              Exploratory studies and case-based analysis using structured and semi-structured data for decision support.
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Intelligent systems & automation</div>
++            <p class="card-meta">
++              Prototyping workflows that combine sensing, data processing, and model-driven automation.
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Model experimentation</div>
++            <p class="card-meta">
++              Training and evaluation experiments for ML/DL models (subject to compute availability and supervision).
++            </p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Research-to-prototype pipeline</div>
++            <p class="card-meta">
++              Turning research ideas into demos and proofs-of-concept that can be tested in teaching or pilot settings.
++            </p>
++            <div style="margin-top: var(--space-3)">
++              <RouterLink class="btn btn-sm" to="/playground">See demos</RouterLink>
++            </div>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/facilities/FacilitiesSpacePage.vue b/innolab-microsite/src/views/facilities/FacilitiesSpacePage.vue
+index cbb5b0f..05f6e31 100644
+--- a/innolab-microsite/src/views/facilities/FacilitiesSpacePage.vue
++++ b/innolab-microsite/src/views/facilities/FacilitiesSpacePage.vue
+@@ -17,13 +17,39 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Collaboration Space</h1>
+         <p class="muted">
+-          Collaboration space for mentoring, supervision, and team sessions in INNOGEN Lab. This page will be expanded with booking
+-          guidance and media placeholders.
++          Collaboration space for mentoring, supervision, and team sessions in INNOGEN Lab. Use this page as a guide for typical
++          usage and how to request access.
+         </p>
+ 
++        <div class="grid cols-2" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Typical use cases</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>Supervision and mentoring sessions</li>
++              <li>Project stand-ups and team reviews</li>
++              <li>Small workshops and demo rehearsals</li>
++            </ul>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Usage notes</div>
++            <ul class="list" style="margin-top: var(--space-3)">
++              <li>Availability depends on the lab schedule and ongoing activities.</li>
++              <li>Keep sessions aligned with teaching, research, or approved projects.</li>
++              <li>For external guests, include context and purpose in your request.</li>
++            </ul>
++          </div>
++        </div>
++
+         <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: space description, usage guidelines, and booking/contact CTA.</p>
++          <div class="card-title">How to request the space</div>
++          <p class="card-meta" style="margin-top: var(--space-2)">
++            For project-based usage, submit a permit inquiry with your timeframe and purpose. For general questions, contact the lab.
++          </p>
++          <div style="margin-top: var(--space-3); display: flex; gap: var(--space-2); flex-wrap: wrap">
++            <RouterLink class="btn btn-sm" to="/permit">Permit inquiry</RouterLink>
++            <RouterLink class="btn btn-sm" to="/contact">Contact</RouterLink>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/people/PeopleAlumniPage.vue b/innolab-microsite/src/views/people/PeopleAlumniPage.vue
+index 1412b25..4f656a5 100644
+--- a/innolab-microsite/src/views/people/PeopleAlumniPage.vue
++++ b/innolab-microsite/src/views/people/PeopleAlumniPage.vue
+@@ -16,11 +16,36 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+     <section class="section">
+       <div class="container">
+         <h1 class="h1">Alumni</h1>
+-        <p class="muted">Alumni listing for INNOGEN Lab (optional). This page can be enabled once alumni data is ready.</p>
++        <p class="muted">
++          Alumni listing for INNOGEN Lab. The entries below are example categories to show how alumni contributions can be presented
++          (details may be updated).
++        </p>
++
++        <div class="grid cols-3" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Student project alumni</div>
++            <p class="card-meta">Contributors to supervised projects and demos during their study period.</p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Research assistant alumni</div>
++            <p class="card-meta">Former RAs supporting experiments, documentation, and prototype delivery.</p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Community contributors</div>
++            <p class="card-meta">Participants who supported workshops, showcases, or mentoring activities.</p>
++          </div>
++        </div>
+ 
+         <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: alumni names, roles, and selected outputs (where publishable).</p>
++          <div class="card-title">Share an update</div>
++          <p class="card-meta" style="margin-top: var(--space-2)">
++            If you are an alumnus and want to share an update or a publishable output, contact the lab team.
++          </p>
++          <div style="margin-top: var(--space-3)">
++            <RouterLink class="btn btn-sm" to="/contact">Contact</RouterLink>
++          </div>
+         </div>
+       </div>
+     </section>
+diff --git a/innolab-microsite/src/views/people/PeopleStudentsPage.vue b/innolab-microsite/src/views/people/PeopleStudentsPage.vue
+index 51bc87f..32aa8fd 100644
+--- a/innolab-microsite/src/views/people/PeopleStudentsPage.vue
++++ b/innolab-microsite/src/views/people/PeopleStudentsPage.vue
+@@ -17,13 +17,35 @@ import CtaBand from '../../components/ui/CtaBand.vue'
+       <div class="container">
+         <h1 class="h1">Students & Research Assistants</h1>
+         <p class="muted">
+-          Student and research assistant listings for INNOGEN Lab (optional for v0.1). This page will be expanded once content is
+-          available.
++          Student and research assistant listings for INNOGEN Lab. The entries below are example profiles to illustrate how student
++          involvement can be presented (names and details may be updated).
+         </p>
+ 
++        <div class="grid cols-3" style="margin-top: var(--space-5)">
++          <div class="card">
++            <div class="card-title">Research assistant (example)</div>
++            <p class="card-meta">Focus: data preparation, experiment tracking, and documentation support.</p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Thesis student (example)</div>
++            <p class="card-meta">Focus: applied ML evaluation for a supervised case study (topic subject to approval).</p>
++          </div>
++
++          <div class="card">
++            <div class="card-title">Project contributor (example)</div>
++            <p class="card-meta">Focus: dashboard UI, data visualization, and demo packaging for presentations.</p>
++          </div>
++        </div>
++
+         <div class="card" style="margin-top: var(--space-5)">
+-          <div class="card-title">Coming soon</div>
+-          <p class="card-meta">Planned content: current RAs, thesis students, and project assignments (if publishable).</p>
++          <div class="card-title">How students join</div>
++          <p class="card-meta" style="margin-top: var(--space-2)">
++            Opportunities depend on supervision capacity and project needs. See the Join page for the current process.
++          </p>
++          <div style="margin-top: var(--space-3)">
++            <RouterLink class="btn btn-sm" to="/people/join">Join us</RouterLink>
++          </div>
+         </div>
+       </div>
+     </section>

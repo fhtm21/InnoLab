@@ -29,6 +29,14 @@ const total = computed(() => safeItems.value.reduce((acc, i) => acc + i.value, 0
 const radius = computed(() => (props.size - props.strokeWidth) / 2)
 const circumference = computed(() => 2 * Math.PI * radius.value)
 
+/**
+ * SVG viewBox is fixed at 0..100, so the circle radius used in the template must be in that coordinate space.
+ * We keep the ring at r=40 (centered at 50,50) and compute circumference based on that, otherwise
+ * stroke-dasharray/dashoffset will be wrong when `size` changes.
+ */
+const viewBoxRadius = 40
+const viewBoxCircumference = computed(() => 2 * Math.PI * viewBoxRadius)
+
 const palette = computed(() => {
   const fallback = [
     'rgb(59, 125, 192)', // --accent-blue
@@ -46,11 +54,11 @@ const segments = computed(() => {
   let offset = 0
   return safeItems.value.map((item, idx) => {
     const fraction = item.value / t
-    const length = fraction * circumference.value
+    const length = fraction * viewBoxCircumference.value
     const seg = {
       ...item,
       color: palette.value[idx % palette.value.length],
-      dasharray: `${length} ${circumference.value - length}`,
+      dasharray: `${length} ${viewBoxCircumference.value - length}`,
       dashoffset: -offset,
       percent: fraction * 100,
     }
@@ -160,20 +168,21 @@ const ariaLabel = computed(() => {
 .donut-bg {
   fill: none;
   stroke: rgba(0, 0, 0, 0.06);
-  stroke-width: 12;
+  stroke-width: v-bind(strokeWidth);
 }
 
 .donut-seg {
   fill: none;
-  stroke-width: 12;
+  stroke-width: v-bind(strokeWidth);
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+  stroke-linecap: butt;
 }
 
 .donut-empty {
   fill: none;
   stroke: rgba(0, 0, 0, 0.12);
-  stroke-width: 12;
+  stroke-width: v-bind(strokeWidth);
 }
 
 .donut-empty-text {
