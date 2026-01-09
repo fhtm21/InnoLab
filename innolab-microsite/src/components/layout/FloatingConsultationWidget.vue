@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { siteConfig } from '../../config/site'
+import AppIcon from '../ui/AppIcon.vue'
 
 const router = useRouter()
 
@@ -25,7 +26,9 @@ function onClick() {
 <template>
   <div v-if="enabled" class="widget" role="complementary" aria-label="Consultation widget">
     <button class="widget-btn" type="button" @click="onClick">
-      <span class="badge" aria-hidden="true">?</span>
+      <span class="badge" aria-hidden="true">
+        <AppIcon name="ph:question" :size="16" />
+      </span>
       <span class="label">{{ siteConfig.floatingWidget.label }}</span>
     </button>
   </div>

@@ -161,22 +161,21 @@ const metrics = getMetrics()
         </div>
       </div>
     </section>
-+
-+    <section class="section">
-+      <div class="container">
-+        <SectionHeader title="Latest articles" viewMoreLabel="View all articles" viewMoreTo="/articles" />
-+        <div class="grid cols-3">
-+          <BaseCard v-for="a in articles" :key="a.slug">
-+            <div class="card-title">{{ a.title }}</div>
-+            <p class="card-meta">{{ a.date }} · {{ a.category }}</p>
-+            <p class="card-meta" style="margin-top: var(--space-2)">{{ a.summary }}</p>
-+            <div style="margin-top: var(--space-3)">
-+              <RouterLink class="btn btn-sm" :to="`/articles/${a.slug}`">Read</RouterLink>
-+            </div>
-+          </BaseCard>
-+        </div>
-+      </div>
-+    </section>
+    <section class="section">
+      <div class="container">
+        <SectionHeader title="Latest articles" viewMoreLabel="View all articles" viewMoreTo="/articles" />
+        <div class="grid cols-3">
+          <BaseCard v-for="a in articles" :key="a.slug">
+            <div class="card-title">{{ a.title }}</div>
+            <p class="card-meta">{{ a.date }} · {{ a.category }}</p>
+            <p class="card-meta" style="margin-top: var(--space-2)">{{ a.summary }}</p>
+            <div style="margin-top: var(--space-3)">
+              <RouterLink class="btn btn-sm" :to="`/articles/${a.slug}`">Read</RouterLink>
+            </div>
+          </BaseCard>
+        </div>
+      </div>
+    </section>
 
     <section class="section">
       <div class="container">

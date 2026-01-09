@@ -231,6 +231,7 @@ Implement the Home page per the recommended layout: hero, highlights, core purpo
 - Home remains data-driven for people/articles and uses SPA navigation: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
 - Facilities snapshot section added (compute/tools/space) with links to Facilities subpages: [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
 - “INNOGEN Lab at a glance” metrics section added (static content-driven): [`innolab-microsite/src/content/metrics.json`](../innolab-microsite/src/content/metrics.json) and [`innolab-microsite/src/views/HomePage.vue`](../innolab-microsite/src/views/HomePage.vue:1)
+- Metrics are placeholder-friendly (explicit placeholder labeling in content): [`innolab-microsite/src/content/metrics.json`](../innolab-microsite/src/content/metrics.json)
 
 ---
 
@@ -414,7 +415,7 @@ Implement Activities subpages aligned to the IA.
 
 ---
 
-## RB-16 — Student projects listing (`/activities/student-projects`) — **NOT DONE**
+## RB-16 — Student projects listing (`/activities/student-projects`) — **DONE**
 
 **Requirement**
 Implement a student projects listing page with basic filters.
@@ -424,9 +425,12 @@ Implement a student projects listing page with basic filters.
 - Filters exist for at least: status (Active/Completed) and category/type (e.g., course project, thesis, RA).
 - Each project card links to its detail page (if detail pages are in scope) or to an external link (if applicable).
 
+**Implementation notes (current)**
+- Implemented a data-driven listing with query-param filters for `status` and `type` (type is inferred from theme slugs for v0.1): [`innolab-microsite/src/views/activities/ActivitiesStudentProjectsPage.vue`](../innolab-microsite/src/views/activities/ActivitiesStudentProjectsPage.vue:1)
+
 ---
 
-## RB-16A — Student projects information completeness — **NOT DONE**
+## RB-16A — Student projects information completeness — **DONE**
 
 **Requirement**
 Ensure each project card provides enough information to decide whether to click.
@@ -434,6 +438,9 @@ Ensure each project card provides enough information to decide whether to click.
 **Acceptance criteria**
 - Project card shows: title, status, category/type tags, 1–2 sentence summary.
 - Project card includes at least one “output” indicator if outputs exist (e.g., icons/labels for paper/code/demo).
+
+**Implementation notes (current)**
+- Project cards show title, status, inferred type, summary, themes, team, and an “Outputs” row with color-coded chips (paper/code/demo/dataset): [`innolab-microsite/src/views/activities/ActivitiesStudentProjectsPage.vue`](../innolab-microsite/src/views/activities/ActivitiesStudentProjectsPage.vue:1)
 
 ---
 
@@ -727,7 +734,7 @@ Implement Collaborate/Contact subpages aligned to the updated IA.
 
 ---
 
-## RB-31 — Contact (`/contact`) — **PARTIAL**
+## RB-31 — Contact (`/contact`) — **DONE**
 
 **Requirement**
 Implement Contact page with a static-friendly contact form and contact details.
@@ -858,7 +865,7 @@ Track and resolve the open questions listed in the concept doc to finalize v0.1 
 
 ---
 
-## RB-37 — Icon system: Iconify integration — **NOT DONE**
+## RB-37 — Icon system: Iconify integration — **DONE**
 
 **Requirement**
 Adopt Iconify as the microsite icon system for consistent, lightweight icons across UI components.
@@ -876,7 +883,14 @@ Adopt Iconify as the microsite icon system for consistent, lightweight icons acr
 - No inline SVG duplication for common icons; use Iconify instead.
 
 **Implementation notes**
-- Prefer a single icon set (e.g., Material Symbols or Phosphor) to keep style consistent.
+- Implemented Iconify with Phosphor icons:
+  - Dependencies: `@iconify/vue` + `@iconify-json/ph`
+  - Wrapper component: [`innolab-microsite/src/components/ui/AppIcon.vue`](../innolab-microsite/src/components/ui/AppIcon.vue:1)
+  - Usage examples:
+    - Header menu + search trigger: [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+    - CTA band buttons: [`innolab-microsite/src/components/ui/CtaBand.vue`](../innolab-microsite/src/components/ui/CtaBand.vue:1)
+    - Floating widget badge: [`innolab-microsite/src/components/layout/FloatingConsultationWidget.vue`](../innolab-microsite/src/components/layout/FloatingConsultationWidget.vue:1)
+- Prefer a single icon set (Phosphor) to keep style consistent.
 
 ---
 

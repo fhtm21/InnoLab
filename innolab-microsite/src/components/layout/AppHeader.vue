@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { siteConfig } from '../../config/site'
+import AppIcon from '../ui/AppIcon.vue'
 
 const route = useRoute()
 const isMenuOpen = ref(false)
@@ -71,7 +72,8 @@ function closeMenu() {
           aria-controls="primary-nav"
           @click="toggleMenu"
         >
-          Menu
+          <AppIcon name="ph:list" :size="18" />
+          <span>Menu</span>
         </button>
 
         <nav
@@ -96,7 +98,8 @@ function closeMenu() {
 
         <div v-if="siteConfig.header.showSearch" class="search">
           <button class="icon-btn" type="button" aria-label="Open search">
-            Search
+            <AppIcon name="ph:magnifying-glass" :size="18" />
+            <span class="sr-only">Search</span>
           </button>
         </div>
       </div>
@@ -185,6 +188,8 @@ function closeMenu() {
   padding: 8px 10px;
   font: inherit;
   cursor: pointer;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav {
@@ -220,6 +225,21 @@ function closeMenu() {
   padding: 8px 10px;
   cursor: pointer;
   font: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 900px) {

@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import AppIcon from './AppIcon.vue'
 
 defineProps({
   title: { type: String, default: 'Ready to collaborate?' },
@@ -20,8 +21,14 @@ defineProps({
       </div>
 
       <div class="actions">
-        <RouterLink class="btn btn-primary" :to="primaryTo">{{ primaryLabel }}</RouterLink>
-        <RouterLink class="btn" :to="secondaryTo">{{ secondaryLabel }}</RouterLink>
+        <RouterLink class="btn btn-primary btn-with-icon" :to="primaryTo">
+          <AppIcon name="ph:envelope-simple" :size="18" />
+          <span>{{ primaryLabel }}</span>
+        </RouterLink>
+        <RouterLink class="btn btn-with-icon" :to="secondaryTo">
+          <AppIcon name="ph:handshake" :size="18" />
+          <span>{{ secondaryLabel }}</span>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -53,5 +60,11 @@ defineProps({
   display: flex;
   gap: var(--space-3);
   flex-wrap: wrap;
+}
+
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 </style>
