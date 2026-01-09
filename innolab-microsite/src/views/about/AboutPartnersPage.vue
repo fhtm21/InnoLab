@@ -23,11 +23,11 @@ import CtaBand from '../../components/ui/CtaBand.vue'
         <div class="grid cols-2" style="margin-top: var(--space-5)">
           <div class="card">
             <div class="card-title">Internal (BINUS)</div>
-            <p class="card-meta">Faculties, research centers, and cross-campus initiatives (placeholder).</p>
+            <p class="card-meta">Faculties, research centers, and cross-campus initiatives (list in progress).</p>
           </div>
           <div class="card">
             <div class="card-title">External</div>
-            <p class="card-meta">Industry partners, institutions, and international collaborations (placeholder).</p>
+            <p class="card-meta">Industry partners, institutions, and international collaborations (list in progress).</p>
           </div>
         </div>
       </div>

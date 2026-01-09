@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "text-summarizer-demo",
+    "title": "Text Summarizer (Demo)",
+    "description": "A lightweight demo for summarizing short text into key bullet points. Intended for showcasing NLP workflows and evaluation considerations.",
+    "tags": ["NLP", "Summarization"],
+    "status": "Demo",
+    "try": {
+      "type": "embed",
+      "embedUrl": "https://example.com/embed/text-summarizer",
+      "height": 520
+    },
+    "about": {
+      "type": "internal",
+      "to": "/activities"
+    },
+    "notes": "Demo URL is a placeholder. Replace with a real hosted demo (e.g., Streamlit/HF Spaces) before publishing."
+  },
+  {
+    "slug": "image-classification-prototype",
+    "title": "Image Classification (Prototype)",
+    "description": "Prototype UI for testing a simple image classification workflow. Use for internal review and student project demonstrations.",
+    "tags": ["Computer Vision", "Classification"],
+    "status": "Prototype",
+    "try": {
+      "type": "external",
+      "url": "https://example.com/demo/image-classification"
+    },
+    "about": {
+      "type": "internal",
+      "to": "/activities/student-projects"
+    },
+    "notes": "External link is a placeholder. Replace with a real demo link."
+  },
+  {
+    "slug": "iot-anomaly-monitoring-coming-soon",
+    "title": "IoT Anomaly Monitoring (Coming soon)",
+    "description": "Planned demo for anomaly detection on sensor streams. Will include a small synthetic dataset and a dashboard-style visualization.",
+    "tags": ["IoT", "Anomaly Detection", "Analytics"],
+    "status": "Research",
+    "try": {
+      "type": "coming-soon"
+    },
+    "about": {
+      "type": "internal",
+      "to": "/activities/research-development"
+    },
+    "notes": "No demo available yet."
+  }
+]

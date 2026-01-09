@@ -23,19 +23,19 @@ import CtaBand from '../../components/ui/CtaBand.vue'
         <div class="grid cols-2" style="margin-top: var(--space-5)">
           <div class="card">
             <div class="card-title">Research assistantships</div>
-            <p class="card-meta">Work with lecturers on lab projects (placeholder).</p>
+            <p class="card-meta">Work with lecturers on lab projects (subject to openings and fit).</p>
           </div>
           <div class="card">
             <div class="card-title">Thesis / capstone projects</div>
-            <p class="card-meta">Supervision and co-supervision opportunities (placeholder).</p>
+            <p class="card-meta">Supervision and co-supervision opportunities (topic and capacity dependent).</p>
           </div>
           <div class="card">
             <div class="card-title">Internships</div>
-            <p class="card-meta">Applied projects with partners (placeholder).</p>
+            <p class="card-meta">Applied projects with partners (availability varies by cycle).</p>
           </div>
           <div class="card">
             <div class="card-title">Visiting collaboration</div>
-            <p class="card-meta">Short-term collaboration with external researchers (placeholder).</p>
+            <p class="card-meta">Short-term collaboration with external researchers (by arrangement).</p>
           </div>
         </div>
       </div>

@@ -8,17 +8,17 @@ import CtaBand from '../components/ui/CtaBand.vue'
       <div class="container">
         <h1 class="h1">Collaborate</h1>
         <p class="muted">
-          Collaboration models and engagement process (placeholder).
+          Collaboration models and a simple engagement process for academic and industry/government partners.
         </p>
 
         <div class="grid cols-2">
           <div class="card">
             <div class="card-title">Academic collaboration</div>
-            <p class="card-meta">Joint research, visiting scholars, shared benchmarks (placeholder)</p>
+            <p class="card-meta">Joint research, supervision, visiting collaboration, and shared benchmarks (as agreed).</p>
           </div>
           <div class="card">
             <div class="card-title">Industry & government</div>
-            <p class="card-meta">Applied research, pilots, evaluation, training (placeholder)</p>
+            <p class="card-meta">Applied research, pilots, evaluation, and training (scope and availability dependent).</p>
           </div>
         </div>
 
@@ -35,6 +35,13 @@ import CtaBand from '../components/ui/CtaBand.vue'
       </div>
     </section>
 
-    <CtaBand title="Start a conversation" body="Send us your problem statement and goals (placeholder)." />
+    <CtaBand
+      title="Start a conversation"
+      body="Send us your problem statement and goals. We will respond with next steps based on feasibility and availability."
+      primaryLabel="Contact"
+      primaryTo="/contact"
+      secondaryLabel="Playground"
+      secondaryTo="/playground"
+    />
   </div>
 </template>

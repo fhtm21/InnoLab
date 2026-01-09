@@ -7,6 +7,8 @@ import PeoplePage from '../views/PeoplePage.vue'
 import ArticlesPage from '../views/ArticlesPage.vue'
 import CollaboratePage from '../views/CollaboratePage.vue'
 import ContactPage from '../views/ContactPage.vue'
+import PermitPage from '../views/PermitPage.vue'
+import PlaygroundPage from '../views/PlaygroundPage.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
 
 import ThemeDetailPage from '../views/ThemeDetailPage.vue'
@@ -77,6 +79,8 @@ const routes = [
 
   { path: '/collaborate', name: 'collaborate', component: CollaboratePage },
   { path: '/contact', name: 'contact', component: ContactPage },
+  { path: '/permit', name: 'permit', component: PermitPage },
+  { path: '/playground', name: 'playground', component: PlaygroundPage },
 
   // Backward-compatible redirects (old IA)
   { path: '/research', redirect: '/activities' },

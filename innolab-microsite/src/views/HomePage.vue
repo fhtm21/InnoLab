@@ -96,7 +96,7 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
 
     <section class="section">
       <div class="container">
-        <SectionHeader title="INNOGEN Lab at a glance" intro="Key metrics (placeholders) to be confirmed." />
+        <SectionHeader title="INNOGEN Lab at a glance" intro="Key metrics (data pending confirmation)." />
         <p class="muted" style="margin-top: calc(var(--space-4) * -1)">
           Note: {{ metrics.note }}
         </p>

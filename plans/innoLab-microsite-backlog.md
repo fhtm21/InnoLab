@@ -1012,6 +1012,111 @@ Perform a cross-page audit to ensure UI primitives, interactions, and icon usage
 
 ---
 
+## RB-42A — Per-page UI improvement pass (microsite-wide) — **NOT DONE**
+
+**Requirement**
+Ensure every page has clear, consistent UI affordances and “polish” (especially inside box containers/cards), without violating SIS-inspired design tokens.
+
+**Acceptance criteria (per-page checklist)**
+For each route in scope:
+- [ ] Clickable text is visually distinct from body text (links and in-card actions).
+- [ ] Primary/secondary CTAs are consistent (primary orange pill; secondary “text link button” style).
+- [ ] Focus states are visible and consistent for links, buttons, filters, and accordions.
+- [ ] Empty/placeholder states use consistent language (avoid “placeholder” tone in user-facing UI; use “Coming soon” or “Data pending confirmation”).
+- [ ] Spacing and typography are consistent (no cramped cards; consistent section rhythm).
+- [ ] No console warnings for Reka UI primitives (Dialog/Accordion) and no obvious layout shifts.
+
+**Scope (routes)**
+- `/`
+- `/about` + all `/about/*`
+- `/activities` + all `/activities/*`
+- `/facilities` + all `/facilities/*`
+- `/people` + all `/people/*`
+- `/articles` + `/articles/:slug`
+- `/collaborate` + any collaborate subroutes
+- `/contact`
+- `/playground` (if implemented; see RB-44)
+
+**Notes**
+- This is a UI consistency/polish pass, not a redesign.
+- Prefer updating shared UI primitives (buttons/links/cards) over per-page CSS.
+
+---
+
+## RB-43 — Resource usage permit inquiry (Request access / usage permit) — **NOT DONE**
+
+**Requirement**
+Add a dedicated page and flow for requesting permission to use INNOGEN Lab resources (compute/tools/space), separate from general contact, so the process feels real and operational.
+
+**Acceptance criteria**
+- A route exists: `/request-access` (or `/permit`), linked from:
+  - Facilities landing (`/facilities`)
+  - Facilities subpages (`/facilities/compute`, `/facilities/tools`, `/facilities/space`, `/facilities/policy`)
+  - Header utility links (optional) and footer quick links (optional)
+- Page includes:
+  - Clear intro: who can request access and what “permit” means (project-based approval, fair use).
+  - A static-friendly form (mailto or configurable endpoint) with fields:
+    - Requester name, BINUS affiliation (student/lecturer/staff/external), email
+    - Resource type (Compute / Tools / Space / Other)
+    - Purpose (Teaching / Research / Student project / Partnership)
+    - Project title + short description
+    - Requested timeframe (start/end or duration)
+    - Supervisor/PI (if student) + contact
+    - Data sensitivity checkbox (no sensitive data / contains sensitive data)
+  - Confirmation text explaining next steps and expected response window (non-committal, realistic).
+- Accessibility:
+  - Labels, error states, keyboard navigation, and focus management match Contact page patterns.
+- Copy reliability:
+  - Avoid over-claiming capacity; use “subject to availability” language.
+
+**Notes**
+- This complements `/contact` (general inquiries) and makes Facilities feel actionable.
+
+---
+
+## RB-44 — Playground (online-testable prototypes) — **NOT DONE**
+
+**Requirement**
+Add a “Playground” section/page to showcase research/product prototypes that can be tried online (demos), improving credibility and engagement.
+
+**Acceptance criteria**
+- A route exists: `/playground`
+- Page includes:
+  - H1 + short intro describing what can be tested and any limitations.
+  - A grid of “prototype cards” (static content-driven) with:
+    - Title, short description, tags (e.g., NLP, CV, IoT, Analytics)
+    - Status badge (Demo / Prototype / Research)
+    - “Try demo” action (opens embedded demo or external link in new tab)
+    - “About” link to related project/article (if available)
+  - Safety + privacy disclaimer:
+    - No sensitive data; demo inputs may be logged only if explicitly stated; otherwise “no storage” claim must be avoided.
+- Content model:
+  - Prototypes are defined in a local content file (e.g., `src/content/prototypes.json`) so updates are content-only.
+
+**Notes**
+- If no real demos are available yet, include 1–3 “Coming soon” cards with realistic descriptions and clear “Not available yet” state (no fake links).
+
+---
+
+## RB-45 — Credibility/content reliability pass (AI lab tone) — **NOT DONE**
+
+**Requirement**
+Ensure the microsite reads as a real, reliable AI laboratory: consistent claims, realistic numbers, and professional tone aligned to official information.
+
+**Acceptance criteria**
+- Replace “placeholder” phrasing in user-facing UI with:
+  - “Data pending confirmation” / “To be confirmed” / “Coming soon”
+- Ensure consistency across:
+  - Lab name (INNOGEN Lab) and BINUS @Bekasi references
+  - Facilities capabilities (no over-claiming hardware specs unless confirmed)
+  - Metrics section: totals and breakdowns are coherent; partial data is labeled
+- Add/verify credibility cues:
+  - Clear contact email and location (if official), otherwise clearly marked as “official contact pending confirmation”
+  - Publications/outputs links are valid (or removed if not available)
+- Run a link check pass for all external links in content (Scholar/ORCID/LinkedIn/output URLs).
+
+---
+
 ## RB-40 — Official information update (FINAL REPORT slide) — **DONE**
 
 **Requirement**

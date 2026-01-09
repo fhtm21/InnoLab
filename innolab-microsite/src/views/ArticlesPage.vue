@@ -119,6 +119,13 @@ function clearFilters() {
       </div>
     </section>
 
-    <CtaBand title="Have news to share?" body="Send us an update to publish as an article (placeholder workflow)." />
+    <CtaBand
+      title="Have news to share?"
+      body="Send us an update to publish as an article. Publishing is subject to review and available information."
+      primaryLabel="Contact"
+      primaryTo="/contact"
+      secondaryLabel="Playground"
+      secondaryTo="/playground"
+    />
   </div>
 </template>

@@ -3,6 +3,7 @@ import projects from './projects.json'
 import people from './people.json'
 import articles from './articles.json'
 import metrics from './metrics.json'
+import prototypes from './prototypes.json'
 
 export function getThemes() {
   return themes
@@ -34,6 +35,10 @@ export function getArticles() {
 
 export function getMetrics() {
   return metrics
+}
+
+export function getPrototypes() {
+  return prototypes
 }
 
 export function getArticleBySlug(slug) {

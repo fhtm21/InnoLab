@@ -22,7 +22,7 @@ import CtaBand from '../../components/ui/CtaBand.vue'
         </p>
 
         <div class="card" style="margin-top: var(--space-5)">
-          <div class="card-title">Capabilities (placeholder)</div>
+          <div class="card-title">Capabilities (subject to confirmation)</div>
           <ul class="list" style="margin-top: var(--space-3)">
             <li>GPU-capable workstations for deep learning training and experimentation</li>
             <li>Python environments for AI development (as available)</li>

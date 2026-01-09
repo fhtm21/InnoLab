@@ -2,7 +2,7 @@
 import { computed, nextTick, reactive, ref } from 'vue'
 import CtaBand from '../components/ui/CtaBand.vue'
 
-const CONTACT_EMAIL = 'innolab@binus.ac.id' // placeholder
+const CONTACT_EMAIL = 'innolab@binus.ac.id'
 
 const form = reactive({
   name: '',
@@ -213,12 +213,11 @@ async function onSubmit() {
           <p class="muted">
             Email:
             <a class="link" :href="`mailto:${CONTACT_EMAIL}`">{{ CONTACT_EMAIL }}</a>
-            <span class="muted"> (placeholder)</span>
           </p>
-          <p class="muted">Location: BINUS University, Campus/Building (placeholder)</p>
+          <p class="muted">Location: BINUS University (details to be confirmed)</p>
           <p class="muted">
             Map:
-            <a class="link" href="#" aria-disabled="true" @click.prevent>Map link (placeholder)</a>
+            <span class="muted">Link to be added once the location details are confirmed.</span>
           </p>
         </div>
       </div>

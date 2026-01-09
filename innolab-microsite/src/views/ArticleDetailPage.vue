@@ -193,7 +193,7 @@ async function copyLink() {
 
     <CtaBand
       title="Have news to share?"
-      body="Send us an update to publish as an article (placeholder workflow)."
+      body="Send us an update to publish as an article. We’ll review it and follow up if we need clarification."
       primaryLabel="Contact"
       primaryTo="/contact"
       secondaryLabel="Collaborate"

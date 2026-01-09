@@ -22,7 +22,7 @@ import CtaBand from '../../components/ui/CtaBand.vue'
         </p>
 
         <div class="card" style="margin-top: var(--space-5)">
-          <div class="card-title">Policy summary (placeholder)</div>
+          <div class="card-title">Policy summary (subject to confirmation)</div>
           <ul class="list" style="margin-top: var(--space-3)">
             <li>Access requires request and approval (project-based)</li>
             <li>Users must follow data privacy and security guidelines</li>

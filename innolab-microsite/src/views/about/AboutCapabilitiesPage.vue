@@ -44,7 +44,7 @@ import CtaBand from '../../components/ui/CtaBand.vue'
 
     <CtaBand
       title="Request access"
-      body="Contact us to request access to compute or collaboration space (static-friendly placeholder)."
+      body="Contact us to request access to compute or collaboration space. Requests are reviewed based on availability and policy."
       primaryLabel="Contact"
       primaryTo="/contact"
       secondaryLabel="Facilities"

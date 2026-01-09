@@ -21,22 +21,22 @@ const aboutLinks = [
   },
   {
     title: 'Leadership & Governance',
-    body: 'Leadership roles and governance structure (placeholder).',
+    body: 'Leadership roles and governance structure.',
     to: '/about/governance',
   },
   {
     title: 'History & Milestones',
-    body: 'Timeline of key milestones (placeholder).',
+    body: 'Timeline of key milestones.',
     to: '/about/milestones',
   },
   {
     title: 'Partners & Affiliations',
-    body: 'Partner ecosystem and affiliations (placeholder).',
+    body: 'Partner ecosystem and affiliations.',
     to: '/about/partners',
   },
   {
     title: 'FAQ',
-    body: 'Common questions about access, usage, and collaboration (placeholder).',
+    body: 'Common questions about access, usage, and collaboration.',
     to: '/about/faq',
   },
 ]

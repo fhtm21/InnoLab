@@ -25,7 +25,7 @@ const people = getPeople()
           </BaseCard>
           <BaseCard>
             <div class="card-title">Students & Research Assistants</div>
-            <p class="card-meta">Student contributors and research assistants (placeholder).</p>
+            <p class="card-meta">Student contributors and research assistants (directory in progress).</p>
             <div style="margin-top: var(--space-3)">
               <RouterLink class="btn btn-sm" to="/people/students">View</RouterLink>
             </div>

@@ -116,7 +116,7 @@ const ariaLabel = computed(() => {
           <span class="swatch" :style="{ background: palette[idx % palette.length] }" aria-hidden="true" />
           <span class="legend-label">
             {{ item.label }}
-            <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
+            <span v-if="item.isPlaceholder" class="muted"> (data pending confirmation)</span>
           </span>
           <span class="legend-value muted">{{ item.value }}</span>
         </li>

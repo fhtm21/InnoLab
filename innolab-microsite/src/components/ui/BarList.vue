@@ -42,7 +42,7 @@ function widthPct(item) {
         <div class="barlist-row-head">
           <span class="barlist-label">
             {{ item.label }}
-            <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
+            <span v-if="item.isPlaceholder" class="muted"> (data pending confirmation)</span>
           </span>
 
           <span v-if="showValues" class="barlist-value">

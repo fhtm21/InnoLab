@@ -84,6 +84,57 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Link affordance inside "box containers" (cards)
+   Decision (RB-42A): make ALL in-card links look like a small CTA ("text link button"),
+   so clickable text is always visually distinct from body text inside cards.
+   Notes:
+   - We keep global links neutral by default (SIS-like), but inside `.card` we add a pill/outline affordance.
+   - This applies to both <a> and <RouterLink> (renders as <a>).
+*/
+.card a:not(.chip):not(.brand-link):not(.utility-link):not(.view-more):not(.link):not(.link-inline) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 125, 192, 0.25);
+  background: rgba(222, 239, 251, 0.35);
+  color: var(--accent-blue);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.card a:not(.chip):not(.brand-link):not(.utility-link):not(.view-more):not(.link):not(.link-inline):hover {
+  text-decoration: none;
+  border-color: rgba(59, 125, 192, 0.45);
+  background: rgba(222, 239, 251, 0.55);
+}
+
+.card a:not(.chip):not(.brand-link):not(.utility-link):not(.view-more):not(.link):not(.link-inline):focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Ensure button-styled links inside cards match the same affordance */
+.card .btn-sm {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 125, 192, 0.25);
+  background: rgba(222, 239, 251, 0.35);
+  color: var(--accent-blue);
+  font-weight: var(--font-weight-semibold);
+}
+
+.card .btn-sm:hover {
+  text-decoration: none;
+  border-color: rgba(59, 125, 192, 0.45);
+  background: rgba(222, 239, 251, 0.55);
+}
+
+.card .btn-sm:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
 :focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
