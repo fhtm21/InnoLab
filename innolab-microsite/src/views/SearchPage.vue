@@ -64,58 +64,63 @@ const resultCountLabel = computed(() => {
 
 <template>
   <div>
-    <section class="section">
-      <div class="container">
+    <section class="hero">
+      <div class="container hero-inner">
         <h1 class="h1">Search</h1>
-        <p class="muted">
-          Search across articles, people, themes, projects, and key pages.
-        </p>
+        <p class="muted hero-sub">Search across articles, people, themes, projects, and key pages.</p>
 
         <form class="searchbar" role="search" @submit.prevent="onSubmit">
           <label class="sr-only" for="site-search-input">Search query</label>
-          <input
-            id="site-search-input"
-            v-model="input"
-            class="input"
-            type="search"
-            name="q"
-            placeholder="Search… (e.g., Responsible AI, NLP, collaboration)"
-            autocomplete="off"
-          />
-          <button class="btn btn-primary" type="submit">Search</button>
-        </form>
 
-        <div class="search-controls">
-          <div class="muted small">{{ resultCountLabel }}</div>
-
-          <div class="sort">
-            <label class="card-meta" for="search-sort">Sort</label>
-            <select
-              id="search-sort"
-              class="btn"
-              style="justify-content: space-between"
-              :value="sort"
-              @change="onSortChange"
-            >
-              <option value="relevance">Relevance</option>
-              <option value="date">Date</option>
-            </select>
+          <div class="searchbar-field">
+            <input
+              id="site-search-input"
+              v-model="input"
+              class="searchbar-input"
+              type="search"
+              name="q"
+              placeholder="Search… (e.g., Responsible AI, NLP, collaboration)"
+              autocomplete="off"
+            />
+            <button class="btn btn-primary searchbar-btn" type="submit">Search</button>
           </div>
-        </div>
 
+          <div class="searchbar-meta">
+            <div class="muted small">{{ resultCountLabel }}</div>
+
+            <div class="sort">
+              <label class="card-meta" for="search-sort">Sort</label>
+              <select
+                id="search-sort"
+                class="btn sort-select"
+                :value="sort"
+                @change="onSortChange"
+              >
+                <option value="relevance">Relevance</option>
+                <option value="date">Date</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <SectionHeader v-if="q.trim()" :title="`Results for “${q.trim()}”`" />
 
         <div v-if="results.length" class="grid cols-3">
           <BaseCard v-for="r in results" :key="`${r.type}:${r.id}`">
+            <div class="result-kicker">{{ formatResultTypeLabel(r.type) }}</div>
             <div class="card-title">{{ r.title }}</div>
             <p class="card-meta">
-              {{ formatResultTypeLabel(r.type) }}
-              <span v-if="r.date"> · {{ r.date }}</span>
+              <span v-if="r.date">{{ r.date }}</span>
+              <span v-else class="muted">—</span>
             </p>
             <p v-if="r.summary" class="card-meta" style="margin-top: var(--space-2)">
               {{ r.summary }}
             </p>
-            <div style="margin-top: var(--space-3)">
+            <div class="cta-row">
               <RouterLink class="btn btn-sm" :to="r.to">Open</RouterLink>
             </div>
           </BaseCard>
@@ -128,20 +133,64 @@ const resultCountLabel = computed(() => {
 </template>
 
 <style scoped>
+.hero {
+  padding: var(--space-7) 0;
+  background: linear-gradient(180deg, rgba(222, 239, 251, 0.55), rgba(255, 255, 255, 0));
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-inner {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.hero-sub {
+  margin: 0;
+  max-width: 80ch;
+}
+
 .searchbar {
-  margin-top: var(--space-5);
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
-  max-width: 760px;
-}
-
-.searchbar .input {
-  flex: 1 1 auto;
-}
-
-.search-controls {
   margin-top: var(--space-4);
+  max-width: 860px;
+}
+
+.searchbar-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.searchbar-input {
+  flex: 1 1 auto;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--text-600);
+  padding: 8px 10px;
+  outline: none;
+}
+
+.searchbar-input::placeholder {
+  color: rgba(102, 102, 102, 0.8);
+}
+
+.searchbar-field:focus-within {
+  box-shadow: var(--focus-ring), 0 10px 30px rgba(0, 0, 0, 0.06);
+  border-color: rgba(59, 125, 192, 0.35);
+}
+
+.searchbar-btn {
+  white-space: nowrap;
+}
+
+.searchbar-meta {
+  margin-top: var(--space-3);
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -152,6 +201,21 @@ const resultCountLabel = computed(() => {
 .sort {
   display: grid;
   gap: 6px;
+}
+
+.sort-select {
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.result-kicker {
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: var(--font-weight-light);
+  color: var(--text-650);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .small {
