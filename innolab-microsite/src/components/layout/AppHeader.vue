@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import { DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogPortal, DialogRoot, DialogTitle, DialogTrigger } from 'reka-ui'
 import { siteConfig } from '../../config/site'
 import AppIcon from '../ui/AppIcon.vue'
 
@@ -21,12 +22,6 @@ const isActive = computed(() => {
   const p = route.path
   return (to) => p === to || p.startsWith(`${to}/`)
 })
-
-const activePath = computed(() => route.path)
-
-function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value
-}
 
 function closeMenu() {
   isMenuOpen.value = false
@@ -65,36 +60,64 @@ function closeMenu() {
           </RouterLink>
         </div>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          :aria-expanded="isMenuOpen ? 'true' : 'false'"
-          aria-controls="primary-nav"
-          @click="toggleMenu"
-        >
-          <AppIcon name="ph:list" :size="18" />
-          <span>Menu</span>
-        </button>
-
-        <nav
-          id="primary-nav"
-          class="nav"
-          :class="{ open: isMenuOpen }"
-          aria-label="Primary navigation"
-        >
+        <!-- Desktop nav -->
+        <nav class="nav nav-desktop" aria-label="Primary navigation">
           <RouterLink
             v-for="item in navItems"
             :key="item.to"
             class="nav-link"
             :class="{ active: isActive(item.to) }"
             :to="item.to"
-            @click="closeMenu"
-            >{{ item.label }}</RouterLink
           >
-          <RouterLink class="btn btn-primary cta" :to="siteConfig.header.primaryCta.to" @click="closeMenu">
+            {{ item.label }}
+          </RouterLink>
+          <RouterLink class="btn btn-primary cta" :to="siteConfig.header.primaryCta.to">
             {{ siteConfig.header.primaryCta.label }}
           </RouterLink>
         </nav>
+
+        <!-- Mobile nav (Reka UI Dialog as Drawer) -->
+        <DialogRoot v-model:open="isMenuOpen">
+          <DialogTrigger as-child>
+            <button class="menu-toggle" type="button" :aria-expanded="isMenuOpen ? 'true' : 'false'">
+              <AppIcon name="ph:list" :size="18" />
+              <span>Menu</span>
+            </button>
+          </DialogTrigger>
+
+          <DialogPortal>
+            <DialogOverlay class="drawer-overlay" />
+
+            <DialogContent class="drawer-content" @escape-key-down="closeMenu" @pointer-down-outside="closeMenu">
+              <DialogDescription class="sr-only">Primary navigation links</DialogDescription>
+              <div class="drawer-header">
+                <DialogTitle class="drawer-title">Menu</DialogTitle>
+                <DialogClose as-child>
+                  <button class="icon-btn" type="button" aria-label="Close menu">
+                    <AppIcon name="ph:x" :size="18" />
+                  </button>
+                </DialogClose>
+              </div>
+
+              <nav class="drawer-nav" aria-label="Primary navigation (mobile)">
+                <RouterLink
+                  v-for="item in navItems"
+                  :key="item.to"
+                  class="drawer-link"
+                  :class="{ active: isActive(item.to) }"
+                  :to="item.to"
+                  @click="closeMenu"
+                >
+                  {{ item.label }}
+                </RouterLink>
+
+                <RouterLink class="btn btn-primary drawer-cta" :to="siteConfig.header.primaryCta.to" @click="closeMenu">
+                  {{ siteConfig.header.primaryCta.label }}
+                </RouterLink>
+              </nav>
+            </DialogContent>
+          </DialogPortal>
+        </DialogRoot>
 
         <div v-if="siteConfig.header.showSearch" class="search">
           <button class="icon-btn" type="button" aria-label="Open search">
@@ -199,6 +222,91 @@ function closeMenu() {
   gap: 14px;
 }
 
+.nav-desktop {
+  display: flex;
+}
+
+/* Drawer (mobile nav) */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 50;
+}
+
+.drawer-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(360px, 92vw);
+  background: #fff;
+  border-left: 1px solid var(--border);
+  z-index: 60;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.drawer-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-600);
+}
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-link {
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: var(--text-600);
+  text-decoration: none;
+}
+
+.drawer-link:hover {
+  background: rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+}
+
+.drawer-link.active {
+  color: var(--accent-blue);
+  font-weight: var(--font-weight-semibold);
+}
+
+.drawer-cta {
+  margin-top: 6px;
+  width: fit-content;
+}
+
+/* Animations (respect reduced motion via global CSS) */
+.drawer-overlay[data-state='open'] {
+  animation: reka-fade-in 160ms ease-out;
+}
+.drawer-overlay[data-state='closed'] {
+  animation: reka-fade-out 140ms ease-in;
+}
+
+.drawer-content[data-state='open'] {
+  animation: reka-fade-in 160ms ease-out, reka-slide-up 160ms ease-out;
+}
+.drawer-content[data-state='closed'] {
+  animation: reka-fade-out 140ms ease-in, reka-slide-down 140ms ease-in;
+}
+
 .nav-link {
   font-size: 14px;
   color: var(--text-600);
@@ -247,36 +355,8 @@ function closeMenu() {
     display: inline-flex;
   }
 
-  .nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    background: #fff;
-    border-bottom: 1px solid var(--border);
+  .nav-desktop {
     display: none;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 12px var(--gutter);
-    gap: 10px;
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav-link {
-    padding: 10px 8px;
-    border-radius: 10px;
-  }
-
-  .nav-link:hover {
-    background: rgba(0, 0, 0, 0.03);
-    text-decoration: none;
-  }
-
-  .cta {
-    width: fit-content;
   }
 }
 </style>

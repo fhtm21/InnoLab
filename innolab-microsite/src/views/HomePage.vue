@@ -2,12 +2,19 @@
 import BaseCard from '../components/ui/BaseCard.vue'
 import SectionHeader from '../components/ui/SectionHeader.vue'
 import CtaBand from '../components/ui/CtaBand.vue'
+import KpiCard from '../components/ui/KpiCard.vue'
+import BarList from '../components/ui/BarList.vue'
+import DonutChart from '../components/ui/DonutChart.vue'
 import { getThemes, getPeople, getArticles, getMetrics } from '../content/index.js'
 
 const themes = getThemes()
 const people = getPeople()
 const articles = getArticles()
 const metrics = getMetrics()
+
+const facilityTotal = metrics.facilityUsers.items.reduce((acc, i) => acc + Number(i.value || 0), 0)
+const publicationsTotal = metrics.publications.items.reduce((acc, i) => acc + Number(i.value || 0), 0)
+const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Number(i.value || 0), 0)
 </script>
 
 <template>
@@ -94,35 +101,34 @@ const metrics = getMetrics()
           Note: {{ metrics.note }}
         </p>
 
-        <div class="grid cols-3" style="margin-top: var(--space-4)">
+        <div class="glance-grid" style="margin-top: var(--space-4)">
+          <div class="glance-kpis">
+            <KpiCard
+              title="Total facility users"
+              :value="facilityTotal"
+              note="Sum of students, lecturers/professors, and professionals."
+              :isPlaceholder="true"
+            />
+            <KpiCard
+              title="Total publications"
+              :value="publicationsTotal"
+              note="Sum of journal articles, conference papers, patents, and whitepapers."
+              :isPlaceholder="true"
+            />
+            <KpiCard
+              title="Total partnerships"
+              :value="partnershipsTotal"
+              note="Current total partnerships."
+              :isPlaceholder="true"
+            />
+          </div>
+
           <BaseCard>
-            <div class="card-title">{{ metrics.facilityUsers.title }}</div>
-            <ul class="list">
-              <li v-for="item in metrics.facilityUsers.items" :key="item.label">
-                <strong>{{ item.value }}</strong> {{ item.label }}
-                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
-              </li>
-            </ul>
+            <DonutChart :title="metrics.facilityUsers.title" :items="metrics.facilityUsers.items" />
           </BaseCard>
 
           <BaseCard>
-            <div class="card-title">{{ metrics.publications.title }}</div>
-            <ul class="list">
-              <li v-for="item in metrics.publications.items" :key="item.label">
-                <strong>{{ item.value }}</strong> {{ item.label }}
-                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
-              </li>
-            </ul>
-          </BaseCard>
-
-          <BaseCard>
-            <div class="card-title">{{ metrics.partnerships.title }}</div>
-            <ul class="list">
-              <li v-for="item in metrics.partnerships.items" :key="item.label">
-                <strong>{{ item.value }}</strong> {{ item.label }}
-                <span v-if="item.isPlaceholder" class="muted"> (placeholder)</span>
-              </li>
-            </ul>
+            <BarList :title="metrics.publications.title" :items="metrics.publications.items" />
           </BaseCard>
         </div>
       </div>
@@ -234,5 +240,23 @@ const metrics = getMetrics()
   margin: var(--space-3) 0 0;
   padding-left: 1.1rem;
   color: var(--text);
+}
+
+.glance-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1.1fr 1fr 1fr;
+  align-items: start;
+}
+
+.glance-kpis {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .glance-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

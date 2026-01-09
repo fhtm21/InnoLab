@@ -926,6 +926,92 @@ Add a credibility section on the Home page that summarizes key INNOGEN Lab metri
 
 ---
 
+## RB-41 — Home: “INNOGEN Lab at a glance” dashboard-style visuals (KPI + bars + donut) — **NOT DONE**
+
+**Requirement**
+Upgrade the Home “INNOGEN Lab at a glance” section from simple KPI cards into a more dashboard-style visual summary (KPI boxes + horizontal bars + donut), while keeping the site static-friendly (Vue SPA, bundled content) and ensuring accessibility and placeholder handling.
+
+**Acceptance criteria**
+- The “INNOGEN Lab at a glance” section supports a dashboard-style layout that can include:
+  - KPI boxes (headline numbers + labels)
+  - Horizontal bar visuals for breakdowns (e.g., facility users by group, publications by type)
+  - A donut/pie-style visual for a single distribution (e.g., partnerships by category) when data is available
+- All visuals have text equivalents:
+  - Each KPI has a visible label and value in text (not only in a chart).
+  - Each bar and donut segment has an accessible text equivalent (e.g., a list/table of labels + values) that conveys the same information.
+  - Decorative chart elements are marked as decorative (`aria-hidden`) and do not create noisy focus/reading order.
+- Placeholder handling is explicit and consistent:
+  - If a metric value is unknown, the UI shows a placeholder state (e.g., “TBD” / “Placeholder”) and does not render misleading chart proportions.
+  - If a breakdown dataset is missing/empty, the UI shows a clear “data not available yet” message and falls back to text-only (no empty chart chrome).
+  - If totals do not match breakdown sums (due to partial data), the UI indicates partial coverage (e.g., “partial data”) rather than silently normalizing.
+- Color is not the only means of conveying meaning:
+  - Bars/segments include labels and/or patterns/markers so users can distinguish categories without relying on color alone.
+- Static content alignment:
+  - The section continues to be driven by local content files bundled at build time (no runtime API dependency).
+  - The content model supports both “simple KPI only” and “dashboard with breakdowns” without requiring code changes to publish new numbers (content-only updates).
+
+**Notes**
+- Keep scope aligned to the existing microsite: static Vue SPA, informational content, no analytics or live dashboards.
+- This item upgrades the presentation of RB-39; RB-39 remains the baseline implementation.
+
+---
+
+## RB-42 — Cross-page UI/interaction/icon audit (Iconify + Reka UI consistency) — **NOT DONE**
+
+**Implementation notes (RB-42 audit run)**
+Audit scope (dev server):
+- `/`
+- `/about`
+- `/about/faq`
+- `/activities`
+- `/activities/student-projects`
+- `/facilities`
+- `/people`
+- `/people/lecturers`
+- `/articles`
+- `/articles/:slug`
+- `/contact`
+
+Findings:
+- Header mobile drawer (Reka UI Dialog) emitted console warning: “Missing `Description` or `aria-describedby` for DialogContent.”
+
+Fixes applied:
+- Added `DialogDescription` to the header drawer content to satisfy accessibility requirements and remove the warning: [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+
+Build:
+- `npm -C innolab-microsite run build` ✅ (vite build succeeded)
+
+## RB-42 — Cross-page UI/interaction/icon audit (Iconify + Reka UI consistency) — **NOT DONE**
+
+**Requirement**
+Perform a cross-page audit to ensure UI primitives, interactions, and icon usage are consistent across the microsite, specifically focusing on Iconify usage patterns and Reka UI interaction patterns.
+
+**Acceptance criteria (checklist)**
+- [ ] Icon system consistency (Iconify)
+  - [ ] All icons are rendered via the shared wrapper component (no ad-hoc inline SVG for common icons).
+  - [ ] A single icon set/style is used consistently (e.g., Phosphor) unless an exception is documented.
+  - [ ] Decorative icons are `aria-hidden` and do not appear in the accessibility tree.
+  - [ ] Meaningful icons have accessible names (e.g., `aria-label` or visible text) and are not the only indicator of meaning.
+  - [ ] Icon sizing and alignment are consistent across header, buttons, cards, and metadata rows.
+- [ ] Interaction consistency (Reka UI + general behavior)
+  - [ ] Dialog/Drawer patterns (e.g., mobile nav, future search) use consistent overlay, focus trap, and close affordances.
+  - [ ] Accordion patterns (FAQ) use consistent keyboard behavior and animation timing.
+  - [ ] Reduced-motion preference is respected for animated UI elements.
+  - [ ] Focus states are visible and consistent across interactive elements (links, buttons, toggles, filters).
+- [ ] Cross-page UI polish
+  - [ ] Buttons/CTAs use consistent variants (primary/secondary/ghost) and spacing.
+  - [ ] Form controls (filters, contact form) have consistent labels, helper text, and error styling.
+  - [ ] Empty/placeholder states use consistent language and styling (e.g., “Coming soon”, “Placeholder”, “TBD”).
+- [ ] Audit output
+  - [ ] A short audit report is added to project docs (findings + recommended fixes), scoped to the existing static Vue SPA (no new backend requirements).
+  - [ ] Any exceptions (intentional inconsistencies) are documented with rationale.
+
+**Notes**
+- This is a documentation/planning item: do not implement code as part of this backlog entry.
+- Keep the audit scoped to the existing microsite pages and components (no redesign, no new features beyond consistency fixes).
+
+---
+
 ## RB-40 — Official information update (FINAL REPORT slide) — **DONE**
 
 **Requirement**
@@ -940,7 +1026,7 @@ Update the official lab information source file with the “FINAL REPORT PROYEK 
 
 ---
 
-## RB-38 — UI primitives + animations: Reka UI adoption — **NOT DONE**
+## RB-38 — UI primitives + animations: Reka UI adoption — **DONE**
 
 **Requirement**
 Adopt Reka UI for accessible UI primitives and component animations (where appropriate) to improve interaction quality and consistency.
@@ -959,6 +1045,14 @@ Adopt Reka UI for accessible UI primitives and component animations (where appro
   - focus management
   - ARIA attributes
   - reduced-motion support (respects user preference)
+
+**Implementation notes (current)**
+- Installed `reka-ui`: [`innolab-microsite/package.json`](../innolab-microsite/package.json:1)
+- Mobile nav refactored to Reka UI Dialog (drawer pattern) with overlay + focus trap + enter/exit animations:
+  - [`innolab-microsite/src/components/layout/AppHeader.vue`](../innolab-microsite/src/components/layout/AppHeader.vue:1)
+  - Global motion helpers + reduced-motion support: [`innolab-microsite/src/style.css`](../innolab-microsite/src/style.css:1)
+- About FAQ refactored to Reka UI Accordion with keyboard support + expand/collapse animations:
+  - [`innolab-microsite/src/views/about/AboutFaqPage.vue`](../innolab-microsite/src/views/about/AboutFaqPage.vue:1)
 
 **Implementation notes**
 - Keep SIS visual cues; Reka UI is for behavior/accessibility/animation primitives, not a full visual redesign.
