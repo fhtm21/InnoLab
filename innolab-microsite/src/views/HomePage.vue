@@ -28,7 +28,9 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
 
         <div class="hero-actions">
           <RouterLink class="btn btn-primary" to="/facilities">Explore Facilities</RouterLink>
-          <RouterLink class="btn" to="/collaborate">Collaborate / Contact</RouterLink>
+          <RouterLink class="btn" to="/collaborate">Collaborate</RouterLink>
+          <RouterLink class="btn" to="/permit">Permit inquiry</RouterLink>
+          <RouterLink class="btn" to="/playground">Playground</RouterLink>
         </div>
       </div>
     </section>
@@ -163,6 +165,44 @@ const partnershipsTotal = metrics.partnerships.items.reduce((acc, i) => acc + Nu
             <div style="margin-top: var(--space-3)">
               <RouterLink class="btn btn-sm" to="/facilities/space">Explore space</RouterLink>
             </div>
+          </BaseCard>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <SectionHeader
+          title="UN SDG alignment"
+          intro="How INNOGEN Lab supports selected United Nations Sustainable Development Goals (UN SDGs)."
+        />
+        <div class="grid cols-2">
+          <BaseCard>
+            <div class="card-title">SDG 4 — Quality Education</div>
+            <p class="card-meta">
+              Hands-on learning and research in AI and data science to strengthen education outcomes at BINUS @Bekasi.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 8 — Decent Work & Economic Growth</div>
+            <p class="card-meta">
+              Industry-relevant skills development through projects and applied learning to support workforce readiness.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 9 — Industry, Innovation & Infrastructure</div>
+            <p class="card-meta">
+              Prototyping and experimentation in intelligent systems to support innovation and practical infrastructure development.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 17 — Partnerships for the Goals</div>
+            <p class="card-meta">
+              Collaboration with internal and external partners to enable joint projects and knowledge exchange.
+            </p>
           </BaseCard>
         </div>
       </div>

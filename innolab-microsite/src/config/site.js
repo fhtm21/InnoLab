@@ -12,8 +12,8 @@ export const siteConfig = {
   },
   floatingWidget: {
     enabled: true, // RB-04 optional widget; can be toggled off
-    label: 'Click to Consultation!',
-    action: { type: 'route', to: '/contact' }, // or { type: 'external', href: 'https://...' }
+    label: 'Quick actions',
+    action: { type: 'route', to: '/collaborate' }, // or { type: 'external', href: 'https://...' }
   },
   footer: {
     quickLinks: [

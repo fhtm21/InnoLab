@@ -15,7 +15,27 @@ const navItems = [
   { label: 'Facilities', to: '/facilities' },
   { label: 'People', to: '/people' },
   { label: 'Articles', to: '/articles' },
-  { label: 'Collaborate', to: '/collaborate' },
+]
+
+const quickLinks = [
+  {
+    label: 'Collaborate',
+    to: '/collaborate',
+    desc: 'Partnership models, student projects, and how to start.',
+    icon: 'ph:handshake',
+  },
+  {
+    label: 'Permit inquiry',
+    to: '/permit',
+    desc: 'Request access to facilities and resources (subject to policy).',
+    icon: 'ph:clipboard-text',
+  },
+  {
+    label: 'Playground',
+    to: '/playground',
+    desc: 'Explore prototypes and demos that can be tested online.',
+    icon: 'ph:flask',
+  },
 ]
 
 const isActive = computed(() => {
@@ -71,6 +91,31 @@ function closeMenu() {
           >
             {{ item.label }}
           </RouterLink>
+
+          <div class="nav-dropdown" tabindex="0">
+            <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true">
+              Engage
+              <AppIcon name="ph:caret-down" :size="14" />
+            </button>
+
+            <div class="nav-dropdown-menu" role="menu" aria-label="Engage">
+              <RouterLink
+                v-for="q in quickLinks"
+                :key="q.to"
+                class="nav-dropdown-item"
+                :to="q.to"
+              >
+                <span class="nav-dropdown-icon" aria-hidden="true">
+                  <AppIcon :name="q.icon" :size="16" />
+                </span>
+                <span class="nav-dropdown-text">
+                  <span class="nav-dropdown-label">{{ q.label }}</span>
+                  <span class="nav-dropdown-desc">{{ q.desc }}</span>
+                </span>
+              </RouterLink>
+            </div>
+          </div>
+
           <RouterLink class="btn btn-primary cta" :to="siteConfig.header.primaryCta.to">
             {{ siteConfig.header.primaryCta.label }}
           </RouterLink>
@@ -110,6 +155,20 @@ function closeMenu() {
                 >
                   {{ item.label }}
                 </RouterLink>
+
+                <div class="drawer-section">
+                  <div class="drawer-section-title">Engage</div>
+                  <RouterLink
+                    v-for="q in quickLinks"
+                    :key="q.to"
+                    class="drawer-link"
+                    :to="q.to"
+                    @click="closeMenu"
+                  >
+                    {{ q.label }}
+                    <span class="drawer-link-desc">{{ q.desc }}</span>
+                  </RouterLink>
+                </div>
 
                 <RouterLink class="btn btn-primary drawer-cta" :to="siteConfig.header.primaryCta.to" @click="closeMenu">
                   {{ siteConfig.header.primaryCta.label }}
@@ -316,6 +375,91 @@ function closeMenu() {
 .nav-link.active {
   color: var(--accent-blue);
   font-weight: var(--font-weight-semibold);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 10px;
+  display: none;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-dropdown-item {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-600);
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+}
+
+.nav-dropdown-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-600);
+}
+
+.nav-dropdown-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-650);
+  line-height: 1.35;
+}
+
+.drawer-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 8px;
+}
+
+.drawer-section-title {
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-650);
+  padding: 0 10px;
+}
+
+.drawer-link-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-650);
+  line-height: 1.35;
 }
 
 .cta {

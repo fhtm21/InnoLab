@@ -118,7 +118,11 @@ const ariaLabel = computed(() => {
             {{ item.label }}
             <span v-if="item.isPlaceholder" class="muted"> (data pending confirmation)</span>
           </span>
-          <span class="legend-value muted">{{ item.value }}</span>
+
+          <span class="legend-value muted">
+            <span class="legend-number">{{ item.value }}</span>
+            <span v-if="total > 0" class="legend-percent">({{ ((Number(item.value) / total) * 100).toFixed(1) }}%)</span>
+          </span>
         </li>
       </ul>
     </div>
@@ -189,7 +193,7 @@ const ariaLabel = computed(() => {
   display: grid;
   grid-template-columns: 12px 1fr auto;
   gap: var(--space-2);
-  align-items: baseline;
+  align-items: start;
 }
 
 .swatch {
@@ -207,5 +211,14 @@ const ariaLabel = computed(() => {
 .legend-value {
   font-size: 14px;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.legend-percent {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
 }
 </style>

@@ -69,6 +69,42 @@ const aboutLinks = [
       </div>
 
       <div style="margin-top: var(--space-7)">
+        <SectionHeader
+          title="UN SDG alignment"
+          intro="INNOGEN Lab aligns with selected United Nations Sustainable Development Goals (UN SDGs)."
+        />
+        <div class="grid cols-2" style="margin-top: var(--space-4)">
+          <BaseCard>
+            <div class="card-title">SDG 4 — Quality Education</div>
+            <p class="card-meta">
+              Hands-on learning and research in AI and data science to enhance education quality at BINUS @Bekasi.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 8 — Decent Work & Economic Growth</div>
+            <p class="card-meta">
+              Industry-relevant skills development to prepare students for the workforce and support economic growth.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 9 — Industry, Innovation & Infrastructure</div>
+            <p class="card-meta">
+              Prototyping and intelligent systems development to support innovation and practical infrastructure advancement.
+            </p>
+          </BaseCard>
+
+          <BaseCard>
+            <div class="card-title">SDG 17 — Partnerships for the Goals</div>
+            <p class="card-meta">
+              Collaboration with BINUS units, industry partners, and institutions to enable joint projects and knowledge exchange.
+            </p>
+          </BaseCard>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-7)">
         <SectionHeader title="Explore About" intro="Jump to the detailed pages for INNOGEN Lab." />
         <div class="grid cols-3" style="margin-top: var(--space-4)">
           <BaseCard v-for="item in aboutLinks" :key="item.to">
